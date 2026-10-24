@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATA MUEBLES — Implementación Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #F8F6F3;
+            --card-bg: #FFFFFF;
+            --text-dark: #1A1C1E;
+            --text-muted: #6C6E72;
+            --accent-gold: #B8893E;
+            --border: #E3DFD7;
+            --border-hover: #C5BFB3;
+            --chip-bg: #EFECE6;
+            --teal-box: #A3CDC4;
+            --teal-text: #17423B;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.07);
+            --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding: 16px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+        .brand-box h1 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--text-dark);
+        }
+        .brand-box span {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .search-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px 10px 38px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--bg);
+            font-size: 13px;
+            color: var(--text-dark);
+            outline: none;
+            transition: all 0.2s;
+        }
+        .search-box input:focus {
+            border-color: var(--accent-gold);
+            background: #FFFFFF;
+        }
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .btn-presentation {
+            background: var(--text-dark);
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-presentation:hover {
+            background: var(--accent-gold);
+        }
+        main {
+            flex: 1;
+            max-width: 1350px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .grid-header h2 {
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .grid-header span {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* FOTO 5: CARDS GRID BEFORE SELECTING */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 24px;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            box-shadow: var(--shadow-md);
+        }
+        .img-wrap {
+            height: 230px;
+            background: #FFFFFF;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .img-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .badge-prov {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--accent-gold);
+            color: #FFFFFF;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .badge-cat {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(26, 28, 30, 0.85);
+            color: #FFFFFF;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .card-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            line-height: 1.25;
+        }
+        .card-col {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--chip-bg);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+        }
+        .price-item span {
+            display: block;
+            font-size: 9px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .price-item strong {
+            font-size: 15px;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+        .dims-table {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .dim-item span {
+            display: block;
+            font-size: 9px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        .dim-item strong {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+        .card-action {
+            margin-top: auto;
+            text-align: center;
+            padding: 8px;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* FULLSCREEN SLIDE MODAL (HOJA 1 & HOJA 2) */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 17, 19, 0.88);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .slide-frame {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 1280px;
+            height: 90vh;
+            max-height: 820px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* TOP SLIDE HEADER (INDICATOR) */
+        .slide-header {
+            padding: 14px 28px;
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .slide-step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .step-pill {
+            padding: 6px 14px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+        .step-pill.active {
+            background: var(--text-dark);
+            color: #FFFFFF;
+        }
+        .step-pill.inactive {
+            background: var(--chip-bg);
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--chip-bg);
+            border: none;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .close-btn:hover {
+            background: var(--border-hover);
+        }
+
+        /* SLIDE CONTAINER */
+        .slide-body {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ==================================================================== */
+        /* FOTO 2: HOJA 1 (TECHNICAL & COMMERCIAL SPECS)                        */
+        /* ==================================================================== */
+        .sheet-1-view {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .sheet-1-left {
+            flex: 1.1;
+            background: #FFFFFF;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+        }
+        .hero-img-box {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-height: 480px;
+        }
+        .hero-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .swatches-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+        .swatch-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg);
+            padding: 6px 14px 6px 6px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        .swatch-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .swatch-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .swatch-meta span {
+            display: block;
+            font-size: 8px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        .swatch-meta strong {
+            font-size: 11px;
+            color: var(--text-dark);
+            font-weight: 800;
+        }
+
+        .sheet-1-right {
+            flex: 1;
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        .modal-cat-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .modal-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+        .modal-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .modal-spec-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .modal-spec-card span {
+            display: block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+        .modal-spec-card strong {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+        .modal-price-box {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .price-card-large {
+            background: #FDF9F3;
+            border: 1px solid #E5D5BA;
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .price-card-large span {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            letter-spacing: 0.5px;
+        }
+        .price-card-large strong {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+        .cost-card-large {
+            background: #F3F5F7;
+            border: 1px solid #D5DAE0;
+            border-radius: 10px;
+            padding: 12px 16px;
+        }
+        .cost-card-large span {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+        .cost-card-large strong {
+            font-size: 18px;
+            font-weight: 800;
+            color: #4A5568;
+        }
+        .modal-materials {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        .modal-materials h4 {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .modal-materials p {
+            font-size: 12px;
+            color: var(--text-dark);
+            line-height: 1.45;
+        }
+        .modal-special {
+            background: #F2F7F6;
+            border: 1px solid #C8E3DC;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #17423B;
+            font-weight: 600;
+        }
+
+        /* ==================================================================== */
+        /* FOTO 3: HOJA 2 (AMBIENTE & ENLACE GOOGLE DRIVE)                      */
+        /* ==================================================================== */
+        .sheet-2-view {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            padding: 24px;
+        }
+        .sheet-2-top-frame {
+            flex: 1;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .sheet-2-top-frame img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .sheet-2-bottom-bar {
+            background: var(--teal-box);
+            border-radius: 14px;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .sheet-2-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--teal-text);
+            text-transform: uppercase;
+        }
+        .sheet-2-sub {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2D6359;
+            margin-top: 2px;
+        }
+        .btn-drive {
+            background: #17423B;
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(23,66,59,0.25);
+        }
+        .btn-drive:hover {
+            background: #0E2924;
+            transform: translateY(-2px);
+        }
+
+        /* MODAL BOTTOM CONTROLS */
+        .modal-nav {
+            background: #FFFFFF;
+            border-top: 1px solid var(--border);
+            padding: 14px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-nav {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-nav:hover {
+            background: var(--text-dark);
+            color: #FFFFFF;
+            border-color: var(--text-dark);
+        }
+        .btn-nav.primary {
+            background: var(--text-dark);
+            color: #FFFFFF;
+            border-color: var(--text-dark);
+        }
+        .btn-nav.primary:hover {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+        .nav-status {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            .sheet-1-view {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+            .sheet-1-left {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                min-height: 300px;
+            }
+            .sheet-1-right {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand-box">
+            <h1>CREATA MUEBLES</h1>
+            <span>Demostración Oficial de Implementación</span>
+        </div>
+        <div class="search-controls">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Buscar mueble...">
+            </div>
+            <button class="btn-presentation" onclick="startPresentation()">
+                ▶ Iniciar Presentación
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid-header">
+            <div>
+                <h2>Ejemplo de Implementación</h2>
+                <span id="productCount">4 muebles demostrativos</span>
+            </div>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+    </main>
+
+    <!-- FULLSCREEN SLIDESHOW MODAL -->
+    <div class="modal" id="slideModal">
+        <div class="slide-frame">
+            <!-- Top Slide Header -->
+            <div class="slide-header">
+                <div class="slide-step-indicator">
+                    <span class="step-pill active" id="pillSheet1" onclick="goToSheet(1)">📄 Hoja 1: Especificaciones & Costos</span>
+                    <span class="step-pill inactive" id="pillSheet2" onclick="goToSheet(2)">🏡 Hoja 2: Ambiente & Google Drive</span>
+                </div>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+
+            <!-- Slide Body -->
+            <div class="slide-body">
+                <!-- HOJA 1: SPECIFICATIONS & COSTS (FOTO 2) -->
+                <div class="sheet-1-view" id="sheet1">
+                    <div class="sheet-1-left">
+                        <div class="hero-img-box">
+                            <img id="m1Img" src="" alt="Producto">
+                        </div>
+                        <div class="swatches-row">
+                            <div class="swatch-card">
+                                <div class="swatch-box">
+                                    <img id="m1Swatch" src="" alt="Muestra">
+                                </div>
+                                <div class="swatch-meta">
+                                    <span>Acabado / Tapiz</span>
+                                    <strong id="m1SwatchLabel">MUESTRA OFICIAL</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sheet-1-right">
+                        <div class="modal-cat-tag" id="m1Cat"></div>
+                        <div class="modal-title" id="m1Title"></div>
+
+                        <div class="modal-specs-grid">
+                            <div class="modal-spec-card">
+                                <span>Ancho Total</span>
+                                <strong id="m1Width">-</strong>
+                            </div>
+                            <div class="modal-spec-card">
+                                <span>Fondo</span>
+                                <strong id="m1Depth">-</strong>
+                            </div>
+                            <div class="modal-spec-card">
+                                <span>Altura Total</span>
+                                <strong id="m1Height">-</strong>
+                            </div>
+                            <div class="modal-spec-card">
+                                <span>Altura Asiento</span>
+                                <strong id="m1Seat">-</strong>
+                            </div>
+                            <div class="modal-spec-card">
+                                <span>Cubitaje</span>
+                                <strong id="m1Volume">-</strong>
+                            </div>
+                            <div class="modal-spec-card">
+                                <span>Empaque / Bultos</span>
+                                <strong id="m1Packages">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="modal-price-box">
+                            <div class="price-card-large">
+                                <span>Precio Público Oficial</span>
+                                <strong id="m1Price">-</strong>
+                            </div>
+                            <div class="cost-card-large">
+                                <span>Costo de Fábrica</span>
+                                <strong id="m1Cost">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="modal-materials">
+                            <h4>Materiales y Fabricación</h4>
+                            <p id="m1Materials">-</p>
+                        </div>
+
+                        <div class="modal-special" id="m1Special"></div>
+                    </div>
+                </div>
+
+                <!-- HOJA 2: AMBIENTE & DRIVE (FOTO 3) -->
+                <div class="sheet-2-view" id="sheet2">
+                    <div class="sheet-2-top-frame">
+                        <img id="m2Img" src="" alt="Ambiente">
+                    </div>
+                    <div class="sheet-2-bottom-bar">
+                        <div>
+                            <div class="sheet-2-title" id="m2Title"></div>
+                            <div class="sheet-2-sub">Ficha Técnica Oficial y Especificaciones de Taller</div>
+                        </div>
+                        <a id="m2Drive" href="#" target="_blank" class="btn-drive">
+                            Abrir Ficha Técnica en Google Drive ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation Bar -->
+            <div class="modal-nav">
+                <button class="btn-nav" onclick="prevSlide()">← Anterior</button>
+                <div class="nav-status" id="navCounter">Diapositiva 1 de 8</div>
+                <button class="btn-nav primary" onclick="nextSlide()">Siguiente →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [{"id": "CVV-SALA-PIERO-BM", "name": "SALA PIERO FOREVER BUTTERMILK", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "collection": "CVV", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura de madera estufada de alta resistencia, acojinamiento de espuma de alta resiliencia y tapizado en tela repelente Forever Buttermilk.", "special": "Diseño modular de amplio confort con costuras reforzadas de alta durabilidad.", "photo_frontal": "CVV_Sala_Piero_Forever_Buttermilk.png", "photo_swatch": "CVV_Sala_Piero_Forever_Buttermilk_swatch.jpg", "photo_ambiente": "CVV_Sala_Piero_Forever_Buttermilk_ambiente.jpg", "swatch_label": "TELA FOREVER BUTTERMILK", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "CVV-SALA-PIERO-CURRY", "name": "SALA PIERO FOREVER CURRY", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "collection": "CVV", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura en madera sólida de pino seleccionada, suspensión con cincha elástica importada y tapizado en textura Forever Curry.", "special": "Acabado de tono cálido ideal para proyectos residenciales contemporáneos.", "photo_frontal": "CVV_Sala_Piero_Forever_Curry.png", "photo_swatch": "CVV_Sala_Piero_Forever_Curry_swatch.jpg", "photo_ambiente": "CVV_Sala_Piero_Forever_Curry_ambiente.jpg", "swatch_label": "TELA FOREVER CURRY", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "MBI-MESA-KAMKO", "name": "MESA DE COMEDOR KAMKO NUEZ", "provider_abbr": "MBI", "provider_full": "MOBEL INN", "category": "COMEDORES & SILLERÍA", "collection": "MBI", "width": "240 cm", "depth": "110 cm", "height": "76 cm", "seat": "N/D", "volume": "1.28 m³", "packages": "2 bultos", "price": "$23,924.70", "cost": "$8,143.20", "materials": "Chapa natural de nogal americano con base escultórica en madera maciza y acabado barniz poliuretano mate de alta protección.", "special": "Capacidad óptima para 8 a 10 comensales.", "photo_frontal": "MBI_Mesa_de_comedor_Kamko_Nuez.png", "photo_swatch": "MBI_Mesa_de_comedor_Kamko_Nuez_swatch.jpg", "photo_ambiente": "MBI_Mesa_de_comedor_Kamko_Nuez_ambiente.jpg", "swatch_label": "CHAPA DE NOGAL NATURAL", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "ATX-CAMA-AURA", "name": "CAMA AURA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "RECÁMARAS & BURÓS", "collection": "ATX", "width": "215 cm", "depth": "225 cm", "height": "120 cm", "seat": "N/D", "volume": "2.10 m³", "packages": "3 bultos", "price": "$18,096.90", "cost": "$6,159.60", "materials": "Cabecera acolchada en lino natural, largueros reforzados con estructura interior de acero y base flotante.", "special": "Incluye sistema de herrajes ocultos y soporte de somier ventilado.", "photo_frontal": "ATX_Cama_Aura.png", "photo_swatch": "ATX_Bufetera_Bali_swatch.jpg", "photo_ambiente": "ATX_Cama_Aura_ambiente.jpg", "swatch_label": "TAPIZ AURA TEXTIL", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}];
+        let currentProdIndex = 0;
+        let currentSheet = 1; // 1 = Hoja 1, 2 = Hoja 2
+
+        function renderGrid(items) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            document.getElementById('productCount').innerText = `${items.length} muebles demostrativos`;
+
+            items.forEach((p, idx) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => openProduct(idx, 1);
+                card.innerHTML = `
+                    <div class="img-wrap">
+                        <span class="badge-cat">${p.category}</span>
+                        <span class="badge-prov">${p.provider_abbr}</span>
+                        <img src="fotos/${p.photo_frontal}" alt="${p.name}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${p.name}</div>
+                        <div class="card-col">${p.provider_full} · REF: ${p.id}</div>
+
+                        <div class="price-row">
+                            <div class="price-item">
+                                <span>Precio</span>
+                                <strong>${p.price}</strong>
+                            </div>
+                            <div class="price-item" style="text-align: right;">
+                                <span>Costo</span>
+                                <strong style="color: var(--accent-gold);">${p.cost}</strong>
+                            </div>
+                        </div>
+
+                        <div class="dims-table">
+                            <div class="dim-item">
+                                <span>Ancho</span>
+                                <strong>${p.width}</strong>
+                            </div>
+                            <div class="dim-item">
+                                <span>Fondo</span>
+                                <strong>${p.depth}</strong>
+                            </div>
+                            <div class="dim-item">
+                                <span>Alto</span>
+                                <strong>${p.height}</strong>
+                            </div>
+                        </div>
+
+                        <div class="card-action">Ver Ficha Técnica y Diapositivas →</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function openProduct(prodIndex, sheetNum) {
+            currentProdIndex = prodIndex;
+            currentSheet = sheetNum;
+            updateSlideView();
+            document.getElementById('slideModal').classList.add('active');
+        }
+
+        function goToSheet(sheetNum) {
+            currentSheet = sheetNum;
+            updateSlideView();
+        }
+
+        function updateSlideView() {
+            const p = products[currentProdIndex];
+            const s1 = document.getElementById('sheet1');
+            const s2 = document.getElementById('sheet2');
+            const p1 = document.getElementById('pillSheet1');
+            const p2 = document.getElementById('pillSheet2');
+
+            if (currentSheet === 1) {
+                s1.style.display = 'flex';
+                s2.style.display = 'none';
+                p1.className = 'step-pill active';
+                p2.className = 'step-pill inactive';
+
+                document.getElementById('m1Img').src = 'fotos/' + p.photo_frontal;
+                document.getElementById('m1Swatch').src = 'fotos/' + p.photo_swatch;
+                document.getElementById('m1SwatchLabel').innerText = p.swatch_label;
+                document.getElementById('m1Cat').innerText = `${p.provider_full} · ${p.category}`;
+                document.getElementById('m1Title').innerText = p.name;
+                document.getElementById('m1Width').innerText = p.width;
+                document.getElementById('m1Depth').innerText = p.depth;
+                document.getElementById('m1Height').innerText = p.height;
+                document.getElementById('m1Seat').innerText = p.seat;
+                document.getElementById('m1Volume').innerText = p.volume;
+                document.getElementById('m1Packages').innerText = p.packages;
+                document.getElementById('m1Price').innerText = p.price;
+                document.getElementById('m1Cost').innerText = p.cost;
+                document.getElementById('m1Materials').innerText = p.materials;
+                document.getElementById('m1Special').innerText = p.special;
+            } else {
+                s1.style.display = 'none';
+                s2.style.display = 'flex';
+                p1.className = 'step-pill inactive';
+                p2.className = 'step-pill active';
+
+                document.getElementById('m2Img').src = 'fotos/' + p.photo_ambiente;
+                document.getElementById('m2Title').innerText = p.name;
+                document.getElementById('m2Drive').href = p.drive_url;
+            }
+
+            const totalSlides = products.length * 2;
+            const currentSlideNum = (currentProdIndex * 2) + currentSheet;
+            const sheetName = currentSheet === 1 ? "Hoja 1 (Ficha Técnica)" : "Hoja 2 (Ambiente & Drive)";
+            document.getElementById('navCounter').innerText = `Mueble ${currentProdIndex + 1} de ${products.length} — ${sheetName} [${currentSlideNum}/${totalSlides}]`;
+        }
+
+        function nextSlide() {
+            if (currentSheet === 1) {
+                // Advance to Sheet 2 of same product
+                currentSheet = 2;
+            } else {
+                // Advance to Sheet 1 of next product
+                currentSheet = 1;
+                currentProdIndex = (currentProdIndex + 1) % products.length;
+            }
+            updateSlideView();
+        }
+
+        function prevSlide() {
+            if (currentSheet === 2) {
+                // Go back to Sheet 1 of same product
+                currentSheet = 1;
+            } else {
+                // Go back to Sheet 2 of previous product
+                currentSheet = 2;
+                currentProdIndex = (currentProdIndex - 1 + products.length) % products.length;
+            }
+            updateSlideView();
+        }
+
+        function startPresentation() {
+            openProduct(0, 1);
+        }
+
+        function closeModal() {
+            document.getElementById('slideModal').classList.remove('active');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('slideModal');
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevSlide();
+                } else if (e.key === 'Escape') {
+                    closeModal();
+                }
+            }
+        });
+
+        renderGrid(products);
+    </script>
+</body>
+</html>
