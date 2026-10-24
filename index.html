@@ -753,30 +753,11 @@
                 card.onclick = () => openProduct(idx, 1);
                 card.innerHTML = `
                     <div class="img-wrap">
-                        <span class="badge-cat">${p.category}</span>
                         <span class="badge-prov">${p.provider_abbr}</span>
                         <img src="fotos/${p.photo_frontal}" alt="${p.name}">
                     </div>
                     <div class="card-body">
                         <div class="card-title">${p.name}</div>
-                        <div class="card-col">${p.provider_full} · REF: ${p.id}</div>
-
-                        <div class="dims-table">
-                            <div class="dim-item">
-                                <span>Ancho</span>
-                                <strong>${p.width}</strong>
-                            </div>
-                            <div class="dim-item">
-                                <span>Fondo</span>
-                                <strong>${p.depth}</strong>
-                            </div>
-                            <div class="dim-item">
-                                <span>Alto</span>
-                                <strong>${p.height}</strong>
-                            </div>
-                        </div>
-
-                        <div class="card-action">Ver Diapositivas →</div>
                     </div>
                 `;
                 grid.appendChild(card);
