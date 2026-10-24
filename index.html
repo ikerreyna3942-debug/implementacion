@@ -994,6 +994,15 @@
         });
 
         renderGrid(products);
+
+        // Auto-open via URL query params for instant deep linking
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('prod')) {
+            const pIdx = parseInt(params.get('prod')) || 0;
+            const vIdx = parseInt(params.get('variant')) || 0;
+            const sIdx = parseInt(params.get('sheet')) || 1;
+            openProduct(pIdx, vIdx, sIdx);
+        }
     </script>
 </body>
 </html>
