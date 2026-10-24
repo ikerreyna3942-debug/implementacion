@@ -106,7 +106,7 @@
             letter-spacing: 1px;
         }
 
-        /* FOTO 5: CARDS GRID (PANTALLA ANTES DE SELECCIONAR) */
+        /* FOTO 5: CARDS GRID (LIMPIA SIN CATEGORÍA NI MEDIDAS EXTRAS) */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -157,77 +157,28 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .badge-cat {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            background: rgba(26, 28, 30, 0.85);
-            color: #FFFFFF;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
         .card-body {
             padding: 22px;
             display: flex;
             flex-direction: column;
-            flex: 1;
+            align-items: center;
+            text-align: center;
         }
         .card-title {
             font-size: 18px;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 4px;
             text-transform: uppercase;
             line-height: 1.3;
         }
-        .card-col {
+        .card-variants-hint {
             font-size: 11px;
             color: var(--text-muted);
-            margin-bottom: 16px;
+            margin-top: 6px;
             font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .dims-table {
-            background: var(--bg);
-            border-radius: 8px;
-            padding: 10px 14px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            text-align: center;
-            margin-bottom: 16px;
-        }
-        .dim-item span {
-            display: block;
-            font-size: 9px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            font-weight: 700;
-        }
-        .dim-item strong {
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .card-action {
-            margin-top: auto;
-            text-align: center;
-            padding: 10px;
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* MODAL DE PRESENTACION (SLIDESHOW PURO SIN PESTAÑAS) */
+        /* MODAL DE PRESENTACION (SLIDESHOW) */
         .modal {
             position: fixed;
             top: 0;
@@ -259,19 +210,12 @@
             position: relative;
         }
         .slide-header {
-            padding: 16px 32px;
+            padding: 14px 28px;
             background: #FFFFFF;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-        }
-        .slide-title-indicator {
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--accent-gold);
+            justify-content: flex-end;
         }
         .close-btn {
             width: 36px;
@@ -314,7 +258,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 36px;
+            padding: 30px;
             position: relative;
         }
         .hero-img-box {
@@ -331,32 +275,58 @@
             max-height: 100%;
             object-fit: contain;
             background: #FFFFFF !important;
+            transition: opacity 0.2s ease;
         }
-        /* SWATCH CENTRADO EN LA PARTE INFERIOR DE LA FOTO */
+
+        /* SELECTOR DE TELAS / ACABADOS INTERACTIVO (PASO 2) */
+        .swatches-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+        .swatches-label {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
         .swatches-row {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-            width: 100%;
+            flex-wrap: wrap;
+            gap: 14px;
         }
-        .swatch-card {
+        .swatch-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: var(--bg);
-            padding: 8px 18px 8px 8px;
+            padding: 6px 14px 6px 6px;
             border-radius: 10px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .swatch-btn:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+        .swatch-btn.active {
+            border-color: var(--accent-gold);
+            background: #FFFDF9;
+            box-shadow: 0 4px 12px rgba(184, 137, 62, 0.2);
         }
         .swatch-box {
-            width: 56px;
-            height: 56px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
             border: 1px solid var(--border);
             overflow: hidden;
         }
@@ -365,15 +335,18 @@
             height: 100%;
             object-fit: cover;
         }
+        .swatch-meta {
+            text-align: left;
+        }
         .swatch-meta span {
             display: block;
-            font-size: 9px;
+            font-size: 8px;
             text-transform: uppercase;
             color: var(--text-muted);
             font-weight: 700;
         }
         .swatch-meta strong {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-dark);
             font-weight: 800;
         }
@@ -502,13 +475,13 @@
             font-weight: 600;
         }
 
-        /* FOTO 3: HOJA 2 (AMBIENTE & ENLACE GOOGLE DRIVE) */
+        /* FOTO 3: HOJA 2 (AMBIENTE & GALERIA DE TODAS LAS VISTAS) */
         .sheet-2-view {
             width: 100%;
             height: 100%;
             display: none;
             flex-direction: column;
-            padding: 28px;
+            padding: 24px;
         }
         .sheet-2-top-frame {
             flex: 1;
@@ -517,22 +490,90 @@
             border-radius: 14px;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+        .ambient-main-preview {
+            flex: 1;
+            width: 100%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
-            margin-bottom: 18px;
-            box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
-        .sheet-2-top-frame img {
+        .ambient-main-preview img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
             border-radius: 8px;
+            transition: opacity 0.2s ease;
         }
+        
+        /* GALERÍA DE TODAS LAS FOTOS DE VISTA DEL PRODUCTO (PASO 2) */
+        .views-gallery-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+        .view-thumb-btn {
+            width: 72px;
+            height: 52px;
+            border-radius: 6px;
+            border: 2px solid var(--border);
+            overflow: hidden;
+            background: #FFFFFF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .view-thumb-btn:hover {
+            border-color: var(--border-hover);
+            transform: scale(1.05);
+        }
+        .view-thumb-btn.active {
+            border-color: var(--accent-gold);
+            box-shadow: 0 2px 8px rgba(184, 137, 62, 0.3);
+        }
+        .view-thumb-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* SELECTOR DE COLOR EN HOJA 2 (PASO 2) */
+        .sheet2-color-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-color-tag {
+            background: #FFFFFF;
+            border: 1px solid #7FA79E;
+            color: #17423B;
+            padding: 6px 14px;
+            border-radius: 14px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-color-tag.active {
+            background: #17423B;
+            color: #FFFFFF;
+            border-color: #17423B;
+        }
+
         .sheet-2-bottom-bar {
             background: var(--teal-box);
             border-radius: 14px;
-            padding: 20px 36px;
+            padding: 18px 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -540,7 +581,7 @@
             gap: 16px;
         }
         .sheet-2-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--teal-text);
             text-transform: uppercase;
@@ -551,19 +592,25 @@
             color: #2D6359;
             margin-top: 2px;
         }
+        .drive-links-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
         .btn-drive {
             background: #17423B;
             color: #FFFFFF;
-            padding: 12px 26px;
-            border-radius: 24px;
+            padding: 10px 20px;
+            border-radius: 20px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(23,66,59,0.25);
+            box-shadow: 0 4px 10px rgba(23,66,59,0.2);
         }
         .btn-drive:hover {
             background: #0E2924;
@@ -604,13 +651,6 @@
             background: var(--accent-gold);
             border-color: var(--accent-gold);
         }
-        .nav-status {
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
@@ -638,7 +678,6 @@
     <div class="modal" id="slideModal">
         <div class="slide-frame">
             <div class="slide-header">
-                <div></div>
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
 
@@ -649,18 +688,14 @@
                         <div class="hero-img-box">
                             <img id="m1Img" src="" alt="Producto">
                         </div>
-                        <div class="swatches-row">
-                            <div class="swatch-card">
-                                <div class="swatch-box">
-                                    <img id="m1Swatch" src="" alt="Muestra">
-                                </div>
-                                <div class="swatch-meta">
-                                    <span>Acabado / Tapiz</span>
-                                    <strong id="m1SwatchLabel">MUESTRA OFICIAL</strong>
-                                </div>
-                            </div>
+                        
+                        <!-- SELECTOR DE TELAS / ACABADOS DEBAJO DE LA FOTO (PASO 2) -->
+                        <div class="swatches-container">
+                            <span class="swatches-label" id="m1SwatchesLabel">SELECCIONA TELA / ACABADO PARA CAMBIAR COLOR:</span>
+                            <div class="swatches-row" id="m1SwatchesRow"></div>
                         </div>
                     </div>
+                    
                     <div class="sheet-1-right">
                         <div class="modal-cat-tag" id="m1Cat"></div>
                         <div class="modal-title" id="m1Title"></div>
@@ -712,19 +747,27 @@
                     </div>
                 </div>
 
-                <!-- HOJA 2: AMBIENTE & DRIVE (FOTO 3) -->
+                <!-- HOJA 2: AMBIENTE & TODAS LAS FOTOS DE VISTA (PASO 2) -->
                 <div class="sheet-2-view" id="sheet2">
                     <div class="sheet-2-top-frame">
-                        <img id="m2Img" src="" alt="Ambiente">
+                        <div class="ambient-main-preview">
+                            <img id="m2Img" src="" alt="Vista Principal">
+                        </div>
+
+                        <!-- GALERIA DE TODAS LAS VISTAS DEL PRODUCTO -->
+                        <div class="views-gallery-bar" id="m2ViewsGallery"></div>
                     </div>
+
                     <div class="sheet-2-bottom-bar">
                         <div>
                             <div class="sheet-2-title" id="m2Title"></div>
                             <div class="sheet-2-sub">Ficha Técnica Oficial y Especificaciones de Taller</div>
+                            <!-- Selector rápido de color en Hoja 2 -->
+                            <div class="sheet2-color-selector" id="m2ColorSelector" style="margin-top: 8px;"></div>
                         </div>
-                        <a id="m2Drive" href="#" target="_blank" class="btn-drive">
-                            Abrir Ficha Técnica en Google Drive ↗
-                        </a>
+
+                        <!-- LINKS DE DRIVE PARA TODAS LAS TELAS DEL MODELO -->
+                        <div class="drive-links-group" id="m2DriveLinks"></div>
                     </div>
                 </div>
             </div>
@@ -739,54 +782,88 @@
     </div>
 
     <script>
-        const products = [{"id": "CVV-SALA-PIERO-BM", "name": "SALA PIERO FOREVER BUTTERMILK", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura en madera sólida estufada de alta resistencia, acojinamiento de espuma de alta resiliencia y tapizado en tela repelente Forever Buttermilk.", "special": "Diseño modular de amplio confort con costuras reforzadas de alta durabilidad.", "photo_frontal": "SALA_PIERO_FRONTAL_BLANCO.png", "photo_swatch": "SALA_PIERO_SWATCH_TELA.png", "photo_ambiente": "SALA_PIERO_AMBIENTE_REAL.png", "swatch_label": "TELA FOREVER BUTTERMILK", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "CVV-SALA-PIERO-CURRY", "name": "SALA PIERO FOREVER CURRY", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura en madera sólida de pino seleccionada, suspensión con cincha elástica importada y tapizado en textura Forever Curry.", "special": "Acabado de tono cálido ideal para proyectos residenciales contemporáneos.", "photo_frontal": "SALA_CURRY_FRONTAL_BLANCO.png", "photo_swatch": "SALA_CURRY_SWATCH_TELA.png", "photo_ambiente": "SALA_CURRY_AMBIENTE_REAL.png", "swatch_label": "TELA FOREVER CURRY", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}];
+        const products = [{"id": "CVV-SALA-PIERO", "model_name": "SALA PIERO", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "variants": [{"id": "CVV-PIERO-BM", "name": "SALA PIERO FOREVER BUTTERMILK", "color_label": "TELA FOREVER BUTTERMILK", "swatch_img": "SALA_PIERO_SWATCH_TELA.png", "hero_img": "SALA_PIERO_FRONTAL_BLANCO.png", "ambient_img": "SALA_PIERO_AMBIENTE_REAL.png", "views": [{"label": "Ambiente Principal", "img": "SALA_PIERO_AMBIENTE_REAL.png"}, {"label": "Vista Frontal", "img": "SALA_PIERO_FRONTAL_BLANCO.png"}, {"label": "Perspectiva Lateral", "img": "SALA_PIERO_VISTA_2.png"}], "materials": "Estructura en madera sólida estufada de alta resistencia, acojinamiento de espuma de alta resiliencia y tapizado en tela repelente Forever Buttermilk.", "special": "Diseño modular de amplio confort con costuras reforzadas de alta durabilidad.", "drive_name": "Ficha Buttermilk en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "CVV-PIERO-CURRY", "name": "SALA PIERO FOREVER CURRY", "color_label": "TELA FOREVER CURRY", "swatch_img": "SALA_CURRY_SWATCH_TELA.png", "hero_img": "SALA_CURRY_FRONTAL_BLANCO.png", "ambient_img": "SALA_CURRY_AMBIENTE_REAL.png", "views": [{"label": "Ambiente Principal", "img": "SALA_CURRY_AMBIENTE_REAL.png"}, {"label": "Vista Frontal", "img": "SALA_CURRY_FRONTAL_BLANCO.png"}, {"label": "Perspectiva Lateral", "img": "SALA_CURRY_VISTA_2.png"}], "materials": "Estructura en madera sólida de pino seleccionada, suspensión con cincha elástica importada y tapizado en textura Forever Curry.", "special": "Acabado de tono cálido ideal para proyectos residenciales contemporáneos.", "drive_name": "Ficha Curry en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}]}, {"id": "MBI-MESA-KAMKO", "model_name": "MESA DE COMEDOR KAMKO", "provider_abbr": "MBI", "provider_full": "MOBEL INN", "category": "COMEDORES & SILLERÍA", "width": "240 cm", "depth": "110 cm", "height": "76 cm", "seat": "N/D", "volume": "1.28 m³", "packages": "2 bultos", "price": "$23,924.70", "cost": "$8,143.20", "variants": [{"id": "MBI-KAMKO-NUEZ", "name": "MESA DE COMEDOR KAMKO NUEZ", "color_label": "CHAPA DE NOGAL NATURAL", "swatch_img": "MBI_Mesa_de_comedor_Kamko_Nuez_swatch.jpg", "hero_img": "MBI_Mesa_de_comedor_Kamko_Nuez.png", "ambient_img": "MBI_Mesa_de_comedor_Kamko_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Mesa_de_comedor_Kamko_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Mesa_de_comedor_Kamko_Nuez.png"}], "materials": "Chapa natural de nogal americano con base escultórica en madera maciza y acabado barniz poliuretano mate de alta protección.", "special": "Capacidad óptima para 8 a 10 comensales.", "drive_name": "Ficha Técnica en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}]}];
         let currentProdIndex = 0;
+        let currentVariantIndex = 0;
         let currentSheet = 1; // 1 = Hoja 1, 2 = Hoja 2
+        let currentActiveViewImg = '';
 
         function renderGrid(items) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
 
             items.forEach((p, idx) => {
+                const defVariant = p.variants[0];
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.onclick = () => openProduct(idx, 1);
+                card.onclick = () => openProduct(idx, 0, 1);
+                
+                const variantCountHint = p.variants.length > 1 ? `<div class="card-variants-hint">${p.variants.length} colores de tela disponibles</div>` : '';
+
                 card.innerHTML = `
                     <div class="img-wrap">
                         <span class="badge-prov">${p.provider_abbr}</span>
-                        <img src="fotos/${p.photo_frontal}" alt="${p.name}">
+                        <img src="fotos/${defVariant.hero_img}" alt="${p.model_name}">
                     </div>
                     <div class="card-body">
-                        <div class="card-title">${p.name}</div>
+                        <div class="card-title">${p.model_name}</div>
+                        ${variantCountHint}
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function openProduct(prodIndex, sheetNum) {
+        function openProduct(prodIndex, variantIndex, sheetNum) {
             currentProdIndex = prodIndex;
+            currentVariantIndex = variantIndex || 0;
             currentSheet = sheetNum;
+            const p = products[currentProdIndex];
+            const v = p.variants[currentVariantIndex];
+            currentActiveViewImg = v.ambient_img;
             updateSlideView();
             document.getElementById('slideModal').classList.add('active');
         }
 
+        function selectVariant(varIdx) {
+            currentVariantIndex = varIdx;
+            const p = products[currentProdIndex];
+            const v = p.variants[currentVariantIndex];
+            currentActiveViewImg = v.ambient_img;
+            updateSlideView();
+        }
+
+        function selectViewPhoto(imgSrc) {
+            currentActiveViewImg = imgSrc;
+            document.getElementById('m2Img').src = 'fotos/' + imgSrc;
+            updateGalleryThumbActiveState();
+        }
+
+        function updateGalleryThumbActiveState() {
+            const thumbs = document.querySelectorAll('.view-thumb-btn');
+            thumbs.forEach(t => {
+                if (t.dataset.img === currentActiveViewImg) {
+                    t.classList.add('active');
+                } else {
+                    t.classList.remove('active');
+                }
+            });
+        }
+
         function updateSlideView() {
             const p = products[currentProdIndex];
+            const v = p.variants[currentVariantIndex];
             const s1 = document.getElementById('sheet1');
             const s2 = document.getElementById('sheet2');
-            const totalSlides = products.length * 2;
-            const currentSlideNum = (currentProdIndex * 2) + currentSheet;
 
             if (currentSheet === 1) {
                 s1.style.display = 'flex';
                 s2.style.display = 'none';
 
-                document.getElementById('m1Img').src = 'fotos/' + p.photo_frontal;
-                document.getElementById('m1Swatch').src = 'fotos/' + p.photo_swatch;
-                document.getElementById('m1SwatchLabel').innerText = p.swatch_label;
+                // Hoja 1: Hero photo of selected color
+                document.getElementById('m1Img').src = 'fotos/' + v.hero_img;
                 document.getElementById('m1Cat').innerText = `${p.provider_full} · ${p.category}`;
-                document.getElementById('m1Title').innerText = p.name;
+                document.getElementById('m1Title').innerText = v.name;
                 document.getElementById('m1Width').innerText = p.width;
                 document.getElementById('m1Depth').innerText = p.depth;
                 document.getElementById('m1Height').innerText = p.height;
@@ -795,20 +872,76 @@
                 document.getElementById('m1Packages').innerText = p.packages;
                 document.getElementById('m1Price').innerText = p.price;
                 document.getElementById('m1Cost').innerText = p.cost;
-                document.getElementById('m1Materials').innerText = p.materials;
-                document.getElementById('m1Special').innerText = p.special;
-                // `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 1 (ESPECIFICACIONES Y COSTOS)`;
+                document.getElementById('m1Materials').innerText = v.materials;
+                document.getElementById('m1Special').innerText = v.special;
+
+                // Render Swatches Row as Interactive Buttons (PASO 2)
+                const swatchesRow = document.getElementById('m1SwatchesRow');
+                swatchesRow.innerHTML = '';
+                
+                p.variants.forEach((variant, vIdx) => {
+                    const btn = document.createElement('div');
+                    btn.className = 'swatch-btn' + (vIdx === currentVariantIndex ? ' active' : '');
+                    btn.onclick = () => selectVariant(vIdx);
+                    btn.innerHTML = `
+                        <div class="swatch-box">
+                            <img src="fotos/${variant.swatch_img}" alt="${variant.color_label}">
+                        </div>
+                        <div class="swatch-meta">
+                            <span>Muestra ${vIdx + 1}</span>
+                            <strong>${variant.color_label}</strong>
+                        </div>
+                    `;
+                    swatchesRow.appendChild(btn);
+                });
+
             } else {
                 s1.style.display = 'none';
                 s2.style.display = 'flex';
 
-                document.getElementById('m2Img').src = 'fotos/' + p.photo_ambiente;
-                document.getElementById('m2Title').innerText = p.name;
-                document.getElementById('m2Drive').href = p.drive_url;
-                // `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 2 (AMBIENTE Y FICHA GOOGLE DRIVE)`;
-            }
+                // Hoja 2: Ambient photo & Views gallery
+                document.getElementById('m2Img').src = 'fotos/' + currentActiveViewImg;
+                document.getElementById('m2Title').innerText = v.name;
 
-            // `${p.name} — [${currentSlideNum}/${totalSlides}]`;
+                // Views Gallery thumbnails
+                const gallery = document.getElementById('m2ViewsGallery');
+                gallery.innerHTML = '';
+                
+                v.views.forEach(vw => {
+                    const thumb = document.createElement('div');
+                    thumb.className = 'view-thumb-btn' + (vw.img === currentActiveViewImg ? ' active' : '');
+                    thumb.dataset.img = vw.img;
+                    thumb.onclick = () => selectViewPhoto(vw.img);
+                    thumb.title = vw.label;
+                    thumb.innerHTML = `<img src="fotos/${vw.img}" alt="${vw.label}">`;
+                    gallery.appendChild(thumb);
+                });
+
+                // Hoja 2 Color Switcher Buttons
+                const colSel = document.getElementById('m2ColorSelector');
+                colSel.innerHTML = '';
+                if (p.variants.length > 1) {
+                    p.variants.forEach((variant, vIdx) => {
+                        const cBtn = document.createElement('button');
+                        cBtn.className = 'btn-color-tag' + (vIdx === currentVariantIndex ? ' active' : '');
+                        cBtn.innerText = variant.color_label;
+                        cBtn.onclick = () => selectVariant(vIdx);
+                        colSel.appendChild(cBtn);
+                    });
+                }
+
+                // Drive links group: All drive links for the model
+                const driveGroup = document.getElementById('m2DriveLinks');
+                driveGroup.innerHTML = '';
+                p.variants.forEach(variant => {
+                    const dLink = document.createElement('a');
+                    dLink.className = 'btn-drive';
+                    dLink.href = variant.drive_url;
+                    dLink.target = '_blank';
+                    dLink.innerHTML = `📄 ${variant.drive_name}`;
+                    driveGroup.appendChild(dLink);
+                });
+            }
         }
 
         function nextSlide() {
@@ -819,6 +952,7 @@
                 // Advance to Sheet 1 of next product
                 currentSheet = 1;
                 currentProdIndex = (currentProdIndex + 1) % products.length;
+                currentVariantIndex = 0;
             }
             updateSlideView();
         }
@@ -831,12 +965,13 @@
                 // Go back to Sheet 2 of previous product
                 currentSheet = 2;
                 currentProdIndex = (currentProdIndex - 1 + products.length) % products.length;
+                currentVariantIndex = 0;
             }
             updateSlideView();
         }
 
         function startPresentation() {
-            openProduct(0, 1);
+            openProduct(0, 0, 1);
         }
 
         function closeModal() {
