@@ -638,7 +638,7 @@
     <div class="modal" id="slideModal">
         <div class="slide-frame">
             <div class="slide-header">
-                <div class="slide-title-indicator" id="slideIndicator">DIAPOSITIVA 1 DE 4</div>
+                <div></div>
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
 
@@ -732,7 +732,7 @@
             <!-- Bottom Navigation Bar -->
             <div class="modal-nav">
                 <button class="btn-nav" onclick="prevSlide()">← Anterior</button>
-                <div class="nav-status" id="navCounter">Diapositiva 1 de 4</div>
+                <div></div>
                 <button class="btn-nav primary" onclick="nextSlide()">Siguiente →</button>
             </div>
         </div>
@@ -816,7 +816,7 @@
                 document.getElementById('m1Cost').innerText = p.cost;
                 document.getElementById('m1Materials').innerText = p.materials;
                 document.getElementById('m1Special').innerText = p.special;
-                document.getElementById('slideIndicator').innerText = `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 1 (ESPECIFICACIONES Y COSTOS)`;
+                // `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 1 (ESPECIFICACIONES Y COSTOS)`;
             } else {
                 s1.style.display = 'none';
                 s2.style.display = 'flex';
@@ -824,10 +824,10 @@
                 document.getElementById('m2Img').src = 'fotos/' + p.photo_ambiente;
                 document.getElementById('m2Title').innerText = p.name;
                 document.getElementById('m2Drive').href = p.drive_url;
-                document.getElementById('slideIndicator').innerText = `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 2 (AMBIENTE Y FICHA GOOGLE DRIVE)`;
+                // `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 2 (AMBIENTE Y FICHA GOOGLE DRIVE)`;
             }
 
-            document.getElementById('navCounter').innerText = `${p.name} — [${currentSlideNum}/${totalSlides}]`;
+            // `${p.name} — [${currentSlideNum}/${totalSlides}]`;
         }
 
         function nextSlide() {
