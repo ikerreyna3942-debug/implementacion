@@ -21,7 +21,7 @@
             --teal-text: #17423B;
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
             --shadow-md: 0 8px 24px rgba(0,0,0,0.07);
-            --shadow-lg: 0 16px 40px rgba(0,0,0,0.12);
+            --shadow-lg: 0 16px 40px rgba(0,0,0,0.14);
         }
         * {
             margin: 0;
@@ -46,8 +46,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
             box-shadow: var(--shadow-sm);
         }
         .brand-box h1 {
@@ -63,45 +61,10 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        .search-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            max-width: 500px;
-            margin: 0 20px;
-        }
-        .search-box {
-            flex: 1;
-            position: relative;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 10px 16px 10px 38px;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            background: var(--bg);
-            font-size: 13px;
-            color: var(--text-dark);
-            outline: none;
-            transition: all 0.2s;
-        }
-        .search-box input:focus {
-            border-color: var(--accent-gold);
-            background: #FFFFFF;
-        }
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 14px;
-        }
         .btn-presentation {
             background: var(--text-dark);
             color: #FFFFFF;
-            padding: 10px 20px;
+            padding: 10px 22px;
             border: none;
             border-radius: 20px;
             font-size: 12px;
@@ -118,16 +81,16 @@
         }
         main {
             flex: 1;
-            max-width: 1350px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            padding: 32px 24px;
+            padding: 40px 24px;
         }
         .grid-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         .grid-header h2 {
             font-size: 22px;
@@ -143,11 +106,11 @@
             letter-spacing: 1px;
         }
 
-        /* FOTO 5: CARDS GRID BEFORE SELECTING */
+        /* FOTO 5: CARDS GRID (PANTALLA ANTES DE SELECCIONAR) */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
         }
         .product-card {
             background: var(--card-bg);
@@ -162,31 +125,32 @@
         }
         .product-card:hover {
             transform: translateY(-5px);
-            border-color: var(--accent-gold);
+            border-color: var(--border-hover);
             box-shadow: var(--shadow-md);
         }
         .img-wrap {
-            height: 230px;
-            background: #FFFFFF;
+            height: 250px;
+            background: #FFFFFF !important;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 24px;
             border-bottom: 1px solid var(--border);
         }
         .img-wrap img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+            background: #FFFFFF !important;
         }
         .badge-prov {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 14px;
+            right: 14px;
             background: var(--accent-gold);
             color: #FFFFFF;
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: 12px;
             font-size: 11px;
             font-weight: 800;
@@ -195,8 +159,8 @@
         }
         .badge-cat {
             position: absolute;
-            top: 12px;
-            left: 12px;
+            top: 14px;
+            left: 14px;
             background: rgba(26, 28, 30, 0.85);
             color: #FFFFFF;
             padding: 4px 10px;
@@ -207,56 +171,35 @@
             text-transform: uppercase;
         }
         .card-body {
-            padding: 18px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
         .card-title {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 800;
             color: var(--text-dark);
             margin-bottom: 4px;
             text-transform: uppercase;
-            line-height: 1.25;
+            line-height: 1.3;
         }
         .card-col {
             font-size: 11px;
             color: var(--text-muted);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             font-weight: 600;
             letter-spacing: 0.5px;
-        }
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--chip-bg);
-            border-radius: 8px;
-            padding: 8px 12px;
-            margin-bottom: 12px;
-        }
-        .price-item span {
-            display: block;
-            font-size: 9px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-        .price-item strong {
-            font-size: 15px;
-            color: var(--text-dark);
-            font-weight: 800;
         }
         .dims-table {
             background: var(--bg);
             border-radius: 8px;
-            padding: 10px 12px;
+            padding: 10px 14px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
+            gap: 8px;
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
         .dim-item span {
             display: block;
@@ -266,14 +209,14 @@
             font-weight: 700;
         }
         .dim-item strong {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 800;
             color: var(--text-dark);
         }
         .card-action {
             margin-top: auto;
             text-align: center;
-            padding: 8px;
+            padding: 10px;
             background: #FFFFFF;
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -284,20 +227,20 @@
             letter-spacing: 0.5px;
         }
 
-        /* FULLSCREEN SLIDE MODAL (HOJA 1 & HOJA 2) */
+        /* MODAL DE PRESENTACION (SLIDESHOW PURO SIN PESTAÑAS) */
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(15, 17, 19, 0.88);
+            background: rgba(15, 17, 19, 0.90);
             backdrop-filter: blur(8px);
             z-index: 1000;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 24px;
         }
         .modal.active {
             display: flex;
@@ -305,8 +248,8 @@
         .slide-frame {
             background: var(--card-bg);
             width: 100%;
-            max-width: 1280px;
-            height: 90vh;
+            max-width: 1300px;
+            height: 88vh;
             max-height: 820px;
             border-radius: 16px;
             box-shadow: var(--shadow-lg);
@@ -315,38 +258,20 @@
             overflow: hidden;
             position: relative;
         }
-
-        /* TOP SLIDE HEADER (INDICATOR) */
         .slide-header {
-            padding: 14px 28px;
+            padding: 16px 32px;
             background: #FFFFFF;
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .slide-step-indicator {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .step-pill {
-            padding: 6px 14px;
-            border-radius: 14px;
-            font-size: 11px;
-            font-weight: 700;
+        .slide-title-indicator {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-        .step-pill.active {
-            background: var(--text-dark);
-            color: #FFFFFF;
-        }
-        .step-pill.inactive {
-            background: var(--chip-bg);
-            color: var(--text-muted);
-            cursor: pointer;
+            color: var(--accent-gold);
         }
         .close-btn {
             width: 36px;
@@ -367,7 +292,7 @@
             background: var(--border-hover);
         }
 
-        /* SLIDE CONTAINER */
+        /* CUERPO DE LA DIAPOSITIVA */
         .slide-body {
             flex: 1;
             display: flex;
@@ -375,9 +300,7 @@
             position: relative;
         }
 
-        /* ==================================================================== */
-        /* FOTO 2: HOJA 1 (TECHNICAL & COMMERCIAL SPECS)                        */
-        /* ==================================================================== */
+        /* FOTO 2: HOJA 1 (FICHA TECNICA Y COMERCIAL) */
         .sheet-1-view {
             width: 100%;
             height: 100%;
@@ -385,13 +308,13 @@
         }
         .sheet-1-left {
             flex: 1.1;
-            background: #FFFFFF;
+            background: #FFFFFF !important;
             border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 30px;
+            padding: 36px;
             position: relative;
         }
         .hero-img-box {
@@ -401,35 +324,39 @@
             align-items: center;
             justify-content: center;
             max-height: 480px;
+            background: #FFFFFF !important;
         }
         .hero-img-box img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+            background: #FFFFFF !important;
         }
+        /* SWATCH CENTRADO EN LA PARTE INFERIOR DE LA FOTO */
         .swatches-row {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 16px;
-            margin-top: 14px;
-            padding-top: 14px;
+            margin-top: 16px;
+            padding-top: 16px;
             border-top: 1px solid var(--border);
             width: 100%;
         }
         .swatch-card {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: var(--bg);
-            padding: 6px 14px 6px 6px;
+            padding: 8px 18px 8px 8px;
             border-radius: 10px;
             border: 1px solid var(--border);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
         }
         .swatch-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 6px;
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
             border: 1px solid var(--border);
             overflow: hidden;
         }
@@ -440,20 +367,20 @@
         }
         .swatch-meta span {
             display: block;
-            font-size: 8px;
+            font-size: 9px;
             text-transform: uppercase;
             color: var(--text-muted);
             font-weight: 700;
         }
         .swatch-meta strong {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-dark);
             font-weight: 800;
         }
 
         .sheet-1-right {
             flex: 1;
-            padding: 36px 40px;
+            padding: 36px 44px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -473,7 +400,7 @@
             color: var(--text-dark);
             margin-bottom: 18px;
             text-transform: uppercase;
-            line-height: 1.2;
+            line-height: 1.25;
         }
         .modal-specs-grid {
             display: grid;
@@ -504,14 +431,14 @@
         .modal-price-box {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 12px;
+            gap: 14px;
             margin-bottom: 18px;
         }
         .price-card-large {
             background: #FDF9F3;
             border: 1px solid #E5D5BA;
             border-radius: 10px;
-            padding: 12px 16px;
+            padding: 12px 18px;
         }
         .price-card-large span {
             display: block;
@@ -530,7 +457,7 @@
             background: #F3F5F7;
             border: 1px solid #D5DAE0;
             border-radius: 10px;
-            padding: 12px 16px;
+            padding: 12px 18px;
         }
         .cost-card-large span {
             display: block;
@@ -549,7 +476,7 @@
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 14px 16px;
+            padding: 14px 18px;
             margin-bottom: 14px;
         }
         .modal-materials h4 {
@@ -575,15 +502,13 @@
             font-weight: 600;
         }
 
-        /* ==================================================================== */
-        /* FOTO 3: HOJA 2 (AMBIENTE & ENLACE GOOGLE DRIVE)                      */
-        /* ==================================================================== */
+        /* FOTO 3: HOJA 2 (AMBIENTE & ENLACE GOOGLE DRIVE) */
         .sheet-2-view {
             width: 100%;
             height: 100%;
             display: none;
             flex-direction: column;
-            padding: 24px;
+            padding: 28px;
         }
         .sheet-2-top-frame {
             flex: 1;
@@ -594,7 +519,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
             margin-bottom: 18px;
             box-shadow: var(--shadow-sm);
         }
@@ -607,7 +532,7 @@
         .sheet-2-bottom-bar {
             background: var(--teal-box);
             border-radius: 14px;
-            padding: 20px 32px;
+            padding: 20px 36px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -629,7 +554,7 @@
         .btn-drive {
             background: #17423B;
             color: #FFFFFF;
-            padding: 12px 24px;
+            padding: 12px 26px;
             border-radius: 24px;
             text-decoration: none;
             font-size: 13px;
@@ -645,11 +570,11 @@
             transform: translateY(-2px);
         }
 
-        /* MODAL BOTTOM CONTROLS */
+        /* BARRA INFERIOR DE NAVEGACION DE DIAPOSITIVAS */
         .modal-nav {
             background: #FFFFFF;
             border-top: 1px solid var(--border);
-            padding: 14px 28px;
+            padding: 16px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -658,7 +583,7 @@
             background: var(--bg);
             border: 1px solid var(--border);
             color: var(--text-dark);
-            padding: 10px 22px;
+            padding: 10px 24px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
@@ -686,45 +611,24 @@
             color: var(--text-muted);
             text-transform: uppercase;
         }
-
-        @media (max-width: 900px) {
-            .sheet-1-view {
-                flex-direction: column;
-                overflow-y: auto;
-            }
-            .sheet-1-left {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                min-height: 300px;
-            }
-            .sheet-1-right {
-                padding: 24px;
-            }
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="brand-box">
             <h1>CREATA MUEBLES</h1>
-            <span>Demostración Oficial de Implementación</span>
+            <span>Catálogo Oficial 2026</span>
         </div>
-        <div class="search-controls">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="Buscar mueble...">
-            </div>
-            <button class="btn-presentation" onclick="startPresentation()">
-                ▶ Iniciar Presentación
-            </button>
-        </div>
+        <button class="btn-presentation" onclick="startPresentation()">
+            ▶ Iniciar Presentación
+        </button>
     </header>
 
     <main>
         <div class="grid-header">
             <div>
-                <h2>Ejemplo de Implementación</h2>
-                <span id="productCount">4 muebles demostrativos</span>
+                <h2>Catálogo de Muebles</h2>
+                <span>Selecciona cualquier mueble para ver sus diapositivas</span>
             </div>
         </div>
         <div class="products-grid" id="productsGrid"></div>
@@ -733,16 +637,11 @@
     <!-- FULLSCREEN SLIDESHOW MODAL -->
     <div class="modal" id="slideModal">
         <div class="slide-frame">
-            <!-- Top Slide Header -->
             <div class="slide-header">
-                <div class="slide-step-indicator">
-                    <span class="step-pill active" id="pillSheet1" onclick="goToSheet(1)">📄 Hoja 1: Especificaciones & Costos</span>
-                    <span class="step-pill inactive" id="pillSheet2" onclick="goToSheet(2)">🏡 Hoja 2: Ambiente & Google Drive</span>
-                </div>
+                <div class="slide-title-indicator" id="slideIndicator">DIAPOSITIVA 1 DE 4</div>
                 <button class="close-btn" onclick="closeModal()">×</button>
             </div>
 
-            <!-- Slide Body -->
             <div class="slide-body">
                 <!-- HOJA 1: SPECIFICATIONS & COSTS (FOTO 2) -->
                 <div class="sheet-1-view" id="sheet1">
@@ -833,21 +732,20 @@
             <!-- Bottom Navigation Bar -->
             <div class="modal-nav">
                 <button class="btn-nav" onclick="prevSlide()">← Anterior</button>
-                <div class="nav-status" id="navCounter">Diapositiva 1 de 8</div>
+                <div class="nav-status" id="navCounter">Diapositiva 1 de 4</div>
                 <button class="btn-nav primary" onclick="nextSlide()">Siguiente →</button>
             </div>
         </div>
     </div>
 
     <script>
-        const products = [{"id": "CVV-SALA-PIERO-BM", "name": "SALA PIERO FOREVER BUTTERMILK", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "collection": "CVV", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura de madera estufada de alta resistencia, acojinamiento de espuma de alta resiliencia y tapizado en tela repelente Forever Buttermilk.", "special": "Diseño modular de amplio confort con costuras reforzadas de alta durabilidad.", "photo_frontal": "CVV_Sala_Piero_Forever_Buttermilk.png", "photo_swatch": "CVV_Sala_Piero_Forever_Buttermilk_swatch.jpg", "photo_ambiente": "CVV_Sala_Piero_Forever_Buttermilk_ambiente.jpg", "swatch_label": "TELA FOREVER BUTTERMILK", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "CVV-SALA-PIERO-CURRY", "name": "SALA PIERO FOREVER CURRY", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "collection": "CVV", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura en madera sólida de pino seleccionada, suspensión con cincha elástica importada y tapizado en textura Forever Curry.", "special": "Acabado de tono cálido ideal para proyectos residenciales contemporáneos.", "photo_frontal": "CVV_Sala_Piero_Forever_Curry.png", "photo_swatch": "CVV_Sala_Piero_Forever_Curry_swatch.jpg", "photo_ambiente": "CVV_Sala_Piero_Forever_Curry_ambiente.jpg", "swatch_label": "TELA FOREVER CURRY", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "MBI-MESA-KAMKO", "name": "MESA DE COMEDOR KAMKO NUEZ", "provider_abbr": "MBI", "provider_full": "MOBEL INN", "category": "COMEDORES & SILLERÍA", "collection": "MBI", "width": "240 cm", "depth": "110 cm", "height": "76 cm", "seat": "N/D", "volume": "1.28 m³", "packages": "2 bultos", "price": "$23,924.70", "cost": "$8,143.20", "materials": "Chapa natural de nogal americano con base escultórica en madera maciza y acabado barniz poliuretano mate de alta protección.", "special": "Capacidad óptima para 8 a 10 comensales.", "photo_frontal": "MBI_Mesa_de_comedor_Kamko_Nuez.png", "photo_swatch": "MBI_Mesa_de_comedor_Kamko_Nuez_swatch.jpg", "photo_ambiente": "MBI_Mesa_de_comedor_Kamko_Nuez_ambiente.jpg", "swatch_label": "CHAPA DE NOGAL NATURAL", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "ATX-CAMA-AURA", "name": "CAMA AURA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "RECÁMARAS & BURÓS", "collection": "ATX", "width": "215 cm", "depth": "225 cm", "height": "120 cm", "seat": "N/D", "volume": "2.10 m³", "packages": "3 bultos", "price": "$18,096.90", "cost": "$6,159.60", "materials": "Cabecera acolchada en lino natural, largueros reforzados con estructura interior de acero y base flotante.", "special": "Incluye sistema de herrajes ocultos y soporte de somier ventilado.", "photo_frontal": "ATX_Cama_Aura.png", "photo_swatch": "ATX_Bufetera_Bali_swatch.jpg", "photo_ambiente": "ATX_Cama_Aura_ambiente.jpg", "swatch_label": "TAPIZ AURA TEXTIL", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}];
+        const products = [{"id": "CVV-SALA-PIERO-BM", "name": "SALA PIERO FOREVER BUTTERMILK", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura en madera sólida estufada de alta resistencia, acojinamiento de espuma de alta resiliencia y tapizado en tela repelente Forever Buttermilk.", "special": "Diseño modular de amplio confort con costuras reforzadas de alta durabilidad.", "photo_frontal": "SALA_PIERO_FRONTAL_BLANCO.png", "photo_swatch": "SALA_PIERO_SWATCH_TELA.png", "photo_ambiente": "SALA_PIERO_AMBIENTE_REAL.png", "swatch_label": "TELA FOREVER BUTTERMILK", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}, {"id": "CVV-SALA-PIERO-CURRY", "name": "SALA PIERO FOREVER CURRY", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "340 cm", "depth": "230 cm", "height": "85 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$42,724.00", "cost": "$14,541.90", "materials": "Estructura en madera sólida de pino seleccionada, suspensión con cincha elástica importada y tapizado en textura Forever Curry.", "special": "Acabado de tono cálido ideal para proyectos residenciales contemporáneos.", "photo_frontal": "SALA_CURRY_FRONTAL_BLANCO.png", "photo_swatch": "SALA_CURRY_SWATCH_TELA.png", "photo_ambiente": "SALA_CURRY_AMBIENTE_REAL.png", "swatch_label": "TELA FOREVER CURRY", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT?usp=drive_link"}];
         let currentProdIndex = 0;
         let currentSheet = 1; // 1 = Hoja 1, 2 = Hoja 2
 
         function renderGrid(items) {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
-            document.getElementById('productCount').innerText = `${items.length} muebles demostrativos`;
 
             items.forEach((p, idx) => {
                 const card = document.createElement('div');
@@ -862,17 +760,6 @@
                     <div class="card-body">
                         <div class="card-title">${p.name}</div>
                         <div class="card-col">${p.provider_full} · REF: ${p.id}</div>
-
-                        <div class="price-row">
-                            <div class="price-item">
-                                <span>Precio</span>
-                                <strong>${p.price}</strong>
-                            </div>
-                            <div class="price-item" style="text-align: right;">
-                                <span>Costo</span>
-                                <strong style="color: var(--accent-gold);">${p.cost}</strong>
-                            </div>
-                        </div>
 
                         <div class="dims-table">
                             <div class="dim-item">
@@ -889,7 +776,7 @@
                             </div>
                         </div>
 
-                        <div class="card-action">Ver Ficha Técnica y Diapositivas →</div>
+                        <div class="card-action">Ver Diapositivas →</div>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -903,23 +790,16 @@
             document.getElementById('slideModal').classList.add('active');
         }
 
-        function goToSheet(sheetNum) {
-            currentSheet = sheetNum;
-            updateSlideView();
-        }
-
         function updateSlideView() {
             const p = products[currentProdIndex];
             const s1 = document.getElementById('sheet1');
             const s2 = document.getElementById('sheet2');
-            const p1 = document.getElementById('pillSheet1');
-            const p2 = document.getElementById('pillSheet2');
+            const totalSlides = products.length * 2;
+            const currentSlideNum = (currentProdIndex * 2) + currentSheet;
 
             if (currentSheet === 1) {
                 s1.style.display = 'flex';
                 s2.style.display = 'none';
-                p1.className = 'step-pill active';
-                p2.className = 'step-pill inactive';
 
                 document.getElementById('m1Img').src = 'fotos/' + p.photo_frontal;
                 document.getElementById('m1Swatch').src = 'fotos/' + p.photo_swatch;
@@ -936,21 +816,18 @@
                 document.getElementById('m1Cost').innerText = p.cost;
                 document.getElementById('m1Materials').innerText = p.materials;
                 document.getElementById('m1Special').innerText = p.special;
+                document.getElementById('slideIndicator').innerText = `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 1 (ESPECIFICACIONES Y COSTOS)`;
             } else {
                 s1.style.display = 'none';
                 s2.style.display = 'flex';
-                p1.className = 'step-pill inactive';
-                p2.className = 'step-pill active';
 
                 document.getElementById('m2Img').src = 'fotos/' + p.photo_ambiente;
                 document.getElementById('m2Title').innerText = p.name;
                 document.getElementById('m2Drive').href = p.drive_url;
+                document.getElementById('slideIndicator').innerText = `DIAPOSITIVA ${currentSlideNum} DE ${totalSlides} · HOJA 2 (AMBIENTE Y FICHA GOOGLE DRIVE)`;
             }
 
-            const totalSlides = products.length * 2;
-            const currentSlideNum = (currentProdIndex * 2) + currentSheet;
-            const sheetName = currentSheet === 1 ? "Hoja 1 (Ficha Técnica)" : "Hoja 2 (Ambiente & Drive)";
-            document.getElementById('navCounter').innerText = `Mueble ${currentProdIndex + 1} de ${products.length} — ${sheetName} [${currentSlideNum}/${totalSlides}]`;
+            document.getElementById('navCounter').innerText = `${p.name} — [${currentSlideNum}/${totalSlides}]`;
         }
 
         function nextSlide() {
