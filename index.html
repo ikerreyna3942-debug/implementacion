@@ -1,1031 +1,2150 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CREATA MUEBLES — Catálogo Oficial 2026</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
     <style>
+
         :root {
+
             --bg: #F8F9FA;
+
             --card-bg: #FFFFFF;
+
             --text-dark: #111827;
+
             --text-muted: #6B7280;
+
             --accent-gold: #B48D56;
+
             --accent-gold-light: #F7F3EC;
+
             --border: #E5E7EB;
+
             --border-hover: #D1D5DB;
+
             --sheet-teal: #7AA89E;
+
             --sheet-teal-dark: #1E3A34;
+
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+
             --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+
             --shadow-lg: 0 12px 28px rgba(0,0,0,0.12);
+
         }
+
+
 
         * {
+
             box-sizing: border-box;
+
             margin: 0;
+
             padding: 0;
+
         }
+
+
 
         body {
+
             font-family: 'Plus Jakarta Sans', sans-serif;
+
             background-color: var(--bg);
+
             color: var(--text-dark);
+
             min-height: 100vh;
+
             display: flex;
+
             flex-direction: column;
+
         }
+
+
 
         header {
+
             background: #FFFFFF;
+
             border-bottom: 1px solid var(--border);
+
             padding: 18px 48px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             position: sticky;
+
             top: 0;
+
             z-index: 100;
+
         }
+
+
 
         .brand-box h1 {
+
             font-family: 'Playfair Display', serif;
+
             font-size: 24px;
+
             font-weight: 700;
+
             letter-spacing: 2px;
+
             color: var(--text-dark);
+
         }
+
         .brand-box span {
+
             font-size: 11px;
+
             text-transform: uppercase;
+
             letter-spacing: 1.5px;
+
             color: var(--accent-gold);
+
             font-weight: 700;
+
         }
+
+
 
         .btn-presentation {
+
             background: var(--text-dark);
+
             color: #FFFFFF;
+
             border: none;
+
             padding: 10px 22px;
+
             border-radius: 30px;
+
             font-size: 13px;
+
             font-weight: 700;
+
             cursor: pointer;
+
             letter-spacing: 0.5px;
+
             transition: all 0.2s;
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 8px;
+
         }
+
         .btn-presentation:hover {
+
             background: var(--accent-gold);
+
             transform: translateY(-1px);
+
         }
+
+
 
         main {
+
             flex: 1;
+
             max-width: 1500px;
+
             width: 100%;
+
             margin: 0 auto;
+
             padding: 40px 48px 80px;
+
         }
+
+
 
         .grid-header {
+
             margin-bottom: 30px;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: flex-end;
+
             border-bottom: 1px solid var(--border);
+
             padding-bottom: 16px;
+
         }
+
         .grid-header h2 {
+
             font-size: 26px;
+
             font-weight: 800;
+
             letter-spacing: -0.5px;
+
             text-transform: uppercase;
+
         }
+
         .grid-header span {
+
             font-size: 13px;
+
             color: var(--accent-gold);
+
             font-weight: 700;
+
             text-transform: uppercase;
+
             letter-spacing: 0.8px;
+
         }
+
+
 
         .products-grid {
+
             display: grid;
+
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
             gap: 28px;
+
         }
+
+
 
         .product-card {
+
             background: var(--card-bg);
+
             border: 1px solid var(--border);
+
             border-radius: 14px;
+
             overflow: hidden;
+
             cursor: pointer;
+
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
             position: relative;
+
             display: flex;
+
             flex-direction: column;
+
         }
+
         .product-card:hover {
+
             transform: translateY(-5px);
+
             border-color: var(--accent-gold);
+
             box-shadow: var(--shadow-lg);
+
         }
+
+
 
         .card-img-wrap {
+
             height: 230px;
+
             background: #FFFFFF !important;
+
             padding: 20px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             position: relative;
+
             border-bottom: 1px solid #F3F4F6;
+
         }
+
         .card-img-wrap img {
+
             max-width: 100%;
+
             max-height: 100%;
+
             object-fit: contain;
+
             background: #FFFFFF !important;
+
             transition: transform 0.3s ease;
+
         }
+
         .product-card:hover .card-img-wrap img {
+
             transform: scale(1.04);
+
         }
+
+
 
         .card-provider-badge {
+
             position: absolute;
+
             top: 14px;
+
             right: 14px;
+
             background: rgba(180, 141, 86, 0.95);
+
             color: #FFFFFF;
+
             font-size: 10px;
+
             font-weight: 800;
+
             padding: 4px 10px;
+
             border-radius: 20px;
+
             letter-spacing: 0.8px;
+
             text-transform: uppercase;
+
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
         }
+
+
 
         .card-info {
+
             padding: 20px 22px;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             text-align: center;
+
             background: #FFFFFF;
+
         }
+
         .card-title {
+
             font-size: 15px;
+
             font-weight: 800;
+
             color: var(--text-dark);
+
             letter-spacing: 0.4px;
+
             line-height: 1.35;
+
             text-transform: uppercase;
+
         }
+
         .card-variants-tag {
+
             font-size: 11px;
+
             font-weight: 600;
+
             color: var(--text-muted);
+
             margin-top: 5px;
+
         }
+
+
 
         /* MODAL */
+
         .modal {
+
             position: fixed;
+
             top: 0;
+
             left: 0;
+
             width: 100vw;
+
             height: 100vh;
+
             background: rgba(17, 24, 39, 0.85);
+
             backdrop-filter: blur(8px);
+
             z-index: 1000;
+
             display: none;
+
             align-items: center;
+
             justify-content: center;
+
             padding: 24px;
+
         }
+
         .modal.active {
+
             display: flex;
+
         }
+
         .slide-frame {
+
             background: var(--card-bg);
+
             width: 100%;
+
             max-width: 1320px;
+
             height: 90vh;
+
             max-height: 850px;
+
             border-radius: 16px;
+
             box-shadow: var(--shadow-lg);
+
             display: flex;
+
             flex-direction: column;
+
             overflow: hidden;
+
             position: relative;
+
         }
+
         .slide-header {
+
             padding: 12px 28px;
+
             background: #FFFFFF;
+
             border-bottom: 1px solid var(--border);
+
             display: flex;
+
             align-items: center;
+
             justify-content: flex-end;
+
         }
+
         .close-btn {
+
             width: 36px;
+
             height: 36px;
+
             border-radius: 50%;
+
             background: #F3F4F6;
+
             border: none;
+
             font-size: 20px;
+
             line-height: 1;
+
             cursor: pointer;
+
             color: var(--text-dark);
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             transition: background 0.2s;
+
         }
+
         .close-btn:hover {
+
             background: var(--border-hover);
+
         }
+
+
 
         .slide-body {
+
             flex: 1;
+
             display: flex;
+
             overflow: hidden;
+
             position: relative;
+
         }
+
+
 
         /* HOJA 1: FICHA TECNICA */
+
         .sheet-1-view {
+
             width: 100%;
+
             height: 100%;
+
             display: flex;
-        }
-        .sheet-1-left {
-            flex: 1.1;
-            background: #FFFFFF !important;
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 28px;
-            position: relative;
-        }
-        .hero-img-box {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            max-height: 480px;
-            background: #FFFFFF !important;
-        }
-        .hero-img-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            background: #FFFFFF !important;
-            transition: opacity 0.2s ease;
+
         }
 
-        .swatches-container {
-            width: 100%;
+        .sheet-1-left {
+
+            flex: 1.1;
+
+            background: #FFFFFF !important;
+
+            border-right: 1px solid var(--border);
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
-            gap: 8px;
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid var(--border);
+
+            justify-content: center;
+
+            padding: 28px;
+
+            position: relative;
+
         }
+
+        .hero-img-box {
+
+            flex: 1;
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            max-height: 480px;
+
+            background: #FFFFFF !important;
+
+        }
+
+        .hero-img-box img {
+
+            max-width: 100%;
+
+            max-height: 100%;
+
+            object-fit: contain;
+
+            background: #FFFFFF !important;
+
+            transition: opacity 0.2s ease;
+
+        }
+
+
+
+        .swatches-container {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 14px;
+
+            padding-top: 14px;
+
+            border-top: 1px solid var(--border);
+
+        }
+
         .swatches-label {
+
             font-size: 9px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            color: var(--text-muted);
+
+        }
+
+        .swatches-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .swatch-card-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            background: #FFFFFF;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            padding: 6px 14px 6px 8px;
+
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+
+        }
+
+        .swatch-card-btn:hover {
+
+            border-color: var(--accent-gold);
+
+            transform: translateY(-1px);
+
+        }
+
+        .swatch-card-btn.active {
+
+            border-color: var(--accent-gold);
+
+            background: var(--accent-gold-light);
+
+            box-shadow: 0 0 0 1px var(--accent-gold);
+
+        }
+
+        .swatch-box {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(0,0,0,0.1);
+
+            background: #FFFFFF;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .swatch-box img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .swatch-meta {
+
+            display: flex;
+
+            flex-direction: column;
+
+            text-align: left;
+
+        }
+
+        .swatch-meta span {
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            color: var(--text-muted);
+
+        }
+
+        .swatch-meta strong {
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            color: var(--text-dark);
+
+            text-transform: uppercase;
+
+        }
+
+
+
+        .sheet-1-right {
+
+            flex: 1.15;
+
+            padding: 36px 42px;
+
+            overflow-y: auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+        .modal-cat-tag {
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: var(--accent-gold);
+
+            margin-bottom: 6px;
+
+        }
+
+        .modal-title {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: var(--text-dark);
+
+            letter-spacing: -0.4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 22px;
+
+        }
+
+
+
+        .modal-specs-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .modal-spec-card {
+
+            background: #F9FAFB;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            padding: 10px 14px;
+
+        }
+
+        .modal-spec-card span {
+
+            display: block;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            color: var(--text-muted);
+
+            margin-bottom: 2px;
+
+        }
+
+        .modal-spec-card strong {
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: var(--text-dark);
+
+        }
+
+
+
+        .modal-price-box {
+
+            display: grid;
+
+            grid-template-columns: 1.2fr 1fr;
+
+            gap: 14px;
+
+            margin-bottom: 18px;
+
+        }
+
+        .price-card-large {
+
+            background: #FDF9F3;
+
+            border: 1px solid #E5D5BA;
+
+            border-radius: 10px;
+
+            padding: 12px 18px;
+
+        }
+
+        .price-card-large span {
+
+            display: block;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            color: var(--accent-gold);
+
+            letter-spacing: 0.5px;
+
+        }
+
+        .price-card-large strong {
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            color: var(--text-dark);
+
+        }
+
+        .cost-card-large {
+
+            background: #F3F5F7;
+
+            border: 1px solid #D5DAE0;
+
+            border-radius: 10px;
+
+            padding: 12px 18px;
+
+        }
+
+        .cost-card-large span {
+
+            display: block;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            color: var(--text-muted);
+
+            letter-spacing: 0.5px;
+
+        }
+
+        .cost-card-large strong {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #4A5568;
+
+        }
+
+
+
+        .modal-materials {
+
+            background: var(--bg);
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            padding: 14px 18px;
+
+            margin-bottom: 14px;
+
+        }
+
+        .modal-materials h4 {
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            color: var(--text-muted);
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 4px;
+
+        }
+
+        .modal-materials p {
+
+            font-size: 12px;
+
+            color: var(--text-dark);
+
+            line-height: 1.45;
+
+        }
+
+        .modal-special {
+
+            background: #F2F7F6;
+
+            border: 1px solid #C8E3DC;
+
+            border-radius: 8px;
+
+            padding: 10px 14px;
+
+            font-size: 12px;
+
+            color: #17423B;
+
+            font-weight: 600;
+
+        }
+
+
+
+        /* HOJA 2: AMBIENTE & GALERIA */
+
+        .sheet-2-view {
+
+            width: 100%;
+
+            height: 100%;
+
+            display: none;
+
+            flex-direction: column;
+
+            padding: 24px;
+
+        }
+
+        .sheet-2-top-frame {
+
+            flex: 1;
+
+            background: #FFFFFF;
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            padding: 16px;
+
+            margin-bottom: 16px;
+
+            box-shadow: var(--shadow-sm);
+
+            position: relative;
+
+        }
+
+        .ambient-main-preview {
+
+            flex: 1;
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+        }
+
+        .ambient-main-preview img {
+
+            max-width: 100%;
+
+            max-height: 100%;
+
+            object-fit: contain;
+
+            border-radius: 8px;
+
+            transition: opacity 0.2s ease;
+
+        }
+
+        
+
+        .views-gallery-bar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            padding-top: 12px;
+
+            border-top: 1px solid var(--border);
+
+            width: 100%;
+
+        }
+
+        .view-thumb-btn {
+
+            width: 72px;
+
+            height: 52px;
+
+            border-radius: 6px;
+
+            border: 2px solid transparent;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            background: #F9FAFB;
+
+            transition: all 0.2s;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+        .view-thumb-btn img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+        .view-thumb-btn:hover {
+
+            border-color: var(--accent-gold);
+
+            transform: scale(1.05);
+
+        }
+
+        .view-thumb-btn.active {
+
+            border-color: var(--accent-gold);
+
+            box-shadow: 0 0 0 1px var(--accent-gold);
+
+        }
+
+
+
+        .sheet-2-bottom-bar {
+
+            background: var(--sheet-teal);
+
+            border-radius: 12px;
+
+            padding: 16px 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            color: #FFFFFF;
+
+        }
+
+        .sheet-2-title {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #FFFFFF;
+
+            letter-spacing: 0.5px;
+
+            text-transform: uppercase;
+
+        }
+
+        .sheet-2-sub {
+
+            font-size: 11px;
+
+            color: rgba(255, 255, 255, 0.9);
+
+            margin-top: 2px;
+
+        }
+
+        .sheet2-color-selector {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        .btn-color-tag {
+
+            background: #FFFFFF;
+
+            color: var(--sheet-teal-dark);
+
+            border: none;
+
+            padding: 5px 12px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition: all 0.2s;
+
+        }
+
+        .btn-color-tag:hover {
+
+            background: var(--accent-gold-light);
+
+            color: var(--text-dark);
+
+        }
+
+        .btn-color-tag.active {
+
+            background: var(--sheet-teal-dark);
+
+            color: #FFFFFF;
+
+        }
+
+
+
+        .drive-links-group {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .btn-drive {
+
+            background: var(--sheet-teal-dark);
+
+            color: #FFFFFF;
+
+            padding: 10px 18px;
+
+            border-radius: 24px;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            transition: all 0.2s;
+
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+        }
+
+        .btn-drive:hover {
+
+            background: #112622;
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        /* MODAL FOOTER */
+
+        .modal-nav {
+
+            padding: 14px 28px;
+
+            background: #FFFFFF;
+
+            border-top: 1px solid var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+        .btn-nav {
+
+            background: #FFFFFF;
+
+            border: 1px solid var(--border);
+
+            padding: 9px 22px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.2s;
+
+            color: var(--text-dark);
+
+        }
+
+        .btn-nav:hover {
+
+            background: #F3F4F6;
+
+            border-color: var(--border-hover);
+
+        }
+
+        .btn-nav.primary {
+
+            background: var(--text-dark);
+
+            color: #FFFFFF;
+
+            border-color: var(--text-dark);
+
+        }
+
+        .btn-nav.primary:hover {
+
+            background: var(--accent-gold);
+
+            border-color: var(--accent-gold);
+
+        }
+
+    
+        /* SELECTOR DE PRECIO Y COSTO EN CABECERA */
+        .pricing-selector {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #F3F4F6;
+            padding: 4px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+        .pricing-label {
+            font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
             color: var(--text-muted);
+            padding: 0 10px;
+            letter-spacing: 0.5px;
         }
-        .swatches-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .swatch-card-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 6px 14px 6px 8px;
+        .price-toggle-btn {
+            border: none;
+            background: transparent;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .swatch-card-btn:hover {
-            border-color: var(--accent-gold);
-            transform: translateY(-1px);
+        .price-toggle-btn:hover {
+            color: var(--accent-gold);
         }
-        .swatch-card-btn.active {
-            border-color: var(--accent-gold);
-            background: var(--accent-gold-light);
-            box-shadow: 0 0 0 1px var(--accent-gold);
-        }
-        .swatch-box {
-            width: 38px;
-            height: 38px;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.1);
+        .price-toggle-btn.active {
             background: #FFFFFF;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        #btnModePrice.active { color: #16A34A; }
+        #btnModeCost.active { color: var(--accent-gold); }
+        #btnModeBoth.active { color: var(--text-dark); }
+
+        /* TARJETA CON PRECIO DINÁMICO */
+        .card-price-badge {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px 12px;
+            background: #F9FAFB;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .card-price-row {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
         }
-        .swatch-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .swatch-meta {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-        .swatch-meta span {
-            font-size: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-        .swatch-meta strong {
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--text-dark);
-            text-transform: uppercase;
-        }
-
-        .sheet-1-right {
-            flex: 1.15;
-            padding: 36px 42px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-cat-tag {
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-gold);
-            margin-bottom: 6px;
-        }
-        .modal-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-dark);
-            letter-spacing: -0.4px;
-            text-transform: uppercase;
-            margin-bottom: 22px;
-        }
-
-        .modal-specs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 18px;
-        }
-        .modal-spec-card {
-            background: #F9FAFB;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 14px;
-        }
-        .modal-spec-card span {
-            display: block;
-            font-size: 9px;
+        .card-price-row .lbl {
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 2px;
         }
-        .modal-spec-card strong {
+        .card-price-row .val-price {
+            font-size: 14px;
+            font-weight: 800;
+            color: #16A34A;
+        }
+        .card-price-row .val-cost {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+        .both-prices {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .both-prices div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .both-prices div:last-child {
+            align-items: flex-end;
+        }
+        .both-prices .val-price, .both-prices .val-cost {
             font-size: 13px;
-            font-weight: 800;
-            color: var(--text-dark);
         }
 
-        .modal-price-box {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 14px;
-            margin-bottom: 18px;
-        }
-        .price-card-large {
-            background: #FDF9F3;
-            border: 1px solid #E5D5BA;
-            border-radius: 10px;
-            padding: 12px 18px;
-        }
-        .price-card-large span {
-            display: block;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            letter-spacing: 0.5px;
-        }
-        .price-card-large strong {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--text-dark);
-        }
-        .cost-card-large {
-            background: #F3F5F7;
-            border: 1px solid #D5DAE0;
-            border-radius: 10px;
-            padding: 12px 18px;
-        }
-        .cost-card-large span {
-            display: block;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-        }
-        .cost-card-large strong {
-            font-size: 18px;
-            font-weight: 800;
-            color: #4A5568;
-        }
-
-        .modal-materials {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 14px 18px;
-            margin-bottom: 14px;
-        }
-        .modal-materials h4 {
-            font-size: 10px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-        .modal-materials p {
-            font-size: 12px;
-            color: var(--text-dark);
-            line-height: 1.45;
-        }
-        .modal-special {
-            background: #F2F7F6;
-            border: 1px solid #C8E3DC;
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 12px;
-            color: #17423B;
-            font-weight: 600;
-        }
-
-        /* HOJA 2: AMBIENTE & GALERIA */
-        .sheet-2-view {
-            width: 100%;
-            height: 100%;
-            display: none;
-            flex-direction: column;
-            padding: 24px;
-        }
-        .sheet-2-top-frame {
-            flex: 1;
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 16px;
-            margin-bottom: 16px;
-            box-shadow: var(--shadow-sm);
-            position: relative;
-        }
-        .ambient-main-preview {
-            flex: 1;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .ambient-main-preview img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            transition: opacity 0.2s ease;
-        }
-        
-        .views-gallery-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
-            width: 100%;
-        }
-        .view-thumb-btn {
-            width: 72px;
-            height: 52px;
-            border-radius: 6px;
-            border: 2px solid transparent;
-            overflow: hidden;
-            cursor: pointer;
-            background: #F9FAFB;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .view-thumb-btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .view-thumb-btn:hover {
-            border-color: var(--accent-gold);
-            transform: scale(1.05);
-        }
-        .view-thumb-btn.active {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 1px var(--accent-gold);
-        }
-
-        .sheet-2-bottom-bar {
-            background: var(--sheet-teal);
-            border-radius: 12px;
-            padding: 16px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #FFFFFF;
-        }
-        .sheet-2-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #FFFFFF;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        .sheet-2-sub {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-top: 2px;
-        }
-        .sheet2-color-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-color-tag {
-            background: #FFFFFF;
-            color: var(--sheet-teal-dark);
-            border: none;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .btn-color-tag:hover {
-            background: var(--accent-gold-light);
-            color: var(--text-dark);
-        }
-        .btn-color-tag.active {
-            background: var(--sheet-teal-dark);
-            color: #FFFFFF;
-        }
-
-        .drive-links-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .btn-drive {
-            background: var(--sheet-teal-dark);
-            color: #FFFFFF;
-            padding: 10px 18px;
-            border-radius: 24px;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-        .btn-drive:hover {
-            background: #112622;
-            transform: translateY(-2px);
-        }
-
-        /* MODAL FOOTER */
-        .modal-nav {
-            padding: 14px 28px;
-            background: #FFFFFF;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .btn-nav {
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            padding: 9px 22px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text-dark);
-        }
-        .btn-nav:hover {
-            background: #F3F4F6;
-            border-color: var(--border-hover);
-        }
-        .btn-nav.primary {
-            background: var(--text-dark);
-            color: #FFFFFF;
-            border-color: var(--text-dark);
-        }
-        .btn-nav.primary:hover {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
     </style>
+
 </head>
+
 <body>
+
     <header>
+
         <div class="brand-box">
+
             <h1>CREATA MUEBLES</h1>
+
             <span>Catálogo Oficial 2026</span>
+
         </div>
+
         <button class="btn-presentation" onclick="startPresentation()">
+
             ▶ Iniciar Presentación
+
         </button>
+
     </header>
 
+
+
     <main>
+
         <div class="grid-header">
+
             <div>
+
                 <h2>Catálogo de Muebles</h2>
+
                 <span>Selecciona cualquier mueble para ver sus diapositivas</span>
+
             </div>
+
         </div>
+
         <div class="products-grid" id="productsGrid"></div>
+
     </main>
 
+
+
     <!-- FULLSCREEN SLIDESHOW MODAL -->
+
     <div class="modal" id="slideModal">
+
         <div class="slide-frame">
+
             <div class="slide-header">
+
                 <button class="close-btn" onclick="closeModal()">×</button>
+
             </div>
+
+
 
             <div class="slide-body">
+
                 <!-- HOJA 1: FICHA TECNICA -->
+
                 <div class="sheet-1-view" id="sheet1">
+
                     <div class="sheet-1-left">
+
                         <div class="hero-img-box">
+
                             <img id="m1Img" src="" alt="Producto">
+
                         </div>
+
                         
+
                         <div class="swatches-container" id="m1SwatchesContainer">
+
                             <span class="swatches-label" id="m1SwatchesLabel">SELECCIONA TELA / ACABADO PARA CAMBIAR COLOR:</span>
+
                             <div class="swatches-row" id="m1SwatchesRow"></div>
+
                         </div>
+
                     </div>
+
                     
+
                     <div class="sheet-1-right">
+
                         <div class="modal-cat-tag" id="m1Cat"></div>
+
                         <div class="modal-title" id="m1Title"></div>
 
+
+
                         <div class="modal-specs-grid">
+
                             <div class="modal-spec-card">
+
                                 <span>Ancho Total</span>
+
                                 <strong id="m1Width">-</strong>
+
                             </div>
+
                             <div class="modal-spec-card">
+
                                 <span>Fondo</span>
+
                                 <strong id="m1Depth">-</strong>
+
                             </div>
+
                             <div class="modal-spec-card">
+
                                 <span>Altura Total</span>
+
                                 <strong id="m1Height">-</strong>
+
                             </div>
+
                             <div class="modal-spec-card">
+
                                 <span>Altura Asiento</span>
+
                                 <strong id="m1Seat">-</strong>
+
                             </div>
+
                             <div class="modal-spec-card">
+
                                 <span>Cubitaje</span>
+
                                 <strong id="m1Volume">-</strong>
+
                             </div>
+
                             <div class="modal-spec-card">
+
                                 <span>Empaque / Bultos</span>
+
                                 <strong id="m1Packages">-</strong>
+
                             </div>
+
                         </div>
+
+
 
                         <div class="modal-price-box">
-                            <div class="price-card-large">
+
+                            <div class="price-card-large" id="modalPriceCard">
+
                                 <span>Precio Público Oficial</span>
+
                                 <strong id="m1Price">-</strong>
+
                             </div>
-                            <div class="cost-card-large">
+
+                            <div class="cost-card-large" id="modalCostCard">
+
                                 <span>Costo de Fábrica</span>
+
                                 <strong id="m1Cost">-</strong>
+
                             </div>
+
                         </div>
+
+
 
                         <div class="modal-materials">
+
                             <h4>Materiales y Fabricación</h4>
+
                             <p id="m1Materials">-</p>
+
                         </div>
+
+
 
                         <div class="modal-special" id="m1Special"></div>
+
                     </div>
+
                 </div>
+
+
 
                 <!-- HOJA 2: AMBIENTE & TODAS LAS VISTAS -->
+
                 <div class="sheet-2-view" id="sheet2">
+
                     <div class="sheet-2-top-frame">
+
                         <div class="ambient-main-preview">
+
                             <img id="m2Img" src="" alt="Vista Principal">
+
                         </div>
+
+
 
                         <div class="views-gallery-bar" id="m2ViewsGallery"></div>
+
                     </div>
+
+
 
                     <div class="sheet-2-bottom-bar">
+
                         <div>
+
                             <div class="sheet-2-title" id="m2Title"></div>
+
                             <div class="sheet-2-sub">Ficha Técnica Oficial y Especificaciones de Taller</div>
+
                             <div class="sheet2-color-selector" id="m2ColorSelector" style="margin-top: 8px;"></div>
+
                         </div>
 
+
+
                         <div class="drive-links-group" id="m2DriveLinks"></div>
+
                     </div>
+
                 </div>
+
             </div>
+
+
 
             <div class="modal-nav">
+
                 <button class="btn-nav" onclick="prevSlide()">← Anterior</button>
+
                 <div></div>
+
                 <button class="btn-nav primary" onclick="nextSlide()">Siguiente →</button>
+
             </div>
+
         </div>
+
     </div>
 
+
+
     <script>
+
         const products = [{"id": "CVV-SALA-PIERO", "model_name": "SALA PIERO", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "290 cm", "depth": "188 cm", "height": "65 cm", "seat": "45 cm", "volume": "3.57 m³", "packages": "2 bultos", "price": "$43,463.20", "cost": "$14,793.50", "variants": [{"id": "CVV-PIERO-BM", "name": "SALA PIERO FOREVER BUTTERMILK", "color_label": "TELA FOREVER BUTTERMILK", "swatch_img": "SALA_PIERO_SWATCH_TELA.png", "hero_img": "SALA_PIERO_FRONTAL_BLANCO.png", "ambient_img": "SALA_PIERO_AMBIENTE_REAL.png", "views": [{"label": "Ambiente Principal", "img": "SALA_PIERO_AMBIENTE_REAL.png"}, {"label": "Vista Frontal", "img": "SALA_PIERO_FRONTAL_BLANCO.png"}, {"label": "Perspectiva Lateral", "img": "SALA_PIERO_VISTA_2.png"}], "materials": "Estructura en madera sólida estufada de alta resistencia, acojinamiento de espuma de alta resiliencia y tapizado en tela repelente Forever Buttermilk.", "special": "Diseño modular de amplio confort con costuras reforzadas de alta durabilidad.", "drive_name": "Ficha Buttermilk en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/121ZimwK3XrTmSLsuF5tFUKzG2amcdpZT/view"}, {"id": "CVV-PIERO-CY", "name": "SALA PIERO FOREVER CURRY", "color_label": "TELA FOREVER CURRY", "swatch_img": "SALA_CURRY_SWATCH_TELA.png", "hero_img": "SALA_CURRY_FRONTAL_BLANCO.png", "ambient_img": "SALA_CURRY_AMBIENTE_REAL.png", "views": [{"label": "Ambiente Principal", "img": "SALA_CURRY_AMBIENTE_REAL.png"}, {"label": "Vista Frontal", "img": "SALA_CURRY_FRONTAL_BLANCO.png"}, {"label": "Perspectiva Lateral", "img": "SALA_CURRY_VISTA_2.png"}], "materials": "Estructura en madera sólida de pino seleccionada, suspensión con cincha elástica importada y tapizado en textura Forever Curry.", "special": "Acabado de tono cálido ideal para proyectos residenciales contemporáneos.", "drive_name": "Ficha Curry en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1iBGtj30IN0qYAb9W1vJXftrLORgK_KtB/view"}]}, {"id": "CVV-SALA-ARIA", "model_name": "SALA ARIA", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "280 cm", "depth": "280 cm", "height": "70 cm", "seat": "44 cm", "volume": "3.57 m³", "packages": "3 bultos", "price": "$42,724.00", "cost": "$14,541.90", "variants": [{"id": "CVV-ARIA-IVORY", "name": "SALA ARIA OSI IVORY", "color_label": "TELA OSI IVORY", "swatch_img": "CVV_Sala_Aria_Osi_Ivory_swatch.jpg", "hero_img": "CVV_Sala_Aria_Osi_Ivory_frontal.jpg", "ambient_img": "CVV_Sala_Aria_Osi_Ivory_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "CVV_Sala_Aria_Osi_Ivory_ambiente.jpg"}, {"label": "Vista Frontal", "img": "CVV_Sala_Aria_Osi_Ivory_frontal.jpg"}], "materials": "Estructura en madera sólida de pino estufada, acojinamiento de espuma de alta densidad y tapizado en tela suave Osi Ivory.", "special": "Diseño modular simétrico en escuadra para máximo aprovechamiento de espacio.", "drive_name": "Ficha Ivory en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1a_ZJ7gbkcFm7RPeOydSfrprPtgmrm73I/view"}, {"id": "CVV-ARIA-FLAX", "name": "SALA ARIA OSI FLAX", "color_label": "TELA OSI FLAX", "swatch_img": "CVV_Sala_Aria_Osi_Flax_swatch.jpg", "hero_img": "CVV_Sala_Aria_Osi_Flax_frontal.jpg", "ambient_img": "CVV_Sala_Aria_Osi_Flax_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "CVV_Sala_Aria_Osi_Flax_ambiente.jpg"}, {"label": "Vista Frontal", "img": "CVV_Sala_Aria_Osi_Flax_frontal.jpg"}], "materials": "Estructura de madera tratada contra humedad, cojines reversibles y tapizado texturizado tono Flax.", "special": "Tono neutro contemporáneo de fácil mantenimiento.", "drive_name": "Ficha Flax en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1gKQqNLUNp2uobbNwokrlOYtgrbscrrV_/view"}]}, {"id": "CVV-SALA-LUMNO", "model_name": "SALA LUMNO", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "392 cm", "depth": "110 cm", "height": "70 cm", "seat": "43 cm", "volume": "3.06 m³", "packages": "3 bultos", "price": "$46,699.20", "cost": "$15,894.90", "variants": [{"id": "CVV-LUMNO-LINEN", "name": "SALA LUMNO BAKER LINEN", "color_label": "TELA BAKER LINEN", "swatch_img": "CVV_Sala_Lumno_Baker_Limen_swatch.jpg", "hero_img": "CVV_Sala_Lumno_Baker_Limen_frontal.jpg", "ambient_img": "CVV_Sala_Lumno_Baker_Limen_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "CVV_Sala_Lumno_Baker_Limen_ambiente.jpg"}, {"label": "Vista Frontal", "img": "CVV_Sala_Lumno_Baker_Limen_frontal.jpg"}], "materials": "Estructura robusta en pino selecto estufado, resortes tipo zig-zag y tapizado Baker Linen de tacto lino natural.", "special": "Formato lineal extragrande de 3.92 metros de longitud para salas amplias.", "drive_name": "Ficha Linen en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1YvRfw5Ss--cqBYTDKVJflZ4tpWmJtyMn/view"}, {"id": "CVV-LUMNO-MUSHROOM", "name": "SALA LUMNO BAKER MUSHROOM", "color_label": "TELA BAKER MUSHROOM", "swatch_img": "CVV_Sala_Lumno_Baker_Mushroom_swatch.jpg", "hero_img": "CVV_Sala_Lumno_Baker_Mushroom_frontal.jpg", "ambient_img": "CVV_Sala_Lumno_Baker_Mushroom_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "CVV_Sala_Lumno_Baker_Mushroom_ambiente.jpg"}, {"label": "Vista Frontal", "img": "CVV_Sala_Lumno_Baker_Mushroom_frontal.jpg"}], "materials": "Estructura reforzada con esquineros metálicos interiores, espuma indeformable y tapizado Baker Mushroom.", "special": "Tono tierra elegante con alta resistencia al frote.", "drive_name": "Ficha Mushroom en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1rHBQqkbVrSuw2FGKNldYm81qQ4yxWkzY/view"}]}, {"id": "CVV-SALA-LEXY", "model_name": "SALA LEXY", "provider_abbr": "CVV", "provider_full": "CASA V&V", "category": "SALAS & SOFÁS", "width": "279 cm", "depth": "140 cm", "height": "63 cm", "seat": "42 cm", "volume": "2.45 m³", "packages": "2 bultos", "price": "$20,476.50", "cost": "$6,969.50", "variants": [{"id": "CVV-LEXY-OLIVE", "name": "SALA LEXY PRISMA OLIVO", "color_label": "TELA PRISMA OLIVO", "swatch_img": "CVV_Sala_Lexy_Prisma_Olivo_swatch.jpg", "hero_img": "CVV_Sala_Lexy_Prisma_Olivo_frontal.jpg", "ambient_img": "CVV_Sala_Lexy_Prisma_Olivo_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "CVV_Sala_Lexy_Prisma_Olivo_ambiente.jpg"}, {"label": "Vista Frontal", "img": "CVV_Sala_Lexy_Prisma_Olivo_frontal.jpg"}], "materials": "Madera sólida de pino estufada, acojinamiento de alta resistencia y tapiz Prisma en tono Olivo orgánico.", "special": "Perfil bajo moderno de estilo escandinavo con chaise longue integrado.", "drive_name": "Ficha Lexy en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1Pl9Xbp4nGffHQyVOaiBbuTRSmc3TeUJb/view"}]}, {"id": "ARM-SALA-DONATI", "model_name": "SALA DONATI", "provider_abbr": "ARM", "provider_full": "ARMONY", "category": "SALAS & SOFÁS", "width": "150 cm", "depth": "157 cm", "height": "88 cm", "seat": "40 cm", "volume": "2.31 m³", "packages": "1 bulto", "price": "$29,169.80", "cost": "$9,193.00", "variants": [{"id": "ARM-SALA-DONATI-V1", "name": "SALA DONATI", "color_label": "ACABADO OFICIAL", "swatch_img": "ARM_sala_Donati_swatch.jpg", "hero_img": "ARM_sala_Donati_frontal.jpg", "ambient_img": "ARM_sala_Donati_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ARM_sala_Donati_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ARM_sala_Donati_frontal.jpg"}], "materials": "Madera de pino estufada de primera calidad, suspensión elástica de alta densidad y tapicería italiana antimanchas.", "special": "Composición modular con chaise longue reversible y reposabrazos acolchado extraancho.", "drive_name": "Ficha SALA DONATI en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1h-DWCYAlNlO1Ho-lusOFnlNEYCgqWGMe/view"}]}, {"id": "ARM-SALA-MARENO", "model_name": "SALA MARENO", "provider_abbr": "ARM", "provider_full": "ARMONY", "category": "SALAS & SOFÁS", "width": "188 cm", "depth": "106 cm", "height": "90 cm", "seat": "40 cm", "volume": "1.96 m³", "packages": "1 bulto", "price": "$29,501.00", "cost": "$9,297.40", "variants": [{"id": "ARM-SALA-MARENO-V1", "name": "SALA MARENO", "color_label": "ACABADO OFICIAL", "swatch_img": "ARM_sala_Mareno_swatch.jpg", "hero_img": "ARM_sala_Mareno_frontal.jpg", "ambient_img": "ARM_sala_Mareno_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ARM_sala_Mareno_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ARM_sala_Mareno_frontal.jpg"}], "materials": "Estructura de madera maciza seleccionada, acojinamiento en capas de densidad progresiva y tapiz de suave tacto.", "special": "Líneas geométricas limpias y cojinería capitonada de gran presencia.", "drive_name": "Ficha SALA MARENO en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1Zy7gz4kLzE9N0AnEVzGyUn3HdiqVQJ5p/view"}]}, {"id": "ARM-SALA-MATERA", "model_name": "SALA MATERA", "provider_abbr": "ARM", "provider_full": "ARMONY", "category": "SALAS & SOFÁS", "width": "155 cm", "depth": "134 cm", "height": "94 cm", "seat": "40 cm", "volume": "2.16 m³", "packages": "1 bulto", "price": "$35,243.00", "cost": "$11,107.00", "variants": [{"id": "ARM-SALA-MATERA-V1", "name": "SALA MATERA", "color_label": "ACABADO OFICIAL", "swatch_img": "ARM_sala_Matera_swatch.jpg", "hero_img": "ARM_sala_Matera_frontal.jpg", "ambient_img": "ARM_sala_Matera_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ARM_sala_Matera_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ARM_sala_Matera_frontal.jpg"}], "materials": "Estructura reforzada con ensamble artesanal y tapicería de alto tráfico con protección repelente a líquidos.", "special": "Estilo moderno europeo con patas cónicas metálicas ocultas.", "drive_name": "Ficha SALA MATERA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1MxYTQS4h_FD2xVHhhbpvliG8b6JG_JEt/view"}]}, {"id": "ARM-SALA-MONET", "model_name": "SALA MONET", "provider_abbr": "ARM", "provider_full": "ARMONY", "category": "SALAS & SOFÁS", "width": "225 cm", "depth": "108 cm", "height": "98 cm", "seat": "40 cm", "volume": "2.59 m³", "packages": "1 bulto", "price": "$40,377.60", "cost": "$12,725.20", "variants": [{"id": "ARM-SALA-MONET-V1", "name": "SALA MONET", "color_label": "ACABADO OFICIAL", "swatch_img": "ARM_sala_Monet_swatch.jpg", "hero_img": "ARM_sala_Monet_frontal.jpg", "ambient_img": "ARM_sala_Monet_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ARM_sala_Monet_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ARM_sala_Monet_frontal.jpg"}], "materials": "Pino estufado selecto, resortes reforzados y tapizado en chenille de primera clase.", "special": "Cojines de respaldo rellenos con microfibra siliconada de efecto nube.", "drive_name": "Ficha SALA MONET en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/151av7CqNXS0AC3d_y07-yNMJwn-WHNM1/view"}]}, {"id": "YOI-SALA-ZAMA", "model_name": "SALA ZAMA", "provider_abbr": "YOI", "provider_full": "YOI", "category": "SALAS & SOFÁS", "width": "xx cm", "depth": "200 cm", "height": "82 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$43,776.20", "cost": "$14,900.00", "variants": [{"id": "YOI-SALA-ZAMA-V1", "name": "SALA ZAMA", "color_label": "ACABADO OFICIAL", "swatch_img": "YOI_Sala_Zama_swatch.jpg", "hero_img": "YOI_Sala_Zama_frontal.jpg", "ambient_img": "YOI_Sala_Zama_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "YOI_Sala_Zama_ambiente.jpg"}, {"label": "Vista Frontal", "img": "YOI_Sala_Zama_frontal.jpg"}], "materials": "Estructura en madera de roble y pino con resortes independientes embolsados y tela de diseñador.", "special": "Elegancia minimalista con amplios módulos conectables.", "drive_name": "Ficha SALA ZAMA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1RoGxW9talNoHTvKZyRIKyxMMwV1lT12N/view"}]}, {"id": "YOI-SILLON-ZUR", "model_name": "SILLÓN OCASIONAL ZUR", "provider_abbr": "YOI", "provider_full": "YOI", "category": "SILLONES OCASIONALES", "width": "69 cm", "depth": "86 cm", "height": "82 cm", "seat": "43 cm", "volume": "0.55 m³", "packages": "1 bulto", "price": "$32,024.20", "cost": "$10,900.00", "variants": [{"id": "YOI-ZUR-PIEL", "name": "SILLÓN OCASIONAL ZUR PIEL", "color_label": "PIEL GENUINA COÑAC", "swatch_img": "YOI_Sill_n_ocasional_Zur_Piel_swatch.jpg", "hero_img": "YOI_Sill_n_ocasional_Zur_Piel_frontal.jpg", "ambient_img": "YOI_Sill_n_ocasional_Zur_Piel_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "YOI_Sill_n_ocasional_Zur_Piel_ambiente.jpg"}, {"label": "Vista Frontal", "img": "YOI_Sill_n_ocasional_Zur_Piel_frontal.jpg"}], "materials": "Estructura metálica termoesmaltada mate y tapizado en 100% piel genuina con curtido de tacto suave.", "special": "Líneas esbeltas de inspiración nórdica y confort excepcional.", "drive_name": "Ficha Zur Piel en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1hs3CJzcurVtzlj8vq_E1fcYrZ6ZV_67Z/view"}, {"id": "YOI-ZUR-SAND", "name": "SILLÓN OCASIONAL ZUR PIEL SAND 07", "color_label": "PIEL SAND 07", "swatch_img": "YOI_Sill_n_ocasional_Zur_Piel_Sand_07_swatch.jpg", "hero_img": "YOI_Sill_n_ocasional_Zur_Piel_Sand_07_frontal.jpg", "ambient_img": "YOI_Sill_n_ocasional_Zur_Piel_Sand_07_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "YOI_Sill_n_ocasional_Zur_Piel_Sand_07_ambiente.jpg"}, {"label": "Vista Frontal", "img": "YOI_Sill_n_ocasional_Zur_Piel_Sand_07_frontal.jpg"}], "materials": "Tapizado en flor de piel tono Sand 07 con pespuntes finos al tono.", "special": "Ideal para lobbies, estudios ejecutivos o áreas de lectura contemporáneas.", "drive_name": "Ficha Zur Sand en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/192dVsDLKAVx9s_ZlpC1_L7fDPlD1xDrR/view"}]}, {"id": "YOI-SILLÓN-AARMIN", "model_name": "SILLÓN AARMIN", "provider_abbr": "YOI", "provider_full": "YOI", "category": "SILLONES OCASIONALES", "width": "77 cm", "depth": "87 cm", "height": "90 cm", "seat": "44 cm", "volume": "0.71668 m³", "packages": "1 bulto", "price": "$34,227.70", "cost": "$11,650.00", "variants": [{"id": "YOI-SILLÓN-AARMIN-V1", "name": "SILLÓN AARMIN", "color_label": "ACABADO OFICIAL", "swatch_img": "YOI_Sill_n_ocasional_Aarmin.png", "hero_img": "YOI_Sill_n_ocasional_Aarmin_frontal.jpg", "ambient_img": "YOI_Sill_n_ocasional_Aarmin_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "YOI_Sill_n_ocasional_Aarmin_ambiente.jpg"}, {"label": "Vista Frontal", "img": "YOI_Sill_n_ocasional_Aarmin_frontal.jpg"}], "materials": "Estructura de madera curva prensada al vapor y tapizado de alta resistencia.", "special": "Forma escultural de una sola pieza con apoyo lumbar anatómico.", "drive_name": "Ficha SILLÓN AARMIN en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1Vmgzv7ocVJJkLYlUIWhCz0GMFgRNERbn/view"}]}, {"id": "YOI-SILLÓN-AUREN", "model_name": "SILLÓN AUREN", "provider_abbr": "YOI", "provider_full": "YOI", "category": "SILLONES OCASIONALES", "width": "86 cm", "depth": "90 cm", "height": "87 cm", "seat": "44 cm", "volume": "0.8303 m³", "packages": "1 bulto", "price": "$29,086.20", "cost": "$9,900.00", "variants": [{"id": "YOI-SILLÓN-AUREN-V1", "name": "SILLÓN AUREN", "color_label": "ACABADO OFICIAL", "swatch_img": "YOI_Sill_n_ocasional_Auren_swatch.jpg", "hero_img": "YOI_Sill_n_ocasional_Auren_frontal.jpg", "ambient_img": "YOI_Sill_n_ocasional_Auren_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "YOI_Sill_n_ocasional_Auren_ambiente.jpg"}, {"label": "Vista Frontal", "img": "YOI_Sill_n_ocasional_Auren_frontal.jpg"}], "materials": "Base giratoria metálica oculta con cuerpo acolchado en tejido de boucle prémium.", "special": "Rotación silenciosa 360 grados de suave movimiento.", "drive_name": "Ficha SILLÓN AUREN en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/16tSJNWIBSqfuiCP1iHcojYQ9J5jA5uLQ/view"}]}, {"id": "YOI-SILLÓN-DUE-LONGUE", "model_name": "SILLÓN DUE LONGUE", "provider_abbr": "YOI", "provider_full": "YOI", "category": "SILLONES OCASIONALES", "width": "85 cm", "depth": "85 cm", "height": "75 cm", "seat": "44 cm", "volume": "0.80408 m³", "packages": "1 bulto", "price": "$26,148.20", "cost": "$8,900.00", "variants": [{"id": "YOI-SILLÓN-DUE-LONGUE-V1", "name": "SILLÓN DUE LONGUE", "color_label": "ACABADO OFICIAL", "swatch_img": "YOI_Sill_n_ocasional_Due_Longue.png", "hero_img": "YOI_Sill_n_ocasional_Due_Longue_frontal.jpg", "ambient_img": "YOI_Sill_n_ocasional_Due_Longue_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "YOI_Sill_n_ocasional_Due_Longue_ambiente.jpg"}, {"label": "Vista Frontal", "img": "YOI_Sill_n_ocasional_Due_Longue_frontal.jpg"}], "materials": "Madera estufada con suspensión de resortes y tapicería texturizada.", "special": "Chaise longue individual de descanso extendido con cojín cilíndrico incluido.", "drive_name": "Ficha SILLÓN DUE LONGUE en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1Dqm6QQ_Mr-97dXCBtY-iDKn5ugJvF-Zp/view"}]}, {"id": "ATX-SILLON-BALI", "model_name": "SILLÓN BALI", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "SILLONES OCASIONALES", "width": "200 cm", "depth": "51 cm", "height": "79 cm", "seat": "42 cm", "volume": "0.68 m³", "packages": "1 bulto", "price": "$40,208.20", "cost": "$13,159.20", "variants": [{"id": "ATX-BALI-OLIVE", "name": "SILLÓN BALI BAKER OLIVE", "color_label": "TELA BAKER OLIVE", "swatch_img": "ATX_Sill_n_Bali_Baker_Olive_frontal.jpg", "hero_img": "ATX_Sill_n_Bali_Baker_Olive_frontal.jpg", "ambient_img": "ATX_Sill_n_Bali_Baker_Olive_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Sill_n_Bali_Baker_Olive_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Sill_n_Bali_Baker_Olive_frontal.jpg"}], "materials": "Estructura curva envolvente en madera sólida con acojinamiento ergonómico y tela Baker Olive.", "special": "Diseño orgánico de asiento profundo y gran confort lumbar.", "drive_name": "Ficha Bali Olive en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1iIFn0uUrBEK5inkfE6szdIcmSXiUQ72C/view"}, {"id": "ATX-BALI-RUSTY", "name": "SILLÓN BALI RUSTY NATURAL", "color_label": "TELA RUSTY NATURAL", "swatch_img": "ATX_Sill_n_Bali_Rusty_Natural_frontal.jpg", "hero_img": "ATX_Sill_n_Bali_Rusty_Natural_frontal.jpg", "ambient_img": "ATX_Sill_n_Bali_Rusty_Natural_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Sill_n_Bali_Rusty_Natural_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Sill_n_Bali_Rusty_Natural_frontal.jpg"}], "materials": "Estructura curva con tapicería Rusty Natural resistente al frote.", "special": "Tono neutro cálido de gran versatilidad para salas y recámaras.", "drive_name": "Ficha Bali Rusty en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1MZqOfiwWJGFdXu6WBeN629m2apZ1OgBW/view"}]}, {"id": "ATX-SOFÁ-AURA", "model_name": "SOFÁ AURA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "SALAS & SOFÁS", "width": "225 cm", "depth": "95 cm", "height": "70 cm", "seat": "42 cm", "volume": "1.725 m³", "packages": "1 bulto", "price": "$38,653.60", "cost": "$12,650.40", "variants": [{"id": "ATX-SOFÁ-AURA-V1", "name": "SOFÁ AURA", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Sof__Aura.jpg", "hero_img": "ATX_Sof__Aura_frontal.jpg", "ambient_img": "ATX_Sof__Aura_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Sof__Aura_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Sof__Aura_frontal.jpg"}], "materials": "Madera estufada de pino con soporte elástico y tapizado en lino sintético antimanchas.", "special": "Silueta curvada moderna de presencia ligera y confortable.", "drive_name": "Ficha SOFÁ AURA en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "ATX-SOFÁ-SANTA-FE", "model_name": "SOFÁ SANTA FE", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "SALAS & SOFÁS", "width": "230 cm", "depth": "95 cm", "height": "70 cm", "seat": "44 cm", "volume": "1.0125 m³", "packages": "1 bulto", "price": "$35,962.30", "cost": "$11,769.60", "variants": [{"id": "ATX-SOFÁ-SANTA-FE-V1", "name": "SOFÁ SANTA FE", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_S_fa_Santa_fe.png", "hero_img": "ATX_S_fa_Santa_fe_frontal.jpg", "ambient_img": "ATX_S_fa_Santa_fe_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_S_fa_Santa_fe_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_S_fa_Santa_fe_frontal.jpg"}], "materials": "Armazón de madera maciza, cojines rellenos con plumón sintético y tejido bouclé.", "special": "Diseño clásico atemporal con patas torneadas ocultas.", "drive_name": "Ficha SOFÁ SANTA FE en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1XJFX-EH1e-349TgoUspmbvOqxNBW_ZWE/view"}]}, {"id": "ATX-CAMA-AURA", "model_name": "CAMA AURA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "RECÁMARAS", "width": "184 cm", "depth": "218 cm", "height": "115 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$34,529.80", "cost": "$11,300.80", "variants": [{"id": "ATX-CAMA-AURA-V1", "name": "CAMA AURA", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Cama_Aura.jpg", "hero_img": "ATX_Cama_Aura_frontal.jpg", "ambient_img": "ATX_Cama_Aura_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Cama_Aura_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Cama_Aura_frontal.jpg"}], "materials": "Cabecera acolchada en tela suave con estructura de madera sólida de encino y largueros tapizados.", "special": "Cabecero envolvente con alerones suaves para lectura nocturna.", "drive_name": "Ficha CAMA AURA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1jxqWir0BwT73nxgvO9ZgyGD2v_7yVfb9/view"}]}, {"id": "ATX-CAMA-SANTA-FE", "model_name": "CAMA SANTA FE", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "RECÁMARAS", "width": "300 cm", "depth": "217 cm", "height": "115 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$47,025.70", "cost": "$15,390.40", "variants": [{"id": "ATX-CAMA-SANTA-FE-V1", "name": "CAMA SANTA FE", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Cama_Santa_fe.jpg", "hero_img": "ATX_Cama_Santa_fe_frontal.jpg", "ambient_img": "ATX_Cama_Santa_fe_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Cama_Santa_fe_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Cama_Santa_fe_frontal.jpg"}], "materials": "Cabecera alta con paneles geométricos capitonados y base suspendida con esquinas redondeadas.", "special": "Base reforzada apta para colchón King Size con soporte central.", "drive_name": "Ficha CAMA SANTA FE en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1XJFX-EH1e-349TgoUspmbvOqxNBW_ZWE/view"}]}, {"id": "ATX-SILLA-AURA", "model_name": "SILLA AURA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "COMEDORES", "width": "62 cm", "depth": "68 cm", "height": "81 cm", "seat": "50 cm", "volume": "0.63 m³", "packages": "1 bulto", "price": "$10,383.90", "cost": "$3,398.40", "variants": [{"id": "ATX-SILLA-AURA-V1", "name": "SILLA AURA", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Silla_Aura.jpg", "hero_img": "ATX_Silla_Aura_frontal.jpg", "ambient_img": "ATX_Silla_Aura_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Silla_Aura_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Silla_Aura_frontal.jpg"}], "materials": "Patas de madera sólida en tono natural con asiento y respaldo termoformados tapizados.", "special": "Silla ergonómica de comedor de alta durabilidad y ligereza visual.", "drive_name": "Ficha SILLA AURA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1-FzDgM4rA2jfnnXLmA41l2jbc2_nwV_s/view"}]}, {"id": "ATX-SILLA-SANTHOMAS", "model_name": "SILLA SANTHOMAS", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "COMEDORES", "width": "63 cm", "depth": "63 cm", "height": "81 cm", "seat": "44 cm", "volume": "0.368424 m³", "packages": "1 bulto", "price": "$10,239.70", "cost": "$3,351.20", "variants": [{"id": "ATX-SILLA-SANTHOMAS-V1", "name": "SILLA SANTHOMAS", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Silla_Santhomas_ambiente.jpg", "hero_img": "ATX_Silla_Santhomas_frontal.jpg", "ambient_img": "ATX_Silla_Santhomas_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Silla_Santhomas_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Silla_Santhomas_frontal.jpg"}], "materials": "Estructura de fresno macizo con ensambles tradicionales de espiga y tapicería antimanchas.", "special": "Confort envolvente para sobremesas prolongadas.", "drive_name": "Ficha SILLA SANTHOMAS en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1rF_BoiWYBRn1QhlGlZ0vjYcK1MQ0CuoS/view"}]}, {"id": "ATX-BUFETERA-BALI", "model_name": "BUFETERA BALI", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "COMEDORES", "width": "200 cm", "depth": "51 cm", "height": "79 cm", "seat": "44 cm", "volume": "0.96432 m³", "packages": "1 bulto", "price": "$40,208.20", "cost": "$13,159.20", "variants": [{"id": "ATX-BUFETERA-BALI-V1", "name": "BUFETERA BALI", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Bufetera_Bali_swatch.jpg", "hero_img": "ATX_Bufetera_Bali_frontal.jpg", "ambient_img": "ATX_Bufetera_Bali_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Bufetera_Bali_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Bufetera_Bali_frontal.jpg"}], "materials": "Chapa de madera natural con detalles artesanales y puertas de apertura push-to-open.", "special": "Tres módulos independientes con repisas interiores ajustables.", "drive_name": "Ficha BUFETERA BALI en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1_Kwg-8bPCthFhBHmix3i8tuG57Uv-8ik/view"}]}, {"id": "ATX-BUFETERA-LUMA", "model_name": "BUFETERA LUMA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "COMEDORES", "width": "183 cm", "depth": "38 cm", "height": "77 cm", "seat": "44 cm", "volume": "0.647472 m³", "packages": "1 bulto", "price": "$29,335.40", "cost": "$9,600.80", "variants": [{"id": "ATX-BUFETERA-LUMA-V1", "name": "BUFETERA LUMA", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Bufetera_Luma_swatch.jpg", "hero_img": "ATX_Bufetera_Luma_frontal.jpg", "ambient_img": "ATX_Bufetera_Luma_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Bufetera_Luma_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Bufetera_Luma_frontal.jpg"}], "materials": "Madera natural con acabado en poliuretano mate y tiradores metálicos empotrados.", "special": "Diseño contemporáneo con cuatro puertas y cajonera interior oculta.", "drive_name": "Ficha BUFETERA LUMA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1STSyEL4qHPBqRdF99cB2xgoDKzXQ6IxV/view"}]}, {"id": "ATX-BUFETERA-SANTHOMAS", "model_name": "BUFETERA SANTHOMAS", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "COMEDORES", "width": "240 cm", "depth": "41 cm", "height": "80 cm", "seat": "44 cm", "volume": "0.51842 m³", "packages": "1 bulto", "price": "$44,537.30", "cost": "$14,576.00", "variants": [{"id": "ATX-BUFETERA-SANTHOMAS-V1", "name": "BUFETERA SANTHOMAS", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Bufetera_Santhomas_swatch.jpg", "hero_img": "ATX_Bufetera_Santhomas_frontal.jpg", "ambient_img": "ATX_Bufetera_Santhomas_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Bufetera_Santhomas_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Bufetera_Santhomas_frontal.jpg"}], "materials": "Estructura maciza con chapa seleccionada de nogal y frentes biselados a 45 grados.", "special": "Capacidad superior de almacenaje con diseño minimalista refinado.", "drive_name": "Ficha BUFETERA SANTHOMAS en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1r5ncXUwniIpzQoCgMZNYv6mpKcEq9uZ9/view"}]}, {"id": "ATX-MESA-DE-COMEDOR-LUMA", "model_name": "MESA DE COMEDOR LUMA", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "COMEDORES", "width": "180 cm", "depth": "110 cm", "height": "78 cm", "seat": "44 cm", "volume": "0 m³", "packages": "1 bulto", "price": "$32,168.50", "cost": "$10,528.00", "variants": [{"id": "ATX-MESA-DE-COMEDOR-LUMA-V1", "name": "MESA DE COMEDOR LUMA", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Mesa_de_comedor_Luma_swatch.jpg", "hero_img": "ATX_Mesa_de_comedor_Luma_frontal.jpg", "ambient_img": "ATX_Mesa_de_comedor_Luma_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Mesa_de_comedor_Luma_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Mesa_de_comedor_Luma_frontal.jpg"}], "materials": "Cubierta biselada en madera sólida y base de doble columna arquitectónica.", "special": "Comedor para 8 a 10 personas con gran estabilidad y comodidad de paso.", "drive_name": "Ficha MESA DE COMEDOR LUMA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1z-fR2CvpCYdOlvT3xXHG3dHURxz5tQ4w/view"}]}, {"id": "ATX-MESA-DE-CENTRO-KUUN", "model_name": "MESA DE CENTRO KUUN", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "MESAS", "width": "120 cm", "depth": "70 cm", "height": "38 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$12,800.00", "cost": "$4,600.00", "variants": [{"id": "ATX-MESA-DE-CENTRO-KUUN-V1", "name": "MESA DE CENTRO KUUN", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Mesa_de_centro_Kuun_swatch.jpg", "hero_img": "ATX_Mesa_de_centro_Kuun_frontal.jpg", "ambient_img": "ATX_Mesa_de_centro_Kuun_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Mesa_de_centro_Kuun_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Mesa_de_centro_Kuun_frontal.jpg"}], "materials": "Mesa de centro baja de líneas suaves con cantos redondeados y chapa de encino.", "special": "Superficie amplia con tratamiento de barniz térmico resistente a tazas y platos.", "drive_name": "Ficha MESA DE CENTRO KUUN en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1MDQr3oahcOp1omvit3lJa-UuLylBaXHO/view"}]}, {"id": "ATX-MESA-LATERAL-KUUN", "model_name": "MESA LATERAL KUUN", "provider_abbr": "ATX", "provider_full": "ARTEX", "category": "MESAS", "width": "50 cm", "depth": "50 cm", "height": "52 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$7,900.00", "cost": "$2,850.00", "variants": [{"id": "ATX-MESA-LATERAL-KUUN-V1", "name": "MESA LATERAL KUUN", "color_label": "ACABADO OFICIAL", "swatch_img": "ATX_Mesa_lateral_kuun_swatch.jpg", "hero_img": "ATX_Mesa_lateral_kuun_frontal.jpg", "ambient_img": "ATX_Mesa_lateral_kuun_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "ATX_Mesa_lateral_kuun_ambiente.jpg"}, {"label": "Vista Frontal", "img": "ATX_Mesa_lateral_kuun_frontal.jpg"}], "materials": "Mesa auxiliar cilíndrica de madera con veta vertical y zócalo metálico.", "special": "Complemento perfecto para esquinas de sala o al lado de sillones individuales.", "drive_name": "Ficha MESA LATERAL KUUN en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1Hw9KeRnYtumeMjgjanPjY2aFdVuaQnAE/view"}]}, {"id": "MNM-MESA-DE-COMEDOR-KAMKO", "model_name": "MESA DE COMEDOR KAMKO", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "240 cm", "depth": "120 cm", "height": "78 cm", "seat": "44 cm", "volume": "0.48 m³", "packages": "1 bulto", "price": "$36,807.30", "cost": "$12,528.00", "variants": [{"id": "MNM-MESA-DE-COMEDOR-KAMKO-V1", "name": "MESA DE COMEDOR KAMKO", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Mesa_de_comedor_Kamko_Nuez_swatch.jpg", "hero_img": "MBI_Mesa_de_comedor_Kamko_Nuez_frontal.jpg", "ambient_img": "MBI_Mesa_de_comedor_Kamko_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Mesa_de_comedor_Kamko_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Mesa_de_comedor_Kamko_Nuez_frontal.jpg"}], "materials": "Cubierta en chapa natural de nogal americano con base estriada artesanal acabada en barniz mate.", "special": "Capacidad para 8 comensales con base de pedestal escultórico estriado.", "drive_name": "Ficha MESA DE COMEDOR KAMKO en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/12utiPDpB944AMOhjklR4_CjxTeU-5ssx/view"}]}, {"id": "MNM-MESA-DE-COMEDOR-BARRIL-8P", "model_name": "MESA DE COMEDOR BARRIL 8P", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "180 cm", "depth": "120 cm", "height": "78 cm", "seat": "44 cm", "volume": "0.41 m³", "packages": "1 bulto", "price": "$67,480.00", "cost": "$22,968.00", "variants": [{"id": "MNM-MESA-DE-COMEDOR-BARRIL-8P-V1", "name": "MESA DE COMEDOR BARRIL 8P", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Mesa_de_comedor_Barril_8p_Nuez_swatch.jpg", "hero_img": "MBI_Mesa_de_comedor_Barril_8p_Nuez_frontal.jpg", "ambient_img": "MBI_Mesa_de_comedor_Barril_8p_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Mesa_de_comedor_Barril_8p_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Mesa_de_comedor_Barril_8p_Nuez_frontal.jpg"}], "materials": "Cubierta ovalada tipo barril que facilita la interacción entre todos los comensales.", "special": "Base sólida tipo aspa con niveladores regulables ocultos.", "drive_name": "Ficha MESA DE COMEDOR BARRIL 8P en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1goszrjCu4P7zqqDXm5PV687gMi9_oDCv/view"}]}, {"id": "MNM-CREDENZA-BEJUCO", "model_name": "CREDENZA BEJUCO", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "220 cm", "depth": "40 cm", "height": "80 cm", "seat": "44 cm", "volume": "0.81 m³", "packages": "1 bulto", "price": "$30,366.00", "cost": "$10,335.60", "variants": [{"id": "MNM-CREDENZA-BEJUCO-V1", "name": "CREDENZA BEJUCO", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Credenza_Bejuco_swatch.jpg", "hero_img": "MBI_Credenza_Bejuco_frontal.jpg", "ambient_img": "MBI_Credenza_Bejuco_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Credenza_Bejuco_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Credenza_Bejuco_frontal.jpg"}], "materials": "Madera sólida y paneles en rosa morada con puertas en tejido de bejuco natural artesanal.", "special": "Herrajes de cierre suave y amplios compartimentos interiores.", "drive_name": "Ficha CREDENZA BEJUCO en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1hY7lfI9PYkCQU9WO_InX0eBQbUM04pIb/view"}]}, {"id": "MNM-BUFETERA-BEJUCO", "model_name": "BUFETERA BEJUCO", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "220 cm", "depth": "40 cm", "height": "85 cm", "seat": "44 cm", "volume": "0.860625 m³", "packages": "1 bulto", "price": "$56,744.50", "cost": "$19,314.00", "variants": [{"id": "MNM-BUFETERA-BEJUCO-V1", "name": "BUFETERA BEJUCO", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Bufetera_Bejuco_Nuez_swatch.jpg", "hero_img": "MBI_Bufetera_Bejuco_Nuez_frontal.jpg", "ambient_img": "MBI_Bufetera_Bejuco_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Bufetera_Bejuco_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Bufetera_Bejuco_Nuez_frontal.jpg"}], "materials": "Estructura de madera sólida y chapa de nogal con cuatro puertas de bejuco auténtico.", "special": "Excelente capacidad de almacenaje con diseño que fusiona lo moderno y lo artesanal.", "drive_name": "Ficha BUFETERA BEJUCO en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1C_RqFcGDBC-Z5_xtJmMgvgpzjlyaNu_M/view"}]}, {"id": "MNM-BUFETERA-BARPE", "model_name": "BUFETERA BARPE", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "190 cm", "depth": "42 cm", "height": "80 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$29,800.00", "cost": "$10,600.00", "variants": [{"id": "MNM-BUFETERA-BARPE-V1", "name": "BUFETERA BARPE", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Bufetera_Barpe_Nuez_swatch.jpg", "hero_img": "MBI_Bufetera_Barpe_Nuez_frontal.jpg", "ambient_img": "MBI_Bufetera_Barpe_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Bufetera_Barpe_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Bufetera_Barpe_Nuez_frontal.jpg"}], "materials": "Mueble buffet con cajones centrales de corredera oculta y puertas laterales de cerrado suave.", "special": "Acabado en aceite cera ecológico que realza el grano de la madera de nogal.", "drive_name": "Ficha BUFETERA BARPE en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1NEQH-3c-mhXWhzGYAuQ1NUMzEv0VV04l/view"}]}, {"id": "MNM-BUFETERA-MADRID", "model_name": "BUFETERA MADRID", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "180 cm", "depth": "40 cm", "height": "80 cm", "seat": "44 cm", "volume": "0.707625 m³", "packages": "1 bulto", "price": "$27,298.70", "cost": "$9,291.60", "variants": [{"id": "MNM-BUFETERA-MADRID-V1", "name": "BUFETERA MADRID", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Bufetera_Madrid_Nuez_swatch.jpg", "hero_img": "MBI_Bufetera_Madrid_Nuez_frontal.jpg", "ambient_img": "MBI_Bufetera_Madrid_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Bufetera_Madrid_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Bufetera_Madrid_Nuez_frontal.jpg"}], "materials": "Fabricada en panel de madera sólida de rosa morada con textura cepillada mate.", "special": "Líneas rectas austeras inspiradas en el mobiliario de diseño mediterráneo.", "drive_name": "Ficha BUFETERA MADRID en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1lyGRnna6xwOx64p9mTiXnT0U7YQIR2Dn/view"}]}, {"id": "MNM-BUFETERA-PLATOS", "model_name": "BUFETERA PLATOS", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "COMEDORES", "width": "240 cm", "depth": "40 cm", "height": "80 cm", "seat": "44 cm", "volume": "0.937125 m³", "packages": "1 bulto", "price": "$48,769.60", "cost": "$16,599.60", "variants": [{"id": "MNM-BUFETERA-PLATOS-V1", "name": "BUFETERA PLATOS", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Bufetera_Platos_Nuez_swatch.jpg", "hero_img": "MBI_Bufetera_Platos_Nuez_frontal.jpg", "ambient_img": "MBI_Bufetera_Platos_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Bufetera_Platos_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Bufetera_Platos_Nuez_frontal.jpg"}], "materials": "Mueble bufetero en madera parota maciza con amplio espacio interior para vajilla y copas.", "special": "Tiradores integrados fresados directamente en el canto superior de las puertas.", "drive_name": "Ficha BUFETERA PLATOS en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1apoiQsT7m804w1W9X0AwWGxRDrMYf8bw/view"}]}, {"id": "MNM-MESA-DE-CENTRO-BEJUCO", "model_name": "MESA DE CENTRO BEJUCO", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "MESAS", "width": "125 cm", "depth": "60 cm", "height": "42 cm", "seat": "44 cm", "volume": "0.39715 m³", "packages": "1 bulto", "price": "$22,084.40", "cost": "$7,516.80", "variants": [{"id": "MNM-MESA-DE-CENTRO-BEJUCO-V1", "name": "MESA DE CENTRO BEJUCO", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Mesa_de_centro_Bejuco_Nuez_swatch.jpg", "hero_img": "MBI_Mesa_de_centro_Bejuco_Nuez_frontal.jpg", "ambient_img": "MBI_Mesa_de_centro_Bejuco_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Mesa_de_centro_Bejuco_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Mesa_de_centro_Bejuco_Nuez_frontal.jpg"}], "materials": "Mesa de centro con repisa baja de bejuco trenzado para revistas y libros.", "special": "Estructura perimetral en nogal macizo con esquinas en ensamble tradicional.", "drive_name": "Ficha MESA DE CENTRO BEJUCO en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1xic98aDFcdH6aKH25Vm2_vfYBcp9GC2K/view"}]}, {"id": "MNM-MESA-LATERAL-PATONAS-SET-3", "model_name": "MESA LATERAL PATONAS SET 3", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "MESAS", "width": "GR : 45 ,MD 45 CH 45 cm", "depth": "GR : 45 ,MD 45 CH 45 cm", "height": "GR : 60 ,MD 55 CH 50 cm", "seat": "44 cm", "volume": "0.39 m³", "packages": "1 bulto", "price": "$23,924.70", "cost": "$8,143.20", "variants": [{"id": "MNM-MESA-LATERAL-PATONAS-SET-3-V1", "name": "MESA LATERAL PATONAS SET 3", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Mesa_lateral_Patonas_set_3_Nuez_swatch.jpg", "hero_img": "MBI_Mesa_lateral_Patonas_set_3_Nuez_frontal.jpg", "ambient_img": "MBI_Mesa_lateral_Patonas_set_3_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Mesa_lateral_Patonas_set_3_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Mesa_lateral_Patonas_set_3_Nuez_frontal.jpg"}], "materials": "Juego de 3 mesas nido auxiliares con patas cilíndricas macizas torneadas.", "special": "Se pueden guardar una debajo de otra o distribuirse libremente por la sala.", "drive_name": "Ficha MESA LATERAL PATONAS SET 3 en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1071Lr1RKc3c45hw9ufh-T6FCzCPobLdx/view"}]}, {"id": "MNM-CENTRO-DE-TV-PUERTAS-CORREDIZAS", "model_name": "CENTRO DE TV PUERTAS CORREDIZAS", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "MUEBLES DE TV", "width": "340 cm", "depth": "40 cm", "height": "240 cm", "seat": "44 cm", "volume": "3.7485 m³", "packages": "1 bulto", "price": "$98,152.70", "cost": "$33,408.00", "variants": [{"id": "MNM-CENTRO-DE-TV-PUERTAS-CORREDIZAS-V1", "name": "CENTRO DE TV PUERTAS CORREDIZAS", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Centro_de_tv_Puertas_corredizas_Nuez_swatch.jpg", "hero_img": "MBI_Centro_de_tv_Puertas_corredizas_Nuez_frontal.jpg", "ambient_img": "MBI_Centro_de_tv_Puertas_corredizas_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Centro_de_tv_Puertas_corredizas_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Centro_de_tv_Puertas_corredizas_Nuez_frontal.jpg"}], "materials": "Mueble bajo para pantalla de hasta 85 pulgadas con puertas corredizas ranuradas acústicas.", "special": "Salidas posteriores de cableado y repisas para barras de sonido y consolas.", "drive_name": "Ficha CENTRO DE TV PUERTAS CORREDIZAS en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1RBAnECXVpjahxtyELTXdaiDLRMYJBUyI/view"}]}, {"id": "MNM-CABECERA-MADRID-KS", "model_name": "CABECERA MADRID KS", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "246 cm", "depth": "40 cm", "height": "140 cm", "seat": "44 cm", "volume": "2.10 m³", "packages": "1 bulto", "price": "$27,298.70", "cost": "$9,291.60", "variants": [{"id": "MNM-CABECERA-MADRID-KS-V1", "name": "CABECERA MADRID KS", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Cabecera_Madrid_KS_Nuez_swatch.jpg", "hero_img": "MBI_Cabecera_Madrid_KS_Nuez_frontal.jpg", "ambient_img": "MBI_Cabecera_Madrid_KS_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Cabecera_Madrid_KS_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Cabecera_Madrid_KS_Nuez_frontal.jpg"}], "materials": "Cabecero de formato monumental King Size en rosa morada maciza con acabado liso mate.", "special": "Pared panelada de gran impacto estético para la recámara principal.", "drive_name": "Ficha CABECERA MADRID KS en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1RNvqgDX0pWO783HuipMQQNkUHQku36cz/view"}]}, {"id": "MNM-BASE-DE-CAMA-YUTE", "model_name": "BASE DE CAMA YUTE", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "206 cm", "depth": "195 cm", "height": "35 cm", "seat": "44 cm", "volume": "1.688 m³", "packages": "1 bulto", "price": "$18,096.90", "cost": "$6,159.60", "variants": [{"id": "MNM-BASE-DE-CAMA-YUTE-V1", "name": "BASE DE CAMA YUTE", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Base_de_cama_Yute_Nue_swatch.jpg", "hero_img": "MBI_Base_de_cama_Yute_Nue_frontal.jpg", "ambient_img": "MBI_Base_de_cama_Yute_Nue_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Base_de_cama_Yute_Nue_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Base_de_cama_Yute_Nue_frontal.jpg"}], "materials": "Base flotada de madera sólida con detalles en tejido de yute perimetral.", "special": "Plataforma silenciosa con travesaños reforzados que no requiere box spring.", "drive_name": "Ficha BASE DE CAMA YUTE en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1fQjsyxGbQFuYQBhYBtCskavFP49-hH6J/view"}]}, {"id": "MNM-BURÓ-AFRICA", "model_name": "BURÓ AFRICA", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "50 cm", "depth": "40 cm", "height": "60 cm", "seat": "44 cm", "volume": "0.210375 m³", "packages": "1 bulto", "price": "$13,802.70", "cost": "$4,698.00", "variants": [{"id": "MNM-BURÓ-AFRICA-V1", "name": "BURÓ AFRICA", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_de_Bur__Africa_Nuez_swatch.jpg", "hero_img": "MBI_de_Bur__Africa_Nuez_frontal.jpg", "ambient_img": "MBI_de_Bur__Africa_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_de_Bur__Africa_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_de_Bur__Africa_Nuez_frontal.jpg"}], "materials": "Mesita de noche con cajón superior y nicho inferior en rosa morada.", "special": "Dimensiones compactas ideales para espacios modernos con gran funcionalidad.", "drive_name": "Ficha BURÓ AFRICA en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "MNM-BURÓ-BARPE", "model_name": "BURÓ BARPE", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "70 cm", "depth": "40 cm", "height": "60 cm", "seat": "44 cm", "volume": "0.219375 m³", "packages": "1 bulto", "price": "$16,563.30", "cost": "$5,637.60", "variants": [{"id": "MNM-BURÓ-BARPE-V1", "name": "BURÓ BARPE", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_de_Bur__Barpe_Nuez_swatch.jpg", "hero_img": "MBI_de_Bur__Barpe_Nuez_frontal.jpg", "ambient_img": "MBI_de_Bur__Barpe_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_de_Bur__Barpe_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_de_Bur__Barpe_Nuez_frontal.jpg"}], "materials": "Buró con iluminación indirecta LED cálida integrada y puerto de carga oculto.", "special": "Guías telescópicas de extracción total y cierre amortiguado.", "drive_name": "Ficha BURÓ BARPE en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "MNM-BURÓ-BEJUCO", "model_name": "BURÓ BEJUCO", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "70 cm", "depth": "40 cm", "height": "60 cm", "seat": "44 cm", "volume": "0.219375 m³", "packages": "1 bulto", "price": "$16,870.00", "cost": "$5,742.00", "variants": [{"id": "MNM-BURÓ-BEJUCO-V1", "name": "BURÓ BEJUCO", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_de_Bur__Bejuco_Nuez_swatch.jpg", "hero_img": "MBI_de_Bur__Bejuco_Nuez_frontal.jpg", "ambient_img": "MBI_de_Bur__Bejuco_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_de_Bur__Bejuco_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_de_Bur__Bejuco_Nuez_frontal.jpg"}], "materials": "Mesita de noche con frente de cajón en bejuco natural tejido.", "special": "Aporta frescura y calidez artesanal a los lados de la cama.", "drive_name": "Ficha BURÓ BEJUCO en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "MNM-BURÓ-MADRID", "model_name": "BURÓ MADRID", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "50 cm", "depth": "40 cm", "height": "60 cm", "seat": "44 cm", "volume": "0.160875 m³", "packages": "1 bulto", "price": "$12,269.10", "cost": "$4,176.00", "variants": [{"id": "MNM-BURÓ-MADRID-V1", "name": "BURÓ MADRID", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_de_Bur__Madrid_Nuez_swatch.jpg", "hero_img": "MBI_de_Bur__Madrid_Nuez_frontal.jpg", "ambient_img": "MBI_de_Bur__Madrid_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_de_Bur__Madrid_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_de_Bur__Madrid_Nuez_frontal.jpg"}], "materials": "Buró de líneas simples y puras en madera de nogal con tirador oculto inferior.", "special": "Construcción sólida y duradera de excelente acabado al tacto.", "drive_name": "Ficha BURÓ MADRID en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "MNM-BURÓ-PLATOS", "model_name": "BURÓ PLATOS", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "70 cm", "depth": "40 cm", "height": "60 cm", "seat": "44 cm", "volume": "0.219375 m³", "packages": "1 bulto", "price": "$12,269.10", "cost": "$4,176.00", "variants": [{"id": "MNM-BURÓ-PLATOS-V1", "name": "BURÓ PLATOS", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_de_Bur__Platos_Nuez_swatch.jpg", "hero_img": "MBI_de_Bur__Platos_Nuez_frontal.jpg", "ambient_img": "MBI_de_Bur__Platos_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_de_Bur__Platos_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_de_Bur__Platos_Nuez_frontal.jpg"}], "materials": "Mesa de noche de parota sólida con veta viva contrastada.", "special": "Acabado protector contra manchas de agua o humedad.", "drive_name": "Ficha BURÓ PLATOS en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "MNM-BURÓ-YUTE", "model_name": "BURÓ YUTE", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "RECÁMARAS", "width": "70 cm", "depth": "40 cm", "height": "60 cm", "seat": "44 cm", "volume": "0.219375 m³", "packages": "1 bulto", "price": "$15,643.10", "cost": "$5,324.40", "variants": [{"id": "MNM-BURÓ-YUTE-V1", "name": "BURÓ YUTE", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_de_Bur__Yute_Nuez_swatch.jpg", "hero_img": "MBI_de_Bur__Yute_Nuez_frontal.jpg", "ambient_img": "MBI_de_Bur__Yute_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_de_Bur__Yute_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_de_Bur__Yute_Nuez_frontal.jpg"}], "materials": "Buró en rosa morada con módulo de carga inalámbrica rápida integrada en cubierta.", "special": "La combinación perfecta entre tecnología de recarga y ebanistería tradicional.", "drive_name": "Ficha BURÓ YUTE en Google Drive ↗", "drive_url": "https://drive.google.com/drive/folders/1umQvzMJLXFiOwSyWL8d5v0aCWDpx8hQT"}]}, {"id": "MNM-ESPEJO-ESCALONADO-DE-PIE", "model_name": "ESPEJO ESCALONADO DE PIE", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "ESPEJOS", "width": "240 cm", "depth": "15 cm", "height": "125 cm", "seat": "44 cm", "volume": "0.38 m³", "packages": "1 bulto", "price": "$18,722.20", "cost": "$7,203.60", "variants": [{"id": "MNM-ESPEJO-ESCALONADO-DE-PIE-V1", "name": "ESPEJO ESCALONADO DE PIE", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Espejo_Escalonado_de_pie_Nuez_swatch.jpg", "hero_img": "MBI_Espejo_Escalonado_de_pie_Nuez_frontal.jpg", "ambient_img": "MBI_Espejo_Escalonado_de_pie_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Espejo_Escalonado_de_pie_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Espejo_Escalonado_de_pie_Nuez_frontal.jpg"}], "materials": "Espejo de cuerpo entero con marco perimetral escalonado en nogal macizo.", "special": "Cristal de 6 mm libre de distorsión con película trasera de seguridad inastillable.", "drive_name": "Ficha ESPEJO ESCALONADO DE PIE en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1_29D5qHGfSRF_WHS_5U8O19Q8C8ilTD2/view"}]}, {"id": "MNM-ESPEJO-NADIA", "model_name": "ESPEJO NADIA", "provider_abbr": "MNM", "provider_full": "MOBEL INN", "category": "ESPEJOS", "width": "260 cm", "depth": "15 cm", "height": "120 cm", "seat": "44 cm", "volume": "0.41 m³", "packages": "1 bulto", "price": "$24,231.50", "cost": "$8,247.60", "variants": [{"id": "MNM-ESPEJO-NADIA-V1", "name": "ESPEJO NADIA", "color_label": "ACABADO OFICIAL", "swatch_img": "MBI_Espejo_Nadia_Nuez_swatch.jpg", "hero_img": "MBI_Espejo_Nadia_Nuez_frontal.jpg", "ambient_img": "MBI_Espejo_Nadia_Nuez_ambiente.jpg", "views": [{"label": "Ambiente Principal", "img": "MBI_Espejo_Nadia_Nuez_ambiente.jpg"}, {"label": "Vista Frontal", "img": "MBI_Espejo_Nadia_Nuez_frontal.jpg"}], "materials": "Espejo mural de forma orgánica asimétrica con marco delgado de madera.", "special": "Pieza focal decorativa que amplía visualmente cualquier vestíbulo o recámara.", "drive_name": "Ficha ESPEJO NADIA en Google Drive ↗", "drive_url": "https://drive.google.com/file/d/1ztj3AA0cRj7W5PRzXNzhbt-_3XPAo8rQ/view"}]}];
+
         let currentProdIndex = 0;
+
         let currentVariantIndex = 0;
+
         let currentSheet = 1;
+
         let currentActiveViewImg = '';
 
+
+
         function renderGrid(items) {
+
             const grid = document.getElementById('productsGrid');
+
             grid.innerHTML = '';
 
+
+
             items.forEach((p, idx) => {
+
                 const v0 = p.variants[0];
+
                 const card = document.createElement('div');
+
                 card.className = 'product-card';
+
                 card.onclick = () => openProduct(idx, 0, 1);
 
+
+
                 card.innerHTML = `
+
                     <div class="card-img-wrap">
+
                         <span class="card-provider-badge">${p.provider_abbr}</span>
+
                         <img src="fotos/${v0.hero_img}" alt="${p.model_name}" loading="lazy">
+
                     </div>
+
                     <div class="card-info">
+
                         <div class="card-title">${p.model_name}</div>
+
                         ${p.variants.length > 1 ? `<div class="card-variants-tag">${p.variants.length} colores disponibles</div>` : ''}
+
                     </div>
+
                 `;
+
                 grid.appendChild(card);
+
             });
+
         }
+
+
 
         function openProduct(prodIndex, variantIndex = 0, sheetNum = 1) {
+
             currentProdIndex = prodIndex;
+
             currentVariantIndex = variantIndex;
+
             currentSheet = sheetNum;
 
+
+
             const p = products[currentProdIndex];
+
             const v = p.variants[currentVariantIndex];
+
             currentActiveViewImg = v.ambient_img || v.hero_img;
 
+
+
             updateSlideView();
-            document.getElementById('slideModal').classList.add('active');
+
+            document.getElementById('slideModal').classList.add('active'); updateModalPricing();
+
         }
+
+
 
         function selectVariant(vIdx) {
+
             currentVariantIndex = vIdx;
+
             const p = products[currentProdIndex];
+
             const v = p.variants[currentVariantIndex];
+
             currentActiveViewImg = v.ambient_img || v.hero_img;
+
             updateSlideView();
+
         }
+
+
 
         function selectViewPhoto(imgName) {
+
             currentActiveViewImg = imgName;
+
             const m2Img = document.getElementById('m2Img');
+
             m2Img.style.opacity = '0.3';
+
             setTimeout(() => {
+
                 m2Img.src = 'fotos/' + imgName;
+
                 m2Img.style.opacity = '1';
+
             }, 150);
 
+
+
             document.querySelectorAll('.view-thumb-btn').forEach(btn => {
+
                 btn.classList.toggle('active', btn.dataset.img === imgName);
+
             });
+
         }
+
+
 
         function updateSlideView() {
+
             const p = products[currentProdIndex];
+
             const v = p.variants[currentVariantIndex];
 
+
+
             const s1 = document.getElementById('sheet1');
+
             const s2 = document.getElementById('sheet2');
 
+
+
             if (currentSheet === 1) {
+
                 s1.style.display = 'flex';
+
                 s2.style.display = 'none';
 
+
+
                 // Hoja 1: Specs & Swatches
+
                 document.getElementById('m1Img').src = 'fotos/' + v.hero_img;
+
                 document.getElementById('m1Cat').innerText = `${p.provider_abbr} · ${p.category}`;
+
                 document.getElementById('m1Title').innerText = v.name;
+
                 document.getElementById('m1Width').innerText = p.width;
+
                 document.getElementById('m1Depth').innerText = p.depth;
+
                 document.getElementById('m1Height').innerText = p.height;
+
                 document.getElementById('m1Seat').innerText = p.seat;
+
                 document.getElementById('m1Volume').innerText = p.volume;
+
                 document.getElementById('m1Packages').innerText = p.packages;
+
                 document.getElementById('m1Price').innerText = p.price;
+
                 document.getElementById('m1Cost').innerText = p.cost;
+
                 document.getElementById('m1Materials').innerText = v.materials;
+
                 document.getElementById('m1Special').innerText = v.special;
 
+
+
                 // Render swatches selector
+
                 const swatchesContainer = document.getElementById('m1SwatchesContainer');
+
                 const swatchesRow = document.getElementById('m1SwatchesRow');
+
                 swatchesRow.innerHTML = '';
 
+
+
                 if (p.variants.length > 1) {
+
                     swatchesContainer.style.display = 'flex';
+
                     p.variants.forEach((variant, vIdx) => {
+
                         const btn = document.createElement('div');
+
                         btn.className = 'swatch-card-btn' + (vIdx === currentVariantIndex ? ' active' : '');
+
                         btn.onclick = () => selectVariant(vIdx);
+
                         btn.innerHTML = `
+
                             <div class="swatch-box">
+
                                 <img src="fotos/${variant.swatch_img}" alt="${variant.color_label}">
+
                             </div>
+
                             <div class="swatch-meta">
+
                                 <span>Muestra ${vIdx + 1}</span>
+
                                 <strong>${variant.color_label}</strong>
+
                             </div>
+
                         `;
+
                         swatchesRow.appendChild(btn);
+
                     });
+
                 } else {
+
                     swatchesContainer.style.display = 'none';
+
                 }
 
+
+
             } else {
+
                 s1.style.display = 'none';
+
                 s2.style.display = 'flex';
 
+
+
                 // Hoja 2: Ambient photo & Views gallery
+
                 document.getElementById('m2Img').src = 'fotos/' + currentActiveViewImg;
+
                 document.getElementById('m2Title').innerText = v.name;
 
+
+
                 // Views Gallery thumbnails
+
                 const gallery = document.getElementById('m2ViewsGallery');
+
                 gallery.innerHTML = '';
+
                 
+
                 v.views.forEach(vw => {
+
                     const thumb = document.createElement('div');
+
                     thumb.className = 'view-thumb-btn' + (vw.img === currentActiveViewImg ? ' active' : '');
+
                     thumb.dataset.img = vw.img;
+
                     thumb.onclick = () => selectViewPhoto(vw.img);
+
                     thumb.title = vw.label;
+
                     thumb.innerHTML = `<img src="fotos/${vw.img}" alt="${vw.label}">`;
+
                     gallery.appendChild(thumb);
+
                 });
+
+
 
                 // Color Switcher Buttons in Hoja 2
+
                 const colSel = document.getElementById('m2ColorSelector');
+
                 colSel.innerHTML = '';
+
                 if (p.variants.length > 1) {
+
                     p.variants.forEach((variant, vIdx) => {
+
                         const cBtn = document.createElement('button');
+
                         cBtn.className = 'btn-color-tag' + (vIdx === currentVariantIndex ? ' active' : '');
+
                         cBtn.innerText = variant.color_label;
+
                         cBtn.onclick = () => selectVariant(vIdx);
+
                         colSel.appendChild(cBtn);
+
                     });
+
                 }
+
+
 
                 // Drive links group: All drive links for the model
+
                 const driveGroup = document.getElementById('m2DriveLinks');
+
                 driveGroup.innerHTML = '';
+
                 p.variants.forEach(variant => {
+
                     const dLink = document.createElement('a');
+
                     dLink.className = 'btn-drive';
+
                     dLink.href = variant.drive_url;
+
                     dLink.target = '_blank';
+
                     dLink.innerHTML = `📄 ${variant.drive_name}`;
+
                     driveGroup.appendChild(dLink);
+
                 });
+
             }
+
         }
+
+
 
         function nextSlide() {
+
             if (currentSheet === 1) {
+
                 currentSheet = 2;
+
             } else {
+
                 currentSheet = 1;
+
                 currentProdIndex = (currentProdIndex + 1) % products.length;
+
                 currentVariantIndex = 0;
+
             }
+
             updateSlideView();
+
         }
+
+
 
         function prevSlide() {
+
             if (currentSheet === 2) {
+
                 currentSheet = 1;
+
             } else {
+
                 currentSheet = 2;
+
                 currentProdIndex = (currentProdIndex - 1 + products.length) % products.length;
+
                 currentVariantIndex = 0;
+
             }
+
             updateSlideView();
+
         }
+
+
 
         function startPresentation() {
+
             openProduct(0, 0, 1);
+
         }
+
+
 
         function closeModal() {
+
             document.getElementById('slideModal').classList.remove('active');
+
         }
 
+
+
         document.addEventListener('keydown', (e) => {
+
             const modal = document.getElementById('slideModal');
+
             if (modal.classList.contains('active')) {
+
                 if (e.key === 'ArrowRight' || e.key === ' ') {
+
                     e.preventDefault();
+
                     nextSlide();
+
                 } else if (e.key === 'ArrowLeft') {
+
                     e.preventDefault();
+
                     prevSlide();
+
                 } else if (e.key === 'Escape') {
+
                     closeModal();
+
                 }
+
             }
+
         });
+
+
 
         renderGrid(products);
 
+
+
         // Auto-open via URL query params for deep linking
+
         const params = new URLSearchParams(window.location.search);
+
         if (params.has('prod')) {
+
             const pIdx = parseInt(params.get('prod')) || 0;
+
             const vIdx = parseInt(params.get('variant')) || 0;
+
             const sIdx = parseInt(params.get('sheet')) || 1;
+
             openProduct(pIdx, vIdx, sIdx);
+
         }
+
     </script>
+
 </body>
+
 </html>
+
