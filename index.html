@@ -1029,7 +1029,7 @@
             const s1 = document.getElementById('sheet1');
             const s2 = document.getElementById('sheet2');
 
-            document.getElementById('mTopModelName').innerText = `${p.category} · ${p.model_name}`;
+            document.getElementById('mTopModelName').innerText = `${p.provider_abbr} · ${p.model_name}`;
             document.getElementById('slideIndicator').innerText = `Mueble ${currentProdIndex + 1} de ${products.length}: ${p.model_name}`;
 
             if (currentSheet === 1) {
@@ -1038,7 +1038,7 @@
                 s2.style.display = 'none';
 
                 document.getElementById('m1Img').src = v.hero_b64;
-                document.getElementById('m1Cat').innerText = p.category;
+                document.getElementById('m1Cat').innerText = `${p.provider_abbr} · ${p.category}`;
                 document.getElementById('m1Title').innerText = v.name;
                 document.getElementById('m1Width').innerText = v.width || p.width;
                 document.getElementById('m1Depth').innerText = v.depth || p.depth;
