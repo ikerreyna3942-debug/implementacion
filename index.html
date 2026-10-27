@@ -631,15 +631,17 @@
             </div>
         </div>
 
-        <!-- Filtros por Fabricante -->
+        <!-- Filtros por Categoría -->
         <div class="max-w-7xl mx-auto flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-gray-100">
-            <span class="text-xs font-bold text-gray-400 mr-1">Fabricante:</span>
-            <button onclick="setFilter('ALL')" id="flt-ALL" class="px-3 py-1 text-xs font-bold rounded-md bg-[#B48D56] text-white">Todos (44)</button>
-            <button onclick="setFilter('ARM')" id="flt-ARM" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">ARM · Armony (3)</button>
-            <button onclick="setFilter('ATX')" id="flt-ATX" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">ATX · Artex (14)</button>
-            <button onclick="setFilter('CVV')" id="flt-CVV" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">CVV · Casa V&V (6)</button>
-            <button onclick="setFilter('MNM')" id="flt-MNM" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">MNM · Mobel Inn (15)</button>
-            <button onclick="setFilter('YOI')" id="flt-YOI" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">YOI · Ocasionales (6)</button>
+            <span class="text-xs font-bold text-gray-400 mr-1">Categoría:</span>
+            <button onclick="setFilter('ALL')" id="flt-ALL" class="px-3 py-1 text-xs font-bold rounded-md bg-[#B48D56] text-white shadow-sm">Todos (44)</button>
+            <button onclick="setFilter('COMEDORES')" id="flt-COMEDORES" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Comedores (12)</button>
+            <button onclick="setFilter('SALAS & SOFÁS')" id="flt-SALAS-SOFAS" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Salas &amp; Sofás (10)</button>
+            <button onclick="setFilter('RECÁMARAS')" id="flt-RECAMARAS" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Recámaras (10)</button>
+            <button onclick="setFilter('SILLONES OCASIONALES')" id="flt-SILLONES" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Sillones Ocasionales (5)</button>
+            <button onclick="setFilter('MESAS')" id="flt-MESAS" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Mesas (4)</button>
+            <button onclick="setFilter('ESPEJOS')" id="flt-ESPEJOS" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Espejos (2)</button>
+            <button onclick="setFilter('MUEBLES DE TV')" id="flt-TV" class="px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">Muebles de TV (1)</button>
         </div>
     </header>
 
@@ -785,12 +787,23 @@
         let currentSheet = 1;
         let currentActiveViewImg = '';
 
-        function setFilter(prov) {
-            currentFilter = prov;
-            ['ALL', 'ARM', 'ATX', 'CVV', 'MNM', 'YOI'].forEach(p => {
-                const btn = document.getElementById('flt-' + p);
+        const CATEGORIES_LIST = [
+            { key: 'ALL', btnId: 'flt-ALL' },
+            { key: 'COMEDORES', btnId: 'flt-COMEDORES' },
+            { key: 'SALAS & SOFÁS', btnId: 'flt-SALAS-SOFAS' },
+            { key: 'RECÁMARAS', btnId: 'flt-RECAMARAS' },
+            { key: 'SILLONES OCASIONALES', btnId: 'flt-SILLONES' },
+            { key: 'MESAS', btnId: 'flt-MESAS' },
+            { key: 'ESPEJOS', btnId: 'flt-ESPEJOS' },
+            { key: 'MUEBLES DE TV', btnId: 'flt-TV' }
+        ];
+
+        function setFilter(cat) {
+            currentFilter = cat;
+            CATEGORIES_LIST.forEach(item => {
+                const btn = document.getElementById(item.btnId);
                 if (btn) {
-                    btn.className = (p === prov) 
+                    btn.className = (item.key === cat) 
                         ? 'px-3 py-1 text-xs font-bold rounded-md bg-[#B48D56] text-white shadow-sm'
                         : 'px-3 py-1 text-xs font-bold rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200';
                 }
@@ -905,9 +918,9 @@
         function applyFilter() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const filtered = products.filter(p => {
-                const matchProv = (currentFilter === 'ALL' || p.provider_abbr === currentFilter);
-                const matchQuery = !query || p.model_name.toLowerCase().includes(query) || p.provider_full.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
-                return matchProv && matchQuery;
+                const matchCat = (currentFilter === 'ALL' || p.category === currentFilter);
+                const matchQuery = !query || p.model_name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query) || (p.variants && p.variants.some(v => v.name.toLowerCase().includes(query)));
+                return matchCat && matchQuery;
             });
 
             document.getElementById('counterText').innerText = `Mostrando ${filtered.length} modelos de ${products.length}`;
@@ -936,7 +949,7 @@
                 return `
                 <div onclick="openProduct(${realIdx})" class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-[#B48D56] transition-all flex flex-col justify-between group cursor-pointer">
                     <div class="relative bg-white">
-                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 text-[10px] font-black rounded-full pill-badge z-10 tracking-wider">${p.provider_abbr}</span>
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 text-[10px] font-black rounded-full pill-badge z-10 tracking-wider">${p.category}</span>
                         <div class="card-stage">
                             <!-- Siempre mirando a la derecha -->
                             <img src="${v.hero_b64}" alt="${p.model_name}" loading="lazy" class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 furniture-right">
@@ -1016,7 +1029,7 @@
             const s1 = document.getElementById('sheet1');
             const s2 = document.getElementById('sheet2');
 
-            document.getElementById('mTopModelName').innerText = `${p.provider_abbr} · ${p.model_name}`;
+            document.getElementById('mTopModelName').innerText = `${p.category} · ${p.model_name}`;
             document.getElementById('slideIndicator').innerText = `Mueble ${currentProdIndex + 1} de ${products.length}: ${p.model_name}`;
 
             if (currentSheet === 1) {
@@ -1025,7 +1038,7 @@
                 s2.style.display = 'none';
 
                 document.getElementById('m1Img').src = v.hero_b64;
-                document.getElementById('m1Cat').innerText = `${p.provider_abbr} · ${p.category}`;
+                document.getElementById('m1Cat').innerText = p.category;
                 document.getElementById('m1Title').innerText = v.name;
                 document.getElementById('m1Width').innerText = v.width || p.width;
                 document.getElementById('m1Depth').innerText = v.depth || p.depth;
