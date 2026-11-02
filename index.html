@@ -735,7 +735,6 @@
                         </div>
 
                         <div class="modal-special" id="m1Special"></div>
-                        <div class="drive-links-group" id="m1DriveLinks" style="margin-top: 14px;"></div>
                     </div>
                 </div>
 
@@ -1100,21 +1099,6 @@
                 
                 document.getElementById('m1Materials').innerText = v.materials;
                 document.getElementById('m1Special').innerText = v.special;
-
-                // Enlace Oficial a Ficha Técnica en Google Drive en Hoja 1
-                const m1DriveGroup = document.getElementById('m1DriveLinks');
-                if (m1DriveGroup) {
-                    m1DriveGroup.innerHTML = '';
-                    const targetDriveUrl = v.drive_url || p.drive_ficha_url;
-                    if (targetDriveUrl) {
-                        const dLink = document.createElement('a');
-                        dLink.className = 'btn-drive';
-                        dLink.href = targetDriveUrl;
-                        dLink.target = '_blank';
-                        dLink.innerHTML = `📄 ${v.drive_name || 'Ver Ficha Técnica Oficial (Google Drive) ↗'}`;
-                        m1DriveGroup.appendChild(dLink);
-                    }
-                }
 
                 // Swatches row
                 const swatchesContainer = document.getElementById('m1SwatchesContainer');
