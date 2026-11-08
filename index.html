@@ -634,7 +634,9 @@
                         </div>
 
                         <!-- ACABADOS DINÁMICOS (1 O 2 RECUADROS SEPARADOS: TELA / MADERA) -->
-                        <div id="slotFinishesContainer" class="slot-finishes-wrap count-2"></div>
+                        <div class="gallery-slot slot-finish" onclick="swapToMain('finish')" title="Acabado / Detalle">
+                            <img id="slotImgFinish" src="" alt="Acabado" class="w-full h-full object-cover">
+                        </div>
 
                         <!-- #22B14C FOTO DE VISTA 1 (MIDDLE RIGHT) -->
                         <div class="gallery-slot slot-view1" onclick="swapToMain('view1')">
@@ -939,6 +941,16 @@
                 : [g.view1 || v.hero_b64, g.view2 || v.hero_b64, g.view3 || v.hero_b64, g.view4 || v.hero_b64];
 
             document.getElementById('slotImgAmbiente').src = g.ambiente || v.hero_b64 || '';
+            const finishSrc = (g.finishes && g.finishes.length > 0) ? g.finishes[0] : (g.fabric || '');
+            const finishEl = document.getElementById('slotImgFinish');
+            if (finishEl) {
+                if (finishSrc) {
+                    finishEl.src = finishSrc;
+                    finishEl.style.display = 'block';
+                } else {
+                    finishEl.style.display = 'none';
+                }
+            }
             document.getElementById('slotImgAmbiente').className = "w-full h-full object-contain bg-white transition-all duration-200";
 
             const vSlots = ['slotImgView1', 'slotImgView2', 'slotImgView3', 'slotImgView4'];
@@ -1010,6 +1022,13 @@
         }
 
         function swapToMain(slotName) {
+            if (slotName === 'finish') {
+                const finishEl = document.getElementById('slotImgFinish');
+                if (finishEl && finishEl.src) {
+                    document.getElementById('slotImgAmbiente').src = finishEl.src;
+                }
+                return;
+            }
             const p = products[currentProdIndex];
             const v = p.variants[currentVariantIndex];
             const g = v.gallery || {};
