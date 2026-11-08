@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
     <style>
         :root {
@@ -399,6 +400,185 @@
             transform: scaleX(-1) !important;
         }
 
+    
+        /* NATIVE LAYOUT & RESPONSIVE FALLBACKS (PC + TELÉFONO) */
+        .catalog-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 20px 24px;
+        }
+        #grid {
+            display: grid !important;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+            align-items: stretch;
+        }
+        .product-card {
+            height: 100%;
+            justify-content: space-between;
+        }
+        .card-img-area {
+            position: relative;
+            height: 215px !important;
+            background: #FFFFFF !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 10px 14px !important;
+            overflow: hidden;
+        }
+        .card-img-area img {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: 192px !important;
+            object-fit: contain !important;
+            object-position: center bottom !important;
+            mix-blend-mode: multiply;
+            transition: transform 0.27s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            transform-origin: center center !important;
+        }
+        .product-card:hover .card-img-area img,
+        .card-img-area img.flipped {
+            transform: scaleX(-1) scale(1.03) !important;
+        }
+
+        /* MODAL BODY LAYOUT (PC 2 COLS, MOBILE 1 COL) */
+        .modal-body-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 7fr 5fr;
+            gap: 24px;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        /* TABLET (640px - 1023px) */
+        @media (max-width: 1023px) {
+            #grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+            .modal-box {
+                max-height: 92vh !important;
+            }
+            .modal-body-grid {
+                grid-template-columns: 1fr;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch;
+                padding: 18px;
+                gap: 18px;
+            }
+            .modal-gallery-grid {
+                height: auto !important;
+                grid-template-rows: 130px 130px 100px !important;
+            }
+            .slot-ambiente {
+                height: 270px !important;
+            }
+            .slot-finishes-wrap, .slot-view1 {
+                height: 130px !important;
+            }
+            .slot-view2, .slot-view3, .slot-view4 {
+                height: 100px !important;
+            }
+        }
+
+        /* TELÉFONO MÓVIL (< 640px) */
+        @media (max-width: 639px) {
+            .catalog-container {
+                padding: 12px 10px;
+            }
+            .logo-img {
+                height: 54px !important;
+            }
+            #categoryBar {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start !important;
+                padding-bottom: 6px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            #categoryBar::-webkit-scrollbar {
+                display: none;
+            }
+            .pill-btn {
+                flex-shrink: 0;
+                font-size: 8.5px !important;
+                padding: 6px 12px !important;
+            }
+            #grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .product-card {
+                border-radius: 12px;
+            }
+            .card-img-area {
+                height: 148px !important;
+                padding: 8px 6px !important;
+            }
+            .card-img-area img {
+                max-height: 130px !important;
+            }
+            .badge-category {
+                top: 6px !important;
+                left: 6px !important;
+                font-size: 6.5px !important;
+                padding: 2px 6px !important;
+            }
+            .card-footer-info {
+                padding: 8px 6px 10px 6px !important;
+            }
+            .card-product-title {
+                font-size: 11px !important;
+                line-height: 1.25;
+                margin-bottom: 4px !important;
+            }
+            .swatch-circle {
+                width: 11px !important;
+                height: 11px !important;
+            }
+            .options-count-text {
+                font-size: 9.5px !important;
+            }
+            .modal {
+                padding: 8px !important;
+            }
+            .modal-box {
+                border-radius: 16px !important;
+                max-height: 94vh !important;
+            }
+            .modal-body-grid {
+                padding: 14px 12px !important;
+                gap: 14px !important;
+            }
+            .modal-gallery-grid {
+                grid-template-columns: 1fr 1fr 1fr !important;
+                grid-template-rows: 105px 105px 82px !important;
+                gap: 6px !important;
+                height: auto !important;
+            }
+            .slot-ambiente {
+                height: 216px !important;
+            }
+            .slot-finishes-wrap, .slot-view1 {
+                height: 105px !important;
+            }
+            .slot-view2, .slot-view3, .slot-view4 {
+                height: 82px !important;
+            }
+            #modalSwatchesRow {
+                flex-wrap: wrap !important;
+                gap: 6px !important;
+            }
+            .swatch-pill {
+                font-size: 9.5px !important;
+                padding: 5px 10px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -413,19 +593,20 @@
 
             <!-- BARRA DE CATEGORÍAS (20% MÁS PEQUEÑAS) -->
             <div class="flex items-center justify-center flex-wrap gap-2" id="categoryBar">
-                <button onclick="setFilter('ALL')" id="flt-ALL" class="pill-btn active">TODOS (51)</button>
-                <button onclick="setFilter('SALAS & SOFÁS')" id="flt-SALAS-SOFAS" class="pill-btn">SALAS (14)</button>
-                <button onclick="setFilter('COMEDORES')" id="flt-COMEDORES" class="pill-btn">COMEDORES (5)</button>
-                <button onclick="setFilter('RECÁMARAS')" id="flt-RECAMARAS" class="pill-btn">RECÁMARAS (10)</button>
-                <button onclick="setFilter('SILLONES OCASIONALES')" id="flt-SILLONES" class="pill-btn">SILLONES (7)</button>
-                <button onclick="setFilter('BUFETERAS & CREDENZAS')" id="flt-BUFETERAS" class="pill-btn">BUFETERAS (7)</button>
-                <button onclick="setFilter('MESAS DE CENTRO')" id="flt-MESAS" class="pill-btn">MESAS (4)</button>
+                <button onclick="setFilter('ALL')" data-cat="ALL" id="flt-ALL" class="pill-btn active">TODOS (56)</button>
+                <button onclick="setFilter('SALAS & SOFÁS')" data-cat="SALAS & SOFÁS" id="flt-SALAS-SOF-S" class="pill-btn">SALAS & SOFÁS (13)</button>
+                <button onclick="setFilter('SILLAS & SILLONES')" data-cat="SILLAS & SILLONES" id="flt-SILLAS-SILLONES" class="pill-btn">SILLAS & SILLONES (11)</button>
+                <button onclick="setFilter('COMEDORES')" data-cat="COMEDORES" id="flt-COMEDORES" class="pill-btn">COMEDORES (3)</button>
+                <button onclick="setFilter('BUFETERAS & CREDENZAS')" data-cat="BUFETERAS & CREDENZAS" id="flt-BUFETERAS-CREDENZAS" class="pill-btn">BUFETERAS & CREDENZAS (7)</button>
+                <button onclick="setFilter('MESAS DE CENTRO')" data-cat="MESAS DE CENTRO" id="flt-MESAS-DE-CENTRO" class="pill-btn">MESAS DE CENTRO (4)</button>
+                <button onclick="setFilter('RECÁMARAS')" data-cat="RECÁMARAS" id="flt-REC-MARAS" class="pill-btn">RECÁMARAS (14)</button>
+                <button onclick="setFilter('COMPLEMENTOS')" data-cat="COMPLEMENTOS" id="flt-COMPLEMENTOS" class="pill-btn">COMPLEMENTOS (4)</button>
             </div>
         </div>
     </header>
 
     <!-- CUADRÍCULA DE 51+ PRODUCTOS -->
-    <main class="max-w-7xl mx-auto px-6 py-6">
+    <main class="catalog-container max-w-7xl mx-auto px-6 py-6">
         <div class="mb-4">
             <h2 id="activeCategoryTitle" class="text-xs font-bold tracking-widest text-[#F1F5F9] uppercase">TODOS LOS MUEBLES</h2>
         </div>
@@ -441,7 +622,7 @@
             <button onclick="closeModal()" class="absolute top-4 right-4 z-50 text-gray-400 hover:text-black text-2xl font-light leading-none">✕</button>
 
             <!-- CUERPO PRINCIPAL (2 COLUMNAS EN PC, 1 EN MÓVIL) -->
-            <div class="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-y-auto lg:overflow-hidden p-6 gap-6">
+            <div class="modal-body-grid flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-y-auto lg:overflow-hidden p-6 gap-6">
                 
                 <!-- COLUMNA IZQUIERDA: GALERÍA DE FOTOS MULTI-SLOT SEGÚN 'FOTO DE REFERENCIA' -->
                 <div class="lg:col-span-7 flex flex-col justify-between">
@@ -615,26 +796,25 @@
 
         function setFilter(cat) {
             currentFilter = cat;
-            document.querySelectorAll('.pill-btn').forEach(btn => {
-                if (btn.id.startsWith('flt-')) {
-                    btn.classList.toggle('active', 
-                        (cat === 'ALL' && btn.id === 'flt-ALL') ||
-                        (cat === 'SALAS & SOFÁS' && btn.id === 'flt-SALAS-SOFAS') ||
-                        (cat === 'COMEDORES' && btn.id === 'flt-COMEDORES') ||
-                        (cat === 'SILLONES OCASIONALES' && btn.id === 'flt-SILLONES') ||
-                        (cat === 'RECÁMARAS' && btn.id === 'flt-RECAMARAS') ||
-                        (cat === 'BUFETERAS & CREDENZAS' && btn.id === 'flt-BUFETERAS') ||
-                        (cat === 'MESAS DE CENTRO' && btn.id === 'flt-MESAS')
-                    );
-                }
+            document.querySelectorAll('#categoryBar .pill-btn').forEach(btn => {
+                const btnCat = btn.getAttribute('data-cat');
+                btn.classList.toggle('active', btnCat === cat);
             });
 
-            document.getElementById('activeCategoryTitle').innerText = cat === 'ALL' ? 'TODOS LOS MUEBLES' : cat;
+            const searchEl = document.getElementById('searchInput');
+            const q = searchEl ? searchEl.value.trim().toLowerCase() : '';
+            document.getElementById('activeCategoryTitle').innerText = cat === 'ALL' ? `TODOS LOS MUEBLES (${products.length})` : `${cat}`;
 
             const filtered = products.filter(p => {
-                return (currentFilter === 'ALL' || p.category === currentFilter);
+                const matchCat = (currentFilter === 'ALL' || p.category === currentFilter);
+                const matchQ = !q || p.model_name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || (p.provider && p.provider.toLowerCase().includes(q));
+                return matchCat && matchQ;
             });
             renderGrid(filtered);
+        }
+
+        function filterCatalog() {
+            setFilter(currentFilter);
         }
 
         function openModal(prodIdx, variantIdx = 0, viewIdx = 0) {
@@ -721,13 +901,25 @@
                 `).join('');
             }
 
-            // 3. MEDIDAS Y ESPECIFICACIONES
-            document.getElementById('mWidth').innerText = p.width;
-            document.getElementById('mDepth').innerText = p.depth;
-            document.getElementById('mHeight').innerText = p.height;
-            document.getElementById('mSeat').innerText = p.seat;
-            document.getElementById('mPackages').innerText = p.packages;
-            document.getElementById('mVolume').innerText = p.volume;
+            // 3. MEDIDAS Y ESPECIFICACIONES (Ocultar campos vacíos/N/D para cero datos inventados)
+            const setSpecBox = (id, val) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const box = el.parentElement;
+                const cleanVal = (val || '').toString().trim();
+                if (!cleanVal || cleanVal === 'N/D' || cleanVal === '-' || cleanVal === 'None' || cleanVal === '0 cm' || cleanVal === '0 m³') {
+                    if (box) box.style.display = 'none';
+                } else {
+                    if (box) box.style.display = '';
+                    el.innerText = cleanVal;
+                }
+            };
+            setSpecBox('mWidth', v.width || p.width);
+            setSpecBox('mDepth', v.depth || p.depth);
+            setSpecBox('mHeight', v.height || p.height);
+            setSpecBox('mSeat', v.seat || p.seat);
+            setSpecBox('mPackages', v.packages || p.packages);
+            setSpecBox('mVolume', v.volume || p.volume);
 
             // 4. PRECIO Y MATERIALES
             document.getElementById('mPrice').innerText = p.price;
