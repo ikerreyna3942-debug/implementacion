@@ -1761,44 +1761,6 @@ async function initializeCatalog() {
             await saveCatalogData();
         }
 
-        async function handleFabricPhotoDrop(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.currentTarget.classList.remove('drag-over');
-
-            const files = e.dataTransfer.files;
-            if (!files || files.length === 0) return;
-            const file = files[0];
-            if (!file.type || !file.type.startsWith('image/')) return;
-            await setFabricPhotoFromFile(file);
-        }
-
-        async function handleFabricPhotoUpload(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            await setFabricPhotoFromFile(file);
-        }
-
-        async function setFabricPhotoFromFile(file) {
-            const p = products[currentProdIndex];
-            if (!p) return;
-            const v = p.variants ? p.variants[currentVariantIndex] : null;
-            if (!v) return;
-
-            showAdminToast('Procesando foto de tela...', '⏳');
-            const b64 = await compressImage(file);
-            v.hero_b64 = b64;
-            if (!v.gallery) v.gallery = {};
-            if (!v.gallery.ambiente) v.gallery.ambiente = b64;
-            if (!v.gallery.all_views) v.gallery.all_views = [b64];
-            else v.gallery.all_views[0] = b64;
-
-            await saveCatalogData();
-            updateModalView(false);
-            renderGrid(products);
-            showAdminToast(`Foto de tela "${v.color_label}" actualizada`, '📸');
-        }
-
         async function addNewFabricOption() {
             const p = products[currentProdIndex];
             if (!p) return;
@@ -2346,48 +2308,7 @@ async function initializeCatalog() {
             }, 3000);
         }
 
-        function compressImage(file, maxWidth = 1200, maxHeight = 1200, quality = 0.85) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.src = e.target.result;
-                    img.onload = () => {
-                        let w = img.width;
-                        let h = img.height;
-                        if (w > maxWidth || h > maxHeight) {
-                            if (w > h) {
-                                h = Math.round((h * maxWidth) / w);
-                                w = maxWidth;
-                            } else {
-                                w = Math.round((w * maxHeight) / h);
-                                h = maxHeight;
-                            }
-                        }
-                        const canvas = document.createElement('canvas');
-                        canvas.width = w;
-                        canvas.height = h;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, w, h);
-                        resolve(canvas.toDataURL('image/jpeg', quality));
-                    };
-                    img.onerror = reject;
-                };
-                reader.onerror = reject;
-            });
-        }
 
-        async function uploadSlotImage(event, slotType) {
-            const file = event.target.files[0];
-            if (!file) return;
-            try {
-                await processAndAssignSlotPhoto(file, slotType);
-            } catch (err) {
-                console.error(err);
-                alert('No se pudo procesar la imagen.');
-            }
-        }
         
         function toggleEditMode(forceState = null) {
             isEditMode = (forceState !== null) ? forceState : !isEditMode;
