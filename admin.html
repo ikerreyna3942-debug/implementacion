@@ -800,6 +800,49 @@
             border-color: #92400E;
         }
 
+
+        /* ESTILOS DE FICHAS ARCHIVADAS / OCULTAS */
+        .pill-btn-archive {
+            border-color: #64748B !important;
+            color: #475569 !important;
+            font-weight: 800 !important;
+        }
+        .pill-btn-archive.active {
+            background: #334155 !important;
+            color: #FFFFFF !important;
+            border-color: #334155 !important;
+        }
+        .product-card.is-archived {
+            opacity: 0.75;
+            border: 2px dashed #94A3B8 !important;
+            background: #F8FAFC;
+        }
+        .badge-archived-status {
+            position: absolute;
+            top: 28px;
+            left: 8px;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: #475569;
+            color: #FFFFFF;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .modal-archive-banner {
+            background: #FEF3C7;
+            border-bottom: 1px solid #F59E0B;
+            color: #92400E;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
 </style>
 </head>
 <body>
@@ -854,6 +897,7 @@
                 <button onclick="setFilter('MESAS DE CENTRO')" data-cat="MESAS DE CENTRO" id="flt-MESAS-DE-CENTRO" class="pill-btn">MESAS DE CENTRO (4)</button>
                 <button onclick="setFilter('RECÁMARAS')" data-cat="RECÁMARAS" id="flt-REC-MARAS" class="pill-btn">RECÁMARAS (14)</button>
                 <button onclick="setFilter('COMPLEMENTOS')" data-cat="COMPLEMENTOS" id="flt-COMPLEMENTOS" class="pill-btn">COMPLEMENTOS (4)</button>
+                <button onclick="setFilter('ARCHIVED')" data-cat="ARCHIVED" id="flt-ARCHIVED" class="pill-btn pill-btn-archive">📦 ARCHIVADOS (0)</button>
             </div>
         </div>
     </header>
@@ -873,8 +917,17 @@
         <div class="modal-box">
             <!-- BOTÓN CERRAR -->
             
+            <!-- BANNER DE ESTADO ARCHIVADO -->
+            <div id="modalArchiveBanner" class="modal-archive-banner hidden rounded-t-xl mb-1">
+                <span class="flex items-center gap-1.5"><span>📦</span> <span>Esta ficha está <strong>ARCHIVADA / OCULTA</strong> para clientes en el catálogo.</span></span>
+                <button type="button" onclick="toggleArchiveCurrentProduct()" class="text-[10px] bg-amber-600 hover:bg-amber-700 text-white font-bold px-2.5 py-1 rounded transition">👁️ Hacer Visible</button>
+            </div>
+
             <!-- BOTONES DE ACCIÓN ADMINISTRATIVA DEL MODAL -->
             <div class="absolute top-3 right-4 z-50 flex items-center space-x-2">
+                <button type="button" id="btnArchiveModal" onclick="toggleArchiveCurrentProduct()" class="admin-btn text-xs shadow" style="background: #475569; color: #FFFFFF;" title="Ocultar o archivar esta ficha del catálogo público">
+                    <span id="btnArchiveModalIcon">📦</span> <span id="btnArchiveModalText">Archivar</span>
+                </button>
                 <button type="button" id="btnToggleEdit" onclick="toggleEditMode()" class="admin-btn admin-btn-gold text-xs shadow">
                     <span id="editBtnIcon">✏️</span> <span id="editBtnText">Editar Ficha</span>
                 </button>
@@ -1133,7 +1186,8 @@
                 p.height && p.height !== 'N/D' &&
                 p.price && !p.price.includes('Consultar')
             );
-            renderGrid(products);
+            updateCategoryCounts();
+            setFilter(currentFilter);
         }
 
         if (document.readyState === 'loading') {
@@ -1142,6 +1196,28 @@
             initializeCatalog();
         }
 
+
+        function updateCategoryCounts() {
+            const activeProds = products.filter(p => !p.archived);
+            const archProds = products.filter(p => p.archived);
+
+            const setBtnText = (id, label, count) => {
+                const btn = document.getElementById(id);
+                if (btn) btn.innerText = `${label} (${count})`;
+            };
+
+            setBtnText('flt-ALL', 'TODOS', activeProds.length);
+            setBtnText('flt-SALAS-SOF-S', 'SALAS & SOFÁS', activeProds.filter(p => p.category === 'SALAS & SOFÁS').length);
+            setBtnText('flt-SILLAS-SILLONES', 'SILLAS & SILLONES', activeProds.filter(p => p.category === 'SILLAS & SILLONES').length);
+            setBtnText('flt-COMEDORES', 'COMEDORES', activeProds.filter(p => p.category === 'COMEDORES').length);
+            setBtnText('flt-BUFETERAS-CREDENZAS', 'BUFETERAS & CREDENZAS', activeProds.filter(p => p.category === 'BUFETERAS & CREDENZAS').length);
+            setBtnText('flt-MESAS-DE-CENTRO', 'MESAS DE CENTRO', activeProds.filter(p => p.category === 'MESAS DE CENTRO').length);
+            setBtnText('flt-REC-MARAS', 'RECÁMARAS', activeProds.filter(p => p.category === 'RECÁMARAS').length);
+            setBtnText('flt-COMPLEMENTOS', 'COMPLEMENTOS', activeProds.filter(p => p.category === 'COMPLEMENTOS').length);
+
+            const archBtn = document.getElementById('flt-ARCHIVED');
+            if (archBtn) archBtn.innerText = `📦 ARCHIVADOS (${archProds.length})`;
+        }
 
         function setFilter(cat) {
             currentFilter = cat;
@@ -1153,14 +1229,31 @@
             const searchEl = document.getElementById('searchInput');
             const q = searchEl ? searchEl.value.trim().toLowerCase() : '';
             const titleEl = document.getElementById('activeCategoryTitle');
+
+            const activeCount = products.filter(p => !p.archived).length;
+            const archCount = products.filter(p => p.archived).length;
+
             if (titleEl) {
-                titleEl.innerText = cat === 'ALL' ? `TODOS LOS MUEBLES (${products.length})` : `${cat}`;
+                if (cat === 'ARCHIVED') {
+                    titleEl.innerText = `FICHAS ARCHIVADAS / OCULTAS DEL CATÁLOGO (${archCount})`;
+                } else if (cat === 'ALL') {
+                    titleEl.innerText = `TODOS LOS MUEBLES ACTIVOS (${activeCount})`;
+                } else {
+                    const catCount = products.filter(p => !p.archived && p.category === cat).length;
+                    titleEl.innerText = `${cat} (${catCount})`;
+                }
             }
 
             const filtered = products.filter(p => {
-                const matchCat = (currentFilter === 'ALL' || p.category === currentFilter);
+                if (currentFilter === 'ARCHIVED') {
+                    if (!p.archived) return false;
+                } else {
+                    if (p.archived) return false;
+                    if (currentFilter !== 'ALL' && p.category !== currentFilter) return false;
+                }
+
                 const matchQ = !q || p.model_name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || (p.provider && p.provider.toLowerCase().includes(q));
-                return matchCat && matchQ;
+                return matchQ;
             });
             renderGrid(filtered);
         }
@@ -1175,7 +1268,11 @@
             grid.innerHTML = '';
 
             if (items.length === 0) {
-                grid.innerHTML = '<div class="col-span-full py-16 text-center text-gray-200 text-sm">No se encontraron muebles en esta categoría.</div>';
+                if (currentFilter === 'ARCHIVED') {
+                    grid.innerHTML = '<div class="col-span-full py-16 text-center text-gray-300 text-sm">📦 No tienes ninguna ficha archivada actualmente.</div>';
+                } else {
+                    grid.innerHTML = '<div class="col-span-full py-16 text-center text-gray-200 text-sm">No se encontraron muebles en esta categoría.</div>';
+                }
                 return;
             }
 
@@ -1183,7 +1280,7 @@
                 const realIdx = products.indexOf(p);
                 const v = p.variants ? p.variants[0] : {};
                 const card = document.createElement('div');
-                card.className = 'product-card cursor-pointer';
+                card.className = `product-card cursor-pointer ${p.archived ? 'is-archived' : ''}`;
                 card.onclick = () => openModal(realIdx, 0);
 
                 const imgId = `grid_card_img_${realIdx}`;
@@ -1201,11 +1298,22 @@
                          onmouseenter="this.querySelector('img').classList.add('flipped')"
                          onmouseleave="this.querySelector('img').classList.remove('flipped')">
                         <span class="badge-category">${p.category}</span>
-                        <span class="badge-edit-card" onclick="event.stopPropagation(); openModal(${realIdx}, 0, 0, true);" title="Editar todo este mueble">✏️ EDITAR</span>
+                        ${p.archived ? `<span class="badge-archived-status">📦 ARCHIVADO</span>` : ''}
+                        <div class="absolute top-2 right-2 flex items-center gap-1.5 z-20">
+                            <span class="badge-edit-card" onclick="event.stopPropagation(); toggleArchiveProductByIdx(${realIdx});" title="${p.archived ? 'Desarchivar y mostrar en el catálogo' : 'Ocultar / Archivar del catálogo'}">
+                                ${p.archived ? '👁️ RESTAURAR' : '📦 ARCHIVAR'}
+                            </span>
+                            <span class="badge-edit-card" onclick="event.stopPropagation(); openModal(${realIdx}, 0, 0, true);" title="Editar todo este mueble">
+                                ✏️ EDITAR
+                            </span>
+                        </div>
                         <img id="${imgId}" src="${v.hero_b64 || ''}" alt="${p.model_name}">
                     </div>
                     <div class="card-footer-info">
-                        <div class="card-product-title">${p.model_name}</div>
+                        <div class="card-product-title">
+                            ${p.model_name}
+                            ${p.archived ? '<span class="text-[10px] text-amber-700 font-bold ml-1">(Archivado)</span>' : ''}
+                        </div>
                         <div class="card-swatches-row">
                             ${swatchesHtml}
                             <span class="options-count-text">${(p.variants || []).length} ${(p.variants || []).length === 1 ? 'opción' : 'opciones'}</span>
@@ -1214,6 +1322,37 @@
                 `;
                 grid.appendChild(card);
             });
+        }
+
+        async function toggleArchiveProductByIdx(realIdx) {
+            const p = products[realIdx];
+            if (!p) return;
+            p.archived = !p.archived;
+            await saveCatalogData();
+            updateCategoryCounts();
+            filterCatalog();
+            updateAdminBadge();
+            if (p.archived) {
+                showAdminToast(`"${p.model_name}" archivado (oculto del catálogo)`, '📦');
+            } else {
+                showAdminToast(`"${p.model_name}" desarchivado (visible en catálogo)`, '👁️');
+            }
+        }
+
+        async function toggleArchiveCurrentProduct() {
+            const p = products[currentProdIndex];
+            if (!p) return;
+            p.archived = !p.archived;
+            await saveCatalogData();
+            updateModalView(false);
+            updateCategoryCounts();
+            filterCatalog();
+            updateAdminBadge();
+            if (p.archived) {
+                showAdminToast(`"${p.model_name}" archivado (oculto del catálogo)`, '📦');
+            } else {
+                showAdminToast(`"${p.model_name}" desarchivado (visible en catálogo)`, '👁️');
+            }
         }
 
         function openModal(prodIdx, variantIdx = 0, viewIdx = 0, startInEdit = false) {
@@ -1311,6 +1450,32 @@
             const driveBtn = document.getElementById('modalDriveBtn');
             if (driveBtn) {
                 driveBtn.href = p.drive_ficha_url || '#';
+            }
+
+            // ACTUALIZACIÓN DE ESTADO ARCHIVADO EN MODAL
+            const btnArch = document.getElementById('btnArchiveModal');
+            const iconArch = document.getElementById('btnArchiveModalIcon');
+            const textArch = document.getElementById('btnArchiveModalText');
+            const bannerArch = document.getElementById('modalArchiveBanner');
+
+            if (p.archived) {
+                if (btnArch) {
+                    btnArch.style.background = '#10B981';
+                    btnArch.style.color = '#FFFFFF';
+                    if (iconArch) iconArch.innerText = '👁️';
+                    if (textArch) textArch.innerText = 'Desarchivar';
+                    btnArch.title = 'Hacer visible nuevamente en el catálogo';
+                }
+                if (bannerArch) bannerArch.classList.remove('hidden');
+            } else {
+                if (btnArch) {
+                    btnArch.style.background = '#475569';
+                    btnArch.style.color = '#FFFFFF';
+                    if (iconArch) iconArch.innerText = '📦';
+                    if (textArch) textArch.innerText = 'Archivar';
+                    btnArch.title = 'Ocultar o archivar esta ficha del catálogo';
+                }
+                if (bannerArch) bannerArch.classList.add('hidden');
             }
         }
 
