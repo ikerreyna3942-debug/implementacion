@@ -871,6 +871,15 @@
             display: flex;
         }
 
+
+        /* EVITAR QUE ELEMENTOS HIJOS BLOQUEEN EL EVENTO DROP */
+        .gallery-slot.drag-over *,
+        .card-img-area.drag-over *,
+        .fabric-dropzone.drag-over *,
+        .gallery-dropzone.drag-over * {
+            pointer-events: none !important;
+        }
+
 </style>
 </head>
 <body>
@@ -1321,71 +1330,7 @@
         let currentVariantIndex = 0;
 
         
-        function handleCardDragOver(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.currentTarget.classList.add('drag-over');
-        }
-
-        function handleCardDragLeave(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.currentTarget.classList.remove('drag-over');
-        }
-
-        async function handleCardDrop(e, realIdx) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.currentTarget.classList.remove('drag-over');
-
-            const files = e.dataTransfer.files;
-            if (!files || files.length === 0) return;
-            const file = files[0];
-            if (!file.type || !file.type.startsWith('image/')) {
-                alert('Por favor arrastra un archivo de imagen válido.');
-                return;
-            }
-            await assignCardHeroPhoto(file, realIdx);
-        }
-
-        async function uploadCardHeroImage(e, realIdx) {
-            const file = e.target.files[0];
-            if (!file) return;
-            await assignCardHeroPhoto(file, realIdx);
-        }
-
-        async function assignCardHeroPhoto(file, realIdx) {
-            const p = products[realIdx];
-            if (!p) return;
-            if (!p.variants || p.variants.length === 0) {
-                p.variants = [{ name: p.model_name, color_label: 'Opción 1', swatch_hex: '#B8893E', hero_b64: '' }];
-            }
-            const v = p.variants[0];
-
-            showAdminToast(`Procesando foto de inicio para "${p.model_name}"...`, '⏳');
-            const b64 = await compressImage(file);
-            v.hero_b64 = b64;
-            if (!v.gallery) v.gallery = {};
-            if (!v.gallery.ambiente) v.gallery.ambiente = b64;
-            if (!v.gallery.all_views) v.gallery.all_views = [b64];
-            else v.gallery.all_views[0] = b64;
-
-            await saveCatalogData();
-            filterCatalog();
-            updateAdminBadge();
-            showAdminToast(`¡Foto de inicio de "${p.model_name}" actualizada!`, '📸');
-        }
-
-        async function uploadHeaderLogo(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            showAdminToast('Actualizando logo de inicio...', '⏳');
-            const b64 = await compressImage(file, 800, 300, 0.9);
-            localStorage.setItem('creata_custom_logo', b64);
-            const logoEl = document.getElementById('headerLogoImg');
-            if (logoEl) logoEl.src = b64;
-            showAdminToast('¡Logo de inicio actualizado con éxito!', '✨');
-        }
+        
 
 async function initializeCatalog() {
             const custom = await loadCustomProducts();
@@ -1910,16 +1855,133 @@ async function initializeCatalog() {
         }
 
         // REQUERIMIENTO 1: DRAG & DROP Y BORRADO DE FOTOS
+        // ==========================================
+        // SISTEMA ROBUSTO DE CARGA Y DRAG & DROP
+        // ==========================================
+
+        // Extraer imagen sin importar si viene de archivo local, otra pestaña, Drive o portapapeles
+        async function extractImageFromDropEvent(e) {
+            // 1. Archivos locales desde explorador de archivos (Windows / Mac / Linux)
+            if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                for (let i = 0; i < e.dataTransfer.files.length; i++) {
+                    const f = e.dataTransfer.files[i];
+                    const isImg = (f.type && f.type.startsWith('image/')) ||
+                                  /\.(jpe?g|png|webp|gif|bmp|avif|jfif|svg)$/i.test(f.name) ||
+                                  (!f.type && f.size > 0);
+                    if (isImg) return f;
+                }
+            }
+
+            // 2. DataTransfer items (archivos arrastrados de apps modernas)
+            if (e.dataTransfer && e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+                for (let i = 0; i < e.dataTransfer.items.length; i++) {
+                    const item = e.dataTransfer.items[i];
+                    if (item.kind === 'file') {
+                        const f = item.getAsFile();
+                        if (f) return f;
+                    }
+                }
+            }
+
+            // 3. Arrastre desde otra pestaña, navegador o Drive (URL)
+            if (e.dataTransfer) {
+                const uri = e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('URL') || e.dataTransfer.getData('text/plain');
+                if (uri && (uri.startsWith('http://') || uri.startsWith('https://') || uri.startsWith('data:image/'))) {
+                    return uri.trim();
+                }
+
+                // 4. Fragmento HTML con <img src="...">
+                const html = e.dataTransfer.getData('text/html');
+                if (html) {
+                    const m = html.match(/src=["'](.*?)["']/i);
+                    if (m && m[1]) return m[1].trim();
+                }
+            }
+
+            return null;
+        }
+
+        // Convertir cualquier fuente de imagen (File, Blob, DataURL, URL externa) a Base64 JPEG optimizado
+        function imageSourceToBase64(src, maxWidth = 1200, maxHeight = 1200, quality = 0.85) {
+            return new Promise((resolve) => {
+                if (typeof src === 'string') {
+                    if (src.startsWith('data:image/')) {
+                        resolve(src);
+                        return;
+                    }
+                    const img = new Image();
+                    img.crossOrigin = 'Anonymous';
+                    img.onload = () => {
+                        try {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0);
+                            resolve(canvas.toDataURL('image/jpeg', quality));
+                        } catch (e) {
+                            resolve(src);
+                        }
+                    };
+                    img.onerror = () => resolve(src);
+                    img.src = src;
+                    return;
+                }
+
+                // Si es un File o Blob
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const rawB64 = e.target.result;
+                    const img = new Image();
+                    img.onload = () => {
+                        try {
+                            let w = img.width;
+                            let h = img.height;
+                            if (w > maxWidth || h > maxHeight) {
+                                if (w > h) {
+                                    h = Math.round((h * maxWidth) / w);
+                                    w = maxWidth;
+                                } else {
+                                    w = Math.round((w * maxHeight) / h);
+                                    h = maxHeight;
+                                }
+                            }
+                            const canvas = document.createElement('canvas');
+                            canvas.width = w;
+                            canvas.height = h;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, w, h);
+                            resolve(canvas.toDataURL('image/jpeg', quality));
+                        } catch (err) {
+                            resolve(rawB64);
+                        }
+                    };
+                    img.onerror = () => resolve(rawB64);
+                    img.src = rawB64;
+                };
+                reader.onerror = () => resolve(null);
+                reader.readAsDataURL(src);
+            });
+        }
+
+        function compressImage(file, maxWidth = 1200, maxHeight = 1200, quality = 0.85) {
+            return imageSourceToBase64(file, maxWidth, maxHeight, quality);
+        }
+
+        // Manejadores de Drag & Drop para slots del modal
         function handleSlotDragOver(e) {
             e.preventDefault();
             e.stopPropagation();
+            if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
             e.currentTarget.classList.add('drag-over');
         }
 
         function handleSlotDragLeave(e) {
             e.preventDefault();
             e.stopPropagation();
-            e.currentTarget.classList.remove('drag-over');
+            if (!e.currentTarget.contains(e.relatedTarget)) {
+                e.currentTarget.classList.remove('drag-over');
+            }
         }
 
         async function handleSlotDrop(e, slotType) {
@@ -1927,66 +1989,31 @@ async function initializeCatalog() {
             e.stopPropagation();
             e.currentTarget.classList.remove('drag-over');
 
-            const files = e.dataTransfer.files;
-            if (!files || files.length === 0) return;
-            const file = files[0];
-            if (!file.type || !file.type.startsWith('image/')) {
-                alert('Por favor arrastra un archivo de imagen válido.');
-                return;
-            }
-            await processAndAssignSlotPhoto(file, slotType);
-        }
-
-        async function handleGalleryDrop(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.currentTarget.classList.remove('drag-over');
-
-            const files = e.dataTransfer.files;
-            if (!files || files.length === 0) return;
-            await processMultipleGalleryFiles(files);
-        }
-
-        async function handleGalleryMultiUpload(e) {
-            const files = e.target.files;
-            if (!files || files.length === 0) return;
-            await processMultipleGalleryFiles(files);
-        }
-
-        async function processMultipleGalleryFiles(files) {
-            const p = products[currentProdIndex];
-            if (!p) return;
-            const v = p.variants ? p.variants[currentVariantIndex] : {};
-            if (!v.gallery) v.gallery = {};
-            if (!v.gallery.all_views) v.gallery.all_views = [];
-
-            showAdminToast(`Procesando ${files.length} foto(s)...`, '⏳');
-            let addedCount = 0;
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                if (file.type && file.type.startsWith('image/')) {
-                    const b64 = await compressImage(file);
-                    v.gallery.all_views.push(b64);
-                    addedCount++;
+            try {
+                showAdminToast('Procesando foto...', '⏳');
+                const rawItem = await extractImageFromDropEvent(e);
+                if (!rawItem) {
+                    showAdminToast('Por favor suelta un archivo de imagen válido', '⚠️');
+                    return;
                 }
-            }
-            if (addedCount > 0) {
-                await saveCatalogData();
-                updateModalView(false);
-                renderGrid(products);
-                showAdminToast(`¡${addedCount} foto(s) agregadas a la galería!`, '📸');
+                const b64 = await imageSourceToBase64(rawItem);
+                if (!b64) {
+                    showAdminToast('No se pudo leer la imagen', '❌');
+                    return;
+                }
+                await assignImageToSlot(b64, slotType);
+            } catch (err) {
+                console.error('Error en slot drop:', err);
+                showAdminToast('Error al procesar la foto', '❌');
             }
         }
 
-        async function processAndAssignSlotPhoto(file, slotType) {
+        async function assignImageToSlot(b64, slotType) {
             const p = products[currentProdIndex];
             if (!p) return;
-            const v = p.variants ? p.variants[currentVariantIndex] : {};
+            const v = (p.variants && p.variants[currentVariantIndex]) ? p.variants[currentVariantIndex] : (p.variants ? p.variants[0] : {});
             if (!v.gallery) v.gallery = {};
             if (!v.gallery.all_views) v.gallery.all_views = [v.hero_b64 || ''];
-
-            showAdminToast('Procesando imagen...', '⏳');
-            const b64 = await compressImage(file);
 
             if (slotType === 'ambiente') {
                 v.gallery.ambiente = b64;
@@ -2006,11 +2033,86 @@ async function initializeCatalog() {
             } else if (slotType === 'hero') {
                 v.hero_b64 = b64;
                 updateModalView(false);
-                showAdminToast('Foto Principal actualizada', '📸');
+                showAdminToast('Foto de Inicio actualizada', '📸');
             }
 
             await saveCatalogData();
             renderGrid(products);
+        }
+
+        async function uploadSlotImage(event, slotType) {
+            const file = event.target.files[0];
+            if (!file) return;
+            try {
+                showAdminToast('Procesando imagen...', '⏳');
+                const b64 = await imageSourceToBase64(file);
+                if (b64) {
+                    await assignImageToSlot(b64, slotType);
+                }
+            } catch (err) {
+                console.error(err);
+                showAdminToast('Error al procesar la imagen', '❌');
+            }
+        }
+
+        async function handleGalleryDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.classList.remove('drag-over');
+
+            try {
+                if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                    await processMultipleGalleryFiles(e.dataTransfer.files);
+                    return;
+                }
+                const rawItem = await extractImageFromDropEvent(e);
+                if (rawItem) {
+                    const b64 = await imageSourceToBase64(rawItem);
+                    if (b64) {
+                        const p = products[currentProdIndex];
+                        const v = p.variants[currentVariantIndex];
+                        if (!v.gallery) v.gallery = {};
+                        if (!v.gallery.all_views) v.gallery.all_views = [];
+                        v.gallery.all_views.push(b64);
+                        await saveCatalogData();
+                        updateModalView(false);
+                        renderGrid(products);
+                        showAdminToast('Foto agregada a la galería', '📸');
+                    }
+                }
+            } catch (err) {
+                console.error('Error en gallery drop:', err);
+            }
+        }
+
+        async function handleGalleryMultiUpload(e) {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+            await processMultipleGalleryFiles(files);
+        }
+
+        async function processMultipleGalleryFiles(files) {
+            const p = products[currentProdIndex];
+            if (!p) return;
+            const v = p.variants ? p.variants[currentVariantIndex] : {};
+            if (!v.gallery) v.gallery = {};
+            if (!v.gallery.all_views) v.gallery.all_views = [];
+
+            showAdminToast(`Procesando ${files.length} foto(s)...`, '⏳');
+            let addedCount = 0;
+            for (let i = 0; i < files.length; i++) {
+                const b64 = await imageSourceToBase64(files[i]);
+                if (b64) {
+                    v.gallery.all_views.push(b64);
+                    addedCount++;
+                }
+            }
+            if (addedCount > 0) {
+                await saveCatalogData();
+                updateModalView(false);
+                renderGrid(products);
+                showAdminToast(`¡${addedCount} foto(s) agregadas a la galería!`, '📸');
+            }
         }
 
         async function deleteSlotPhoto(slotType) {
@@ -2039,6 +2141,149 @@ async function initializeCatalog() {
             await saveCatalogData();
             renderGrid(products);
         }
+
+        // Drag & Drop en tarjetas de inicio
+        function handleCardDragOver(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleCardDragLeave(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (!e.currentTarget.contains(e.relatedTarget)) {
+                e.currentTarget.classList.remove('drag-over');
+            }
+        }
+
+        async function handleCardDrop(e, realIdx) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.classList.remove('drag-over');
+
+            try {
+                const p = products[realIdx];
+                if (!p) return;
+                showAdminToast(`Cargando foto de inicio para "${p.model_name}"...`, '⏳');
+                const rawItem = await extractImageFromDropEvent(e);
+                if (!rawItem) {
+                    showAdminToast('Por favor suelta un archivo de imagen válido', '⚠️');
+                    return;
+                }
+                const b64 = await imageSourceToBase64(rawItem);
+                if (!b64) {
+                    showAdminToast('No se pudo procesar la foto', '❌');
+                    return;
+                }
+
+                if (!p.variants || p.variants.length === 0) {
+                    p.variants = [{ name: p.model_name, color_label: 'Opción 1', swatch_hex: '#B8893E', hero_b64: '' }];
+                }
+                const v = p.variants[0];
+                v.hero_b64 = b64;
+                if (!v.gallery) v.gallery = {};
+                if (!v.gallery.ambiente) v.gallery.ambiente = b64;
+                if (!v.gallery.all_views) v.gallery.all_views = [b64];
+                else v.gallery.all_views[0] = b64;
+
+                await saveCatalogData();
+                filterCatalog();
+                updateAdminBadge();
+                showAdminToast(`¡Foto de inicio de "${p.model_name}" actualizada!`, '📸');
+            } catch (err) {
+                console.error('Error en card drop:', err);
+                showAdminToast('Error al cargar la foto', '❌');
+            }
+        }
+
+        async function uploadCardHeroImage(e, realIdx) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const p = products[realIdx];
+            if (!p) return;
+            const b64 = await imageSourceToBase64(file);
+            if (b64) {
+                if (!p.variants || p.variants.length === 0) {
+                    p.variants = [{ name: p.model_name, color_label: 'Opción 1', swatch_hex: '#B8893E', hero_b64: '' }];
+                }
+                const v = p.variants[0];
+                v.hero_b64 = b64;
+                if (!v.gallery) v.gallery = {};
+                if (!v.gallery.ambiente) v.gallery.ambiente = b64;
+                if (!v.gallery.all_views) v.gallery.all_views = [b64];
+                else v.gallery.all_views[0] = b64;
+                await saveCatalogData();
+                filterCatalog();
+                updateAdminBadge();
+                showAdminToast(`¡Foto de inicio de "${p.model_name}" actualizada!`, '📸');
+            }
+        }
+
+        // Drag & Drop en editor de tela
+        async function handleFabricPhotoDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.currentTarget.classList.remove('drag-over');
+
+            try {
+                const p = products[currentProdIndex];
+                if (!p) return;
+                const v = p.variants ? p.variants[currentVariantIndex] : null;
+                if (!v) return;
+
+                showAdminToast('Cargando foto de tela...', '⏳');
+                const rawItem = await extractImageFromDropEvent(e);
+                if (!rawItem) {
+                    showAdminToast('Por favor suelta un archivo de imagen válido', '⚠️');
+                    return;
+                }
+                const b64 = await imageSourceToBase64(rawItem);
+                if (!b64) return;
+
+                v.hero_b64 = b64;
+                if (!v.gallery) v.gallery = {};
+                if (!v.gallery.ambiente) v.gallery.ambiente = b64;
+                if (!v.gallery.all_views) v.gallery.all_views = [b64];
+                else v.gallery.all_views[0] = b64;
+
+                await saveCatalogData();
+                updateModalView(false);
+                renderGrid(products);
+                showAdminToast(`Foto de tela "${v.color_label}" actualizada`, '📸');
+            } catch (err) {
+                console.error('Error en fabric drop:', err);
+            }
+        }
+
+        async function handleFabricPhotoUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const p = products[currentProdIndex];
+            if (!p) return;
+            const v = p.variants ? p.variants[currentVariantIndex] : null;
+            if (!v) return;
+            const b64 = await imageSourceToBase64(file);
+            if (b64) {
+                v.hero_b64 = b64;
+                if (!v.gallery) v.gallery = {};
+                if (!v.gallery.ambiente) v.gallery.ambiente = b64;
+                if (!v.gallery.all_views) v.gallery.all_views = [b64];
+                else v.gallery.all_views[0] = b64;
+                await saveCatalogData();
+                updateModalView(false);
+                renderGrid(products);
+                showAdminToast(`Foto de tela "${v.color_label}" actualizada`, '📸');
+            }
+        }
+
+        // PREVENCIÓN GLOBAL DE COMPORTAMIENTO POR DEFECTO DEL NAVEGADOR
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            window.addEventListener(eventName, (e) => {
+                e.preventDefault();
+            }, false);
+        });
 
         function cycleMainPhoto() {
             const p = products[currentProdIndex];
