@@ -629,17 +629,6 @@
                 
                 <!-- COLUMNA IZQUIERDA: GALERÍA DE FOTOS MULTI-SLOT SEGÚN 'FOTO DE REFERENCIA' -->
                 <div class="lg:col-span-7 flex flex-col justify-between">
-                    <!-- BARRA DE ORIENTACIÓN SECCIONAL 3/4 -->
-                    <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 mb-2 shadow-sm">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-xs font-bold text-slate-700 flex items-center gap-1">
-                                <span>📐</span> <span>Orientación Seccional:</span>
-                            </span>
-                            <button type="button" onclick="flipPublicPhoto()" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 bg-white hover:bg-amber-50 hover:border-amber-400 text-slate-700 flex items-center gap-1 shadow-sm transition" title="Cambiar orientación mirando a la derecha o izquierda">
-                                <span>↔️</span> <span>Mirando Izquierda / Derecha</span>
-                            </button>
-                        </div>
-                    </div>
                     <div class="modal-gallery-grid">
                         <!-- #3F48CC FOTO DEL AMBIENTE (TOP LEFT, 2 COLS X 2 ROWS) -->
                         <div class="gallery-slot slot-ambiente" onclick="cycleMainPhoto()" title="Haz clic para pasar a la siguiente foto o regresar a Ambiente">
@@ -1034,18 +1023,7 @@
         }
 
         
-        function flipPublicPhoto() {
-            const mainImg = document.getElementById('slotImgAmbiente');
-            if (!mainImg) return;
-            const currentTransform = mainImg.style.transform || '';
-            if (currentTransform.includes('scaleX(-1)')) {
-                mainImg.style.transform = 'none';
-            } else {
-                mainImg.style.transform = 'scaleX(-1)';
-            }
-        }
-
-        function swapToMain(slotName) {
+                function swapToMain(slotName) {
             if (slotName === 'finish') {
                 const finishEl = document.getElementById('slotImgFinish');
                 if (finishEl && finishEl.src) {

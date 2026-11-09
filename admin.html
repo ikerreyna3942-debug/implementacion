@@ -924,6 +924,79 @@
             box-shadow: 0 0 0 1px #B8893E !important;
         }
 
+    
+        /* =========================================================
+           SISTEMA INTEGRAL DE COLISIÓN Y FÍSICA TÁCTIL DE BOTONES
+           ========================================================= */
+        button, .admin-btn, .pill-btn, .btn-card-edit, .slot-tool-btn, .slot-delete-btn, .modal-close-btn, label.admin-btn {
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        button:hover, .admin-btn:hover, .pill-btn:hover, label.admin-btn:hover {
+            transform: translateY(-1.5px) scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        button:active, .admin-btn:active, .pill-btn:active, label.admin-btn:active {
+            transform: translateY(1.5px) scale(0.96);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.22);
+        }
+
+        /* BOTÓN DEL LÁPIZ EN LAS FICHAS PRINCIPALES (ÚNICO BOTÓN EN LA TARJETA) */
+        .btn-card-edit {
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #C59A4E 0%, #A67830 100%);
+            color: #FFFFFF;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28);
+            cursor: pointer;
+            z-index: 25;
+        }
+        .btn-card-edit:hover {
+            background: linear-gradient(135deg, #D4A759 0%, #9E7432 100%);
+            transform: translateY(-2px) scale(1.12) !important;
+            box-shadow: 0 6px 16px rgba(184, 137, 62, 0.55) !important;
+        }
+        .btn-card-edit:active {
+            transform: translateY(1.5px) scale(0.92) !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        /* BOTÓN CERRAR MODAL (✕) CON COLISIÓN ELEGANTE */
+        .modal-close-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 9999px;
+            background: #F1F5F9;
+            color: #475569;
+            font-size: 15px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #CBD5E1;
+            cursor: pointer;
+            line-height: 1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .modal-close-btn:hover {
+            background: #E2E8F0;
+            color: #0F172A;
+            transform: translateY(-1.5px) scale(1.1) !important;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.18) !important;
+        }
+        .modal-close-btn:active {
+            transform: translateY(1px) scale(0.92) !important;
+        }
+
     </style>
 </head>
 <body>
@@ -938,7 +1011,7 @@
                 <span class="text-xs text-gray-300 hidden sm:inline"><strong id="adminCountDisplay">56</strong> muebles</span>
             </div>
 
-            <div class="flex items-center space-x-2 flex-wrap">
+            <div class="flex items-center gap-2 flex-wrap">
                 <button type="button" onclick="openNewFurnitureModal()" class="admin-btn admin-btn-gold">
                     <span>➕</span> Agregar Nuevo Mueble
                 </button>
@@ -961,7 +1034,7 @@
 
 
     <!-- CABECERA -->
-    <header class="sticky top-0 z-40">
+    <header class="relative z-40">
         <div class="max-w-7xl mx-auto px-6 pt-6 pb-4">
             <!-- LOGO OFICIAL EN BLANCO -->
             <div class="text-center mb-4 relative inline-block group">
@@ -1011,7 +1084,7 @@
             </div>
 
             <!-- BOTONES DE ACCIÓN ADMINISTRATIVA DEL MODAL -->
-            <div class="absolute top-3 right-4 z-50 flex items-center space-x-2">
+            <div class="absolute top-3 right-4 z-50 flex items-center gap-2 flex-wrap justify-end max-w-[85%]">
                 <label class="admin-btn admin-btn-gold text-xs shadow cursor-pointer" title="Modificar la foto de portada que se ve en la pantalla de inicio">
                     <span>📷</span> <span>Foto de Inicio</span>
                     <input type="file" accept="image/*" class="hidden" onchange="uploadSlotImage(event, 'hero')">
@@ -1028,7 +1101,7 @@
                 <button type="button" id="btnDeleteModal" onclick="deleteCurrentFurniture()" class="admin-btn admin-btn-danger text-xs shadow" title="Eliminar este mueble">
                     <span>🗑️</span>
                 </button>
-                <button type="button" onclick="closeModal()" class="text-gray-400 hover:text-black text-2xl font-light leading-none px-2 py-1">✕</button>
+                <button type="button" onclick="closeModal()" class="modal-close-btn" title="Cerrar ventana">✕</button>
             </div>
 
 
@@ -1617,20 +1690,10 @@ async function initializeCatalog() {
                         </div>
                         <span class="badge-category">${p.category}</span>
                         ${p.archived ? `<span class="badge-archived-status">📦 ARCHIVADO</span>` : ''}
-                        <div class="absolute top-2 right-2 flex items-center gap-1.5 z-20">
-                            <span class="badge-edit-card" onclick="event.stopPropagation(); flipCardHeroImage(${realIdx});" title="Voltear foto de portada horizontalmente (mirando a la derecha o izquierda)">
-                                ↔️
-                            </span>
-                            <label class="badge-edit-card cursor-pointer" onclick="event.stopPropagation();" title="Cambiar la foto de portada que se ve en el inicio">
-                                📷 FOTO
-                                <input type="file" accept="image/*" class="hidden" onchange="uploadCardHeroImage(event, ${realIdx})">
-                            </label>
-                            <span class="badge-edit-card" onclick="event.stopPropagation(); toggleArchiveProductByIdx(${realIdx});" title="${p.archived ? 'Desarchivar y mostrar en el catálogo' : 'Ocultar / Archivar del catálogo'}">
-                                ${p.archived ? '👁️' : '📦'}
-                            </span>
-                            <span class="badge-edit-card" onclick="event.stopPropagation(); openModal(${realIdx}, 0, 0, true);" title="Editar todo este mueble">
+                        <div class="absolute top-2.5 right-2.5 z-20">
+                            <button type="button" class="btn-card-edit" onclick="event.stopPropagation(); openModal(${realIdx}, 0, 0, true);" title="Editar ficha de este mueble">
                                 ✏️
-                            </span>
+                            </button>
                         </div>
                         <img id="${imgId}" src="${v.hero_b64 || ''}" alt="${p.model_name}">
                     </div>
